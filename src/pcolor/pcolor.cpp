@@ -6,8 +6,8 @@ Created at: 17/10/2019
 Modified at: 23/10/2023
 **/
 
-#include <stdio.h>
-#include "pcolor.h"
+#include <cstdio>
+#include "pcolor.hpp"
 
 void print_red(char c)
 {
