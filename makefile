@@ -19,8 +19,15 @@ build: main
 clean:
 	rm -r $(OUTPUT_FOLDER)/*.o $(OUTPUT_FOLDER)/MainApp
 
+clean_session:
+	find * -name 'peda*' -delete
+	
 main:
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/pcolor/pcolor.cpp -o $(OUTPUT_FOLDER)/pcolor.o 
+	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/input/InputHandler.cpp -o $(OUTPUT_FOLDER)/InputHandler.o 
+	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/GameConfig/GameConfig.cpp -o $(OUTPUT_FOLDER)/GameConfig.o 
+	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/input/FileHandler.cpp -o $(OUTPUT_FOLDER)/FileHandler.o 
+
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/main/main.cpp -o $(OUTPUT_FOLDER)/main.o 
 	@$(CC) bin/*.o -o $(OUTPUT_FOLDER)/MainApp
 	@echo Linking object files and generate elf32...
