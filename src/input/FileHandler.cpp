@@ -15,9 +15,7 @@ void check_active_dir(){
         std::cout << entry.path() << std::endl;
 }
 
-void FileHandler::readFile(std::string file_name, GameConfig& gc){
-    std::cout << file_name << '\n';
-
+void FileHandler::readFile(std::string file_name, __attribute__((unused)) GameConfig& gc){
     std::ifstream my_file(file_name);
     std::string my_string;
 
@@ -26,11 +24,32 @@ void FileHandler::readFile(std::string file_name, GameConfig& gc){
         ExceptionFileNotFound e;
         throw e;
     }
-
+    
+    std::string file_content = "";
     while(std::getline(my_file, my_string)){
-        std::cout << my_string << '\n';
+        // string cleeaning
+        my_string.erase(my_string.find('\r'));
+
+        file_content.append(my_string);
+        file_content.append(" ");
     }
     
-    // TODO: mulai string parsing
-    gc.field_col = 0;
+    int weight_to_win;
+    int gulden_to_win;
+    int inventory_row;
+    int inventory_col;
+    int pen_row;
+    int pen_col;
+    int field_row;
+    int field_col;
+
+    stringstream s(file_content);
+
+    s >> weight_to_win >> gulden_to_win >> inventory_row >> inventory_col
+        >> pen_row >> pen_col >> field_row >> field_col;
+
+    GameConfig new_gc(weight_to_win, gulden_to_win, inventory_row, inventory_col,
+                        pen_row, pen_col, field_row, field_col);
+    
+    gc = new_gc;
 }

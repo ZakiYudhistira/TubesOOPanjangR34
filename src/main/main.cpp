@@ -13,7 +13,7 @@ class Main{
             // input
             FileHandler file_scan;
             try {
-                file_scan.readFile("../../test/Input/mic.txt", game_config);
+                file_scan.readFile("../../test/Input/misc.txt", game_config);
             }
             catch (const Exception& e){
                 cout << e.what() << '\n';
@@ -21,7 +21,7 @@ class Main{
         }
 
         void main(){
-            std::cout << game_config.inventory_row;
+            std::cout << game_config << endl;
         }
 };
 
