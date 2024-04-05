@@ -1,0 +1,45 @@
+=== GUIDELINE ===
+
+# kesepakatan penulisan nama 
+- Class         : PascalCase
+- variable      : snake_case
+- funciton      : camelCase
+SEMUA pake bahasa inggris
+KOMENTAR bahasa indonesia
+
+# pembagian tugas
+Zaki
+- Matrix dan fungsi2nya 
+    - invalid index exception matrix
+    (ASUMSI input sesuai domain)
+
+Vanson
+- Player (DEFINITION by vanson)
+    (handling invalid input. different type between input)
+    - Petani
+    - Peternak
+    - Walikota
+
+
+Edbert
+- Input Output FILE CONFIG
+- GAME OBJECT
+- Animal
+- Plant
+- Building
+- RECIPE
+
+Ihsan
+- Player implementation. 
+
+Syarafi
+- Alur utama IF ELSE. 
+Catatan: current_player.something
+
+Teguh
+- Toko -
+
+
+==== COMING SOON ====
+- Perintah Muat, Simpan, dan anakan mereka.
+
