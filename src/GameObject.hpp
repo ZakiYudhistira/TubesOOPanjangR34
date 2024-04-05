@@ -36,6 +36,6 @@ class Animal : public GameObject {
     public:
 };
 
-class Bangunan : public GameObject {
+class Building : public GameObject {
     
 };
