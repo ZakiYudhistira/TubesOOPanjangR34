@@ -4,6 +4,7 @@
 #include <fstream>
 #include <iostream>
 #include <filesystem>
+#include <sstream>
 
 #include "InputHandler.hpp"
 #include "GameConfig/GameConfig.hpp"
@@ -15,6 +16,11 @@ class FileHandler: public InputHandler {
     public:
         FileHandler();
 
-        void readFile(std::string, GameConfig&);
+        /*
+        * Function to read file
+        * @param fn filename 
+        * @param gc GameConfig object
+        */
+        void readFile(std::string fn, GameConfig& gc);
 };
 #endif
