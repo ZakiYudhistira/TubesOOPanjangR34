@@ -1,0 +1,15 @@
+#ifndef __MATERIAL_PRODUCT__
+#define __MATERIAL_PRODUCT__
+
+#include "Product.hpp"
+
+class MaterialProduct: public Product {
+    private:
+        string type;
+    public:
+        MaterialProduct();
+
+        MaterialProduct(int id, string code_name, string object_name, int price, int added_weight, string origin, string type);
+};
+
+#endif
