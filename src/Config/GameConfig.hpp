@@ -1,13 +1,11 @@
 #ifndef __GAME_CONFIG__
 #define __GAME_CONFIG__
 
-#include <iostream>
-#include <iomanip>
-
+#include "Config.hpp"
 /*
 * Game Configuration class.
 */
-class GameConfig {
+class GameConfig: public Config {
     private:
         /*weight to win. from config file*/
         int weight_to_win;
