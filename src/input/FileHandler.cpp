@@ -19,6 +19,8 @@ void FileHandler::readFile(std::string file_name, GameConfig& gc){
     std::ifstream my_file(file_name);
     std::string my_string;
 
+    check_active_dir();
+
     if(!my_file){
         // if file does not exist
         ExceptionFileNotFound e;
