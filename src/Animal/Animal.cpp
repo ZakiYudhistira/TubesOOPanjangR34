@@ -2,10 +2,16 @@
 
 Animal::Animal(): GameObject() {
     this->weight_to_harvest = 0;
+    this->current_weight = 0 ;
 }
  
 Animal::Animal(int id, string code_name, string object_name, int price, int weight_to_harvest): GameObject(id, code_name, object_name, price){
     this->weight_to_harvest = weight_to_harvest;
+    this->current_weight = 0 ;
+}
+
+bool Animal::isHarvest() {
+    return this->current_weight >= this->weight_to_harvest ;
 }
 
 std::ostream& operator<<(std::ostream& os, Animal a){

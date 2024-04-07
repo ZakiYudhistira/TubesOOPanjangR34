@@ -2,10 +2,16 @@
 
 Plant::Plant(): GameObject() {
     this->duration_to_harvest = 0;
+    this->currentDays = 0 ;
 }
 
 Plant::Plant(int id, string code_name, string object_name, int price, int duration_to_harvest): GameObject(id, code_name, object_name, price){
     this->duration_to_harvest = duration_to_harvest;
+    this->currentDays = 0 ;
+}
+
+bool Plant::isHarvest() {
+    return this->currentDays >= this->duration_to_harvest ;
 }
 
 std::ostream& operator<<(std::ostream& os, Plant a){
