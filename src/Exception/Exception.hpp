@@ -19,6 +19,19 @@ class ExceptionFileNotFound: public Exception {
     }
 };
 
+class GuldenNotEnough: public Exception {
+    public:
+    char const * what() const noexcept override { 
+        return "Gulden anda tidak cukup" ; 
+    }
+};
+
+class TypeNotFound: public Exception {
+    public:
+    char const * what() const noexcept override { 
+        return "There is no such type, only peternak or petani" ; 
+    }
+};
 #endif
 
 

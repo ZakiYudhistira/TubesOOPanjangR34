@@ -17,3 +17,23 @@ Player::~Player() {}
 void Player::eat() {} // nunggu implementasi matrix
 
 void Player::printInventory() {} // nunggu implementasi matrix
+
+string Player::getName() {
+    return this->name ;
+}
+
+int Player::getBodyWeight() {
+    return this->body_weight ;
+}
+
+int Player::getGulden() {
+    return this->gulden ;
+}
+
+void Player::addBodyWeight(int weight) {
+    this->body_weight += weight ;
+}
+
+void Player::setGulden(int gulden) {
+    this->gulden = gulden ;
+}

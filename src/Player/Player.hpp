@@ -19,6 +19,11 @@ class Player  {
         virtual ~Player() ;
         void eat() ;
         void printInventory() ;
+        string getName() ;
+        int getBodyWeight() ;
+        int getGulden() ;
+        void addBodyWeight(int weight) ;
+        void setGulden(int gulden) ;
 };
 
 #endif

@@ -3,6 +3,9 @@
 
 #include "Player.hpp"
 #include "Building/Building.hpp"
+#include "Exception/Exception.hpp"
+#include <iostream>
+using namespace std ;
 
 class Walikota : public Player {
     private :
@@ -11,9 +14,9 @@ class Walikota : public Player {
         Walikota() ;
         Walikota(string name, int body_weight, int gulden) ;
         ~Walikota() ;
-        void tax() ;
+        void tax() ; // ternyata harus nunggu matrix juga
         Building build() ;
-        void addPlayer() ;
+        Player addPlayer() ;
 } ;
 
 
