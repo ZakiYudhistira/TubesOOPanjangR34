@@ -16,6 +16,7 @@ class Player  {
     public:
         Player() ;
         Player(string name, int body_weight, int gulden) ;
+        virtual ~Player() ;
         void eat() ;
         void printInventory() ;
 };

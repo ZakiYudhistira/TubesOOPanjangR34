@@ -10,6 +10,7 @@ class Peternak : public Player {
     public :
         Peternak() ;
         Peternak(string name, int body_weight, int gulden) ;
+        ~Peternak() ;
         void ternak() ;
         void feed() ;
         void harvest() ;

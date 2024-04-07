@@ -12,6 +12,8 @@ Player::Player(string name, int body_weight, int gulden) {
     this->gulden = gulden ;
 }
 
+Player::~Player() {}
+
 void Player::eat() {} // nunggu implementasi matrix
 
 void Player::printInventory() {} // nunggu implementasi matrix

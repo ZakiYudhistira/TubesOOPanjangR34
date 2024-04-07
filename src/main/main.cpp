@@ -7,6 +7,10 @@
 #include "Config/PlantConfig.hpp"
 #include "Config/ProductConfig.hpp"
 #include "Config/RecipeConfig.hpp"
+#include "Player/Player.hpp"
+#include "Player/Petani.hpp"
+#include "Player/Peternak.hpp"
+#include "Player/Walikota.hpp"
 
 class Main{
     private:

@@ -8,6 +8,8 @@ Petani::Petani(string name, int body_weight, int gulden) : Player(name, body_wei
     this->type = "PETANI" ;
 }
 
+Petani::~Petani() {}
+
 void Petani::plant() { // this too nunggu zaki
 
 }

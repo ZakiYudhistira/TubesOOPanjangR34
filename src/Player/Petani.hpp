@@ -10,6 +10,7 @@ class Petani : public Player {
     public :
         Petani() ;
         Petani(string name, int body_weight, int gulden) ;
+        ~Petani() ;
         void plant() ;
         void harvest() ;
         void printField() ;

@@ -51,6 +51,13 @@ main:
 
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/input/InputHandler.cpp -o $(OUTPUT_FOLDER)/InputHandler.o
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/input/FileHandler.cpp -o $(OUTPUT_FOLDER)/FileHandler.o 
+
+	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Player/Player.cpp -o $(OUTPUT_FOLDER)/Player.o 
+	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Player/Walikota.cpp -o $(OUTPUT_FOLDER)/Walikota.o 
+	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Player/Petani.cpp -o $(OUTPUT_FOLDER)/Petani.o 
+	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Player/Peternak.cpp -o $(OUTPUT_FOLDER)/Peternak.o 
+
+
 	
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/main/main.cpp -o $(OUTPUT_FOLDER)/main.o 
 	@$(CC) bin/*.o -o $(OUTPUT_FOLDER)/MainApp

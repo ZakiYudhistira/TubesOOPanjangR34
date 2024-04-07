@@ -8,6 +8,8 @@ Peternak::Peternak(string name, int body_weight, int gulden) : Player(name, body
     this->type = "PETERNAK" ;
 }
 
+Peternak::~Peternak() {}
+
 void Peternak::ternak() {} // matrikx boi
 
 void Peternak::feed() {} // matrix boi
