@@ -29,16 +29,23 @@ private:
     ProductConfig product_config;
     RecipeConfig recipe_config;
 
+    vector<Player*> player_list;
+    Player* current_player;
+    int current = 0;
+
 public:
     Main(){
         // input
         FileHandler file_scan;
         try{
-            file_scan.readFile("test/Input/misc.txt", game_config);
-            file_scan.readFile("test/Input/animal.txt", animal_config);
-            file_scan.readFile("test/Input/plant.txt", plant_config);
-            file_scan.readFile("test/Input/product.txt", product_config);
-            file_scan.readFile("test/Input/recipe.txt", recipe_config);
+            file_scan.readFile("test/input/misc.txt", game_config);
+            file_scan.readFile("test/input/animal.txt", animal_config);
+            file_scan.readFile("test/input/plant.txt", plant_config);
+            file_scan.readFile("test/input/product.txt", product_config);
+            file_scan.readFile("test/input/recipe.txt", recipe_config);
+            
+            // testing kalau MUAT
+            file_scan.readFile("test/data/state.txt", player_list);
         }
         catch (const Exception &e)
         {
@@ -84,7 +91,7 @@ public:
         std::cout << recipe_config;
 
         /*Initialiazation (jika new game)*/
-        vector<Player> player_list;
+        
         string walikota, petani, peternak;
         std::cout << "Input nama walikota : ";
         getline(std::cin, walikota);
@@ -94,23 +101,23 @@ public:
         getline(std::cin, peternak);
 
         /*Inisialisasi list leksikografis*/
-        vector<string> player_leksikografis;
-        insertSorted(player_leksikografis, walikota);
-        insertSorted(player_leksikografis, petani);
-        insertSorted(player_leksikografis, peternak);
-        for (int i = 0; i < (int)player_leksikografis.size(); i++)
-        {
-            player_list.push_back(Player(player_leksikografis[i], 40, 50));
-        }
+        // vector<string> player_leksikografis;
+        // insertSorted(player_leksikografis, walikota);
+        // insertSorted(player_leksikografis, petani);
+        // insertSorted(player_leksikografis, peternak);
+        // for (int i = 0; i < (int)player_leksikografis.size(); i++)
+        // {
+        //     player_list.push_back(Player(player_leksikografis[i], 40, 50));
+        // }
 
-        for (int i = 0; i < (int)player_leksikografis.size(); i++)
-        {
-            std::cout << player_leksikografis[i] << "\n";
-        }
+        // for (int i = 0; i < (int)player_leksikografis.size(); i++)
+        // {
+        //     std::cout << player_leksikografis[i] << "\n";
+        // }
 
         /*Current player*/
-        int current = 0;
-        Player current_player = player_list[current];
+        
+        // *current_player = player_list[current];
 
         /*Alur command current_player*/
         // while (true)

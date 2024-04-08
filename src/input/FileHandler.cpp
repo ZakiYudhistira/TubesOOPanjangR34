@@ -239,3 +239,98 @@ void FileHandler::readFile(std::string file_name, RecipeConfig& rc){
         delete temp_building;
     }
 }
+
+void FileHandler::readFile(std::string file_name, __attribute__((unused)) vector<Player*>& vp){
+    std::ifstream my_file(file_name);
+    std::string my_string;
+
+    if(!my_file){
+        // if file does not exist
+        ExceptionFileNotFound e;
+        throw e;
+    }
+
+    std::string file_content = "";
+    while(std::getline(my_file, my_string)){
+        // string cleeaning
+        size_t a = my_string.find('\r');
+
+        if (a != string::npos)
+            my_string.erase();
+
+        file_content.append(my_string);
+        file_content.append(" ");
+    }
+
+    stringstream s(file_content);
+
+    int n_player = 0;
+
+    s >> n_player;
+
+    for(int i=0; i<n_player; i++){
+        __attribute__((unused)) Player* p;
+        std::string player_name;
+        std::string type;
+        int body_weight;
+        int gulden;
+
+        std::string temp;
+
+        int j = 0;
+        while(s >> temp){
+            if(temp == "Petani" || temp == "Peternak" || temp == "Walikota"){
+                break;
+            }
+            if (j != 0)
+                player_name.append(" ");
+            player_name.append(temp);
+            j++;
+        }
+
+        type = temp;
+
+        s >> body_weight >> gulden;
+
+        if(type == "Walikota"){
+            p = new Walikota(player_name, body_weight, gulden);
+        } else if(type == "Petani"){
+            p = new Petani(player_name, body_weight, gulden);
+        } else if(type == "Peternak"){
+            p = new Peternak(player_name, body_weight, gulden);
+        }
+
+        // TODO: IMPLEMENT INVENTORY - TUNGGU ZAKI >:v
+
+        int n_inventory = 0;
+        s >> n_inventory;
+
+        for(int j=0; j<n_inventory; j++){
+            std::string temp_item;
+            s >> temp_item;
+        }
+
+        if (type != "Walikota"){
+            int n_game_object = 0;
+            s >> n_game_object;
+
+            for(int j=0; j<n_game_object; j++){
+                std::string coordinate, name;
+                int quantity;
+                s >> coordinate >> name >> quantity;
+            }
+        }
+    }
+
+    // TODO: IMPLEMENT MASUKIN KE TOKO
+
+    int n_item_toko = 0;
+    s >> n_item_toko;
+
+    for(int i=0; i<n_item_toko; i++){
+        std::string item;
+        int quantity;
+
+        s >> item >> quantity;
+    }
+}
