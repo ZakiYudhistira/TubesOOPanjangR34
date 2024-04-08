@@ -22,6 +22,7 @@ class Matrix{
         int getCol();
         GameObject getElement(string);
         void printMatrix(); 
+        void printMatrixLine();
         void removeElement(string);
         void addElement(GameObject, string);
         void generatePossibleMap();

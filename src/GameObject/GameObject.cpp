@@ -13,3 +13,7 @@ GameObject::GameObject(int id, string code_name, string object_name, int price){
     this->object_name = object_name;
     this->price = price;
 }
+
+string GameObject :: getCode(){
+    return code_name;
+}
