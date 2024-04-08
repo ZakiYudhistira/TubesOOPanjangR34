@@ -1,5 +1,5 @@
-#ifndef __PLAYER__
-#define __PLAYER__
+#ifndef PLAYER
+#define PLAYER
 
 #include <string>
 #include <vector>

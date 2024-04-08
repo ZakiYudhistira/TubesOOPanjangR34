@@ -4,6 +4,7 @@ CC            = g++
 # Directory
 SOURCE_FOLDER = src
 OUTPUT_FOLDER = bin
+TEST_FOLDER = test
 
 # Flags
 WARNING_CFLAG = -Wall -Wextra -Werror
@@ -24,7 +25,7 @@ clean_session:
 	
 main:
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/pcolor/pcolor.cpp -o $(OUTPUT_FOLDER)/pcolor.o 
-	
+
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Exception/Exception.cpp -o $(OUTPUT_FOLDER)/Exception.o 
 
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Config/Config.cpp -o $(OUTPUT_FOLDER)/Config.o 
@@ -60,8 +61,7 @@ main:
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Player/Peternak.cpp -o $(OUTPUT_FOLDER)/Peternak.o 
 
 
-	
-	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/main/main.cpp -o $(OUTPUT_FOLDER)/main.o 
-	@$(CC) bin/*.o -o $(OUTPUT_FOLDER)/MainApp
-	@echo Linking object files and generate elf32...
+	@pwd && $(CC) $(CFLAGS) $(SOURCE_FOLDER)/main/main.cpp -o $(OUTPUT_FOLDER)/main.o 
+	@pwd && $(CC) bin/*.o -o $(OUTPUT_FOLDER)/MainApp
+	@echo Linking object files...
 	@rm -f *.o

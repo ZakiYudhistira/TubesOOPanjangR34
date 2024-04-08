@@ -30,17 +30,15 @@ private:
     RecipeConfig recipe_config;
 
 public:
-    Main()
-    {
+    Main(){
         // input
         FileHandler file_scan;
-        try
-        {
-            file_scan.readFile("../../test/Input/misc.txt", game_config);
-            file_scan.readFile("../../test/Input/animal.txt", animal_config);
-            file_scan.readFile("../../test/Input/plant.txt", plant_config);
-            file_scan.readFile("../../test/Input/product.txt", product_config);
-            file_scan.readFile("../../test/Input/recipe.txt", recipe_config);
+        try{
+            file_scan.readFile("test/Input/misc.txt", game_config);
+            file_scan.readFile("test/Input/animal.txt", animal_config);
+            file_scan.readFile("test/Input/plant.txt", plant_config);
+            file_scan.readFile("test/Input/product.txt", product_config);
+            file_scan.readFile("test/Input/recipe.txt", recipe_config);
         }
         catch (const Exception &e)
         {
@@ -48,8 +46,7 @@ public:
         }
     }
 
-    int indexOf(vector<string> strings, string name)
-    {
+    int indexOf(vector<string> strings, string name){
         int idx = -1;
         for (int i = 0; i < (int)strings.size(); i++)
         {
@@ -130,8 +127,7 @@ public:
     }
 };
 
-int main()
-{
+int main(){
     Main m;
 
     m.main();
