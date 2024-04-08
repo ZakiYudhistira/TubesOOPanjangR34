@@ -1,37 +1,28 @@
-#ifndef __EXCEPTION_CUSTOM__
-#define __EXCEPTION_CUSOTM__
+#ifndef EXCEPTION_CUSTOM
+#define EXCEPTION_CUSTOM
 
 #include <exception>
-using namespace std;
 
-class Exception: std::exception {
-    // ?
+class Exception: public std::exception {
     public:
-    virtual char const * what() const noexcept override {
-        return "Normal Exception";
-    }
+    virtual char const * what() const noexcept;
 };
 
 class ExceptionFileNotFound: public Exception {
     public:
-    char const * what() const noexcept override { 
-        return "File not found!"; 
-    }
+    char const * what() const noexcept override;
 };
 
 class GuldenNotEnough: public Exception {
     public:
-    char const * what() const noexcept override { 
-        return "Gulden anda tidak cukup" ; 
-    }
+    char const * what() const noexcept override;
 };
 
 class TypeNotFound: public Exception {
     public:
-    char const * what() const noexcept override { 
-        return "There is no such type, only peternak or petani" ; 
-    }
+    char const * what() const noexcept override;
 };
+
 #endif
 
 

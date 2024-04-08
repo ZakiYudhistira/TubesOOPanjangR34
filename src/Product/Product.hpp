@@ -1,5 +1,5 @@
-#ifndef __PRODUCT__
-#define __PRODUCT__
+#ifndef PRODUCT
+#define PRODUCT
 
 #include "GameObject/GameObject.hpp"
 

@@ -1,5 +1,5 @@
-#ifndef __BUILDING__
-#define __BUILDING__
+#ifndef BUILDING
+#define BUILDING
 
 #include <vector>
 

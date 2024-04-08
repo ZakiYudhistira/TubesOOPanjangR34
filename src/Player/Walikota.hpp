@@ -1,18 +1,18 @@
-#ifndef __WALIKOTA__
-#define __WALIKOTA__
+#ifndef WALIKOTA
+#define WALIKOTA
 
 #include "Player.hpp"
+#include "Petani.hpp"
+#include "Peternak.hpp"
+
 #include "Building/Building.hpp"
-#include "Exception/Exception.hpp"
-#include <iostream>
-using namespace std ;
 
 class Walikota : public Player {
     private :
-        string type ;
+        std::string type ;
     public :
         Walikota() ;
-        Walikota(string name, int body_weight, int gulden) ;
+        Walikota(std::string name, int body_weight, int gulden) ;
         ~Walikota() ;
         void tax() ; // ternyata harus nunggu matrix juga
         Building build() ;

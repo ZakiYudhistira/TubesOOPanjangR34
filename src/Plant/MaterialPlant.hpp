@@ -1,5 +1,5 @@
-#ifndef __MATERIAL_PLANT__
-#define __MATERIAL_PLANT__
+#ifndef MATERIAL_PLANT
+#define MATERIAL_PLANT
 
 #include "Plant.hpp"
 

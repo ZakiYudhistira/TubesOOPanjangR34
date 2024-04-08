@@ -1,5 +1,5 @@
-#ifndef __HERBIVORE__
-#define __HERBIVORE__
+#ifndef HERBIVORE
+#define HERBIVORE
 
 #include "Animal.hpp"
 

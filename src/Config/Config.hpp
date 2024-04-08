@@ -1,5 +1,5 @@
-#ifndef __CONFIG__
-#define __CONFIG__
+#ifndef CONFIG
+#define CONFIG
 
 #include <iostream>
 #include <iomanip>

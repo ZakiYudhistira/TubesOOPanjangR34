@@ -1,5 +1,5 @@
-#ifndef __PLANT_CONFIG__
-#define __PLANT_CONFIG__
+#ifndef PLANT_CONFIG
+#define PLANT_CONFIG
 
 #include <vector>
 

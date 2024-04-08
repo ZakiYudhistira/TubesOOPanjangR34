@@ -1,5 +1,5 @@
-#ifndef __ANIMAL__
-#define __ANIMAL__
+#ifndef ANIMAL
+#define ANIMAL
 
 #include "GameObject/GameObject.hpp"
 

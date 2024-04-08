@@ -1,15 +1,15 @@
-#ifndef __PETANI__
-#define __PETANI__
+#ifndef PETANI
+#define PETANI
  
 #include "Player.hpp"
 
 class Petani : public Player {
     private :
-        string type ;
+        std::string type ;
         // Matrix field ;
     public :
         Petani() ;
-        Petani(string name, int body_weight, int gulden) ;
+        Petani(std::string name, int body_weight, int gulden) ;
         ~Petani() ;
         void plant() ;
         void harvest() ;

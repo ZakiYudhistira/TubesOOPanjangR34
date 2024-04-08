@@ -24,6 +24,8 @@ clean_session:
 	
 main:
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/pcolor/pcolor.cpp -o $(OUTPUT_FOLDER)/pcolor.o 
+	
+	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Exception/Exception.cpp -o $(OUTPUT_FOLDER)/Exception.o 
 
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Config/Config.cpp -o $(OUTPUT_FOLDER)/Config.o 
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Config/GameConfig.cpp -o $(OUTPUT_FOLDER)/GameConfig.o 

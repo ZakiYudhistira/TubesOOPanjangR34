@@ -1,5 +1,5 @@
-#ifndef __GAME_CONFIG__
-#define __GAME_CONFIG__
+#ifndef GAME_CONFIG
+#define GAME_CONFIG
 
 #include "Config.hpp"
 /*

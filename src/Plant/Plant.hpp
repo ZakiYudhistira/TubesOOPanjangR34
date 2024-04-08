@@ -1,5 +1,5 @@
-#ifndef __PLANT__
-#define __PLANT__
+#ifndef PLANT
+#define PLANT
 
 #include "GameObject/GameObject.hpp"
 

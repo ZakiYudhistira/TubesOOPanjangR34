@@ -1,5 +1,5 @@
-#ifndef __RECIPE_CONFIG__
-#define __RECIPE_CONFIG__
+#ifndef RECIPE_CONFIG
+#define RECIPE_CONFIG
 
 #include <vector>
 

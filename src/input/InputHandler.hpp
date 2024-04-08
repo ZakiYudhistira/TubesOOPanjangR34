@@ -1,5 +1,5 @@
-#ifndef __INPUT_HANDLER__
-#define __INPUT_HANDLER__
+#ifndef INPUT_HANDLER
+#define INPUT_HANDLER
 
 #include <iostream>
 #include <string>

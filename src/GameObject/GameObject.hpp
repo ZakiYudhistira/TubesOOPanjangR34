@@ -1,5 +1,5 @@
-#ifndef __GAME_OBJECT__
-#define __GAME_OBJECT__
+#ifndef GAME_OBJECT
+#define GAME_OBJECT
 
 #include <iostream>
 #include <iomanip>

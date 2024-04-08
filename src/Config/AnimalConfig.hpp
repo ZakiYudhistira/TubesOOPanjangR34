@@ -1,5 +1,5 @@
-#ifndef __ANIMAL_CONFIG__
-#define __ANIMAL_CONFIG__
+#ifndef ANIMAL_CONFIG
+#define ANIMAL_CONFIG
 
 #include <vector>
 

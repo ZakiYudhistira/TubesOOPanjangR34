@@ -1,5 +1,5 @@
-#ifndef __OMNIVORE__
-#define __OMNIVORE__
+#ifndef OMNIVORE
+#define OMNIVORE
 
 #include "Animal.hpp"
 

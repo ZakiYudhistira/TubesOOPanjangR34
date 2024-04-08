@@ -4,7 +4,7 @@ Peternak::Peternak() : Player() {
     this->type = "PETERNAK" ;
 }
 
-Peternak::Peternak(string name, int body_weight, int gulden) : Player(name, body_weight, gulden) {
+Peternak::Peternak(std::string name, int body_weight, int gulden) : Player(name, body_weight, gulden) {
     this->type = "PETERNAK" ;
 }
 

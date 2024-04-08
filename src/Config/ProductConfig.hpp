@@ -1,5 +1,5 @@
-#ifndef __PRODUCT_CONFIG__
-#define __PRODUCT_CONFIG__
+#ifndef PRODUCT_CONFIG
+#define PRODUCT_CONFIG
 
 #include <vector>
 

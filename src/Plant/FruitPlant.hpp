@@ -1,5 +1,5 @@
-#ifndef __FRUIT_PLANT__
-#define __FRUIT_PLANT__
+#ifndef FRUIT_PLANT
+#define FRUIT_PLANT
 
 #include "Plant.hpp"
 

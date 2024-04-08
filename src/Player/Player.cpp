@@ -1,14 +1,12 @@
 #include "Player.hpp"
 
-Player::Player()
-{
+Player::Player(){
     this->name = "null";
     this->body_weight = 0;
     this->gulden = 0;
 }
 
-Player::Player(string name, int body_weight, int gulden)
-{
+Player::Player(std::string name, int body_weight, int gulden){
     this->name = name;
     this->body_weight = body_weight;
     this->gulden = gulden;
@@ -20,10 +18,7 @@ void Player::eat() {} // nunggu implementasi matrix
 
 void Player::printInventory() {} // nunggu implementasi matrix
 
-<<<<<<< HEAD
-string Player::getName() { return this->name; }
-=======
-string Player::getName() {
+std::string Player::getName() {
     return this->name ;
 }
 
@@ -42,4 +37,3 @@ void Player::addBodyWeight(int weight) {
 void Player::setGulden(int gulden) {
     this->gulden = gulden ;
 }
->>>>>>> origin/main

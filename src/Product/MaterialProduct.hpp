@@ -1,5 +1,5 @@
-#ifndef __MATERIAL_PRODUCT__
-#define __MATERIAL_PRODUCT__
+#ifndef MATERIAL_PRODUCT
+#define MATERIAL_PRODUCT
 
 #include "Product.hpp"
 

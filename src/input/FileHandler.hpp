@@ -1,5 +1,5 @@
-#ifndef __FILE_HANDLER__
-#define __FILE_HANDLER__
+#ifndef FILE_HANDLER
+#define FILE_HANDLER
 
 #include <fstream>
 #include <iostream>

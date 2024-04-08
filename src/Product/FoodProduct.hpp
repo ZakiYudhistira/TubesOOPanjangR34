@@ -1,5 +1,5 @@
-#ifndef __FOOD_PRODUCT__
-#define __FOOD_PRODUCT__
+#ifndef FOOD_PRODUCT
+#define FOOD_PRODUCT
 
 #include "Product.hpp"
 
