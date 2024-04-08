@@ -11,11 +11,11 @@ class MatrixException : public std :: exception {
 class IndexOutOfRange : public MatrixException {
     public:
     virtual char const * what() const noexcept;
-}
+};
 
 class ElementNotFound : public MatrixException {
     public:
     virtual char const * what() const noexcept;
-}
+};
 
 #endif
