@@ -64,15 +64,14 @@ public:
 
     void main()
     {
-        /*Mulai Permainan*/
+        /*MULAI PERMAINAN*/
         std::cout << game_config;
         std::cout << animal_config;
         std::cout << plant_config;
         std::cout << product_config;
         std::cout << recipe_config;
 
-        /*Initialiazation (jika new game)*/
-
+        /*INITIALIZATION (jika new game)*/
         string walikota, petani, peternak;
         std::cout << "Input nama walikota : ";
         getline(std::cin, walikota);
@@ -87,26 +86,10 @@ public:
         Player *ptr_peternak = new Player(peternak, 40, 50);
         insertPlayer(ptr_peternak);
 
-        /*Inisialisasi list leksikografis*/
-        // vector<string> player_leksikografis;
-        // insertSorted(player_leksikografis, walikota);
-        // insertSorted(player_leksikografis, petani);
-        // insertSorted(player_leksikografis, peternak);
-        // for (int i = 0; i < (int)player_leksikografis.size(); i++)
-        // {
-        //     player_list.push_back(Player(player_leksikografis[i], 40, 50));
-        // }
-
-        for (int i = 0; i < (int)player_list.size(); i++)
-        {
-            std::cout << player_list[i]->getName() << "\n";
-        }
-
-        /*Current player*/
-
+        /*CURRENT PLAYER*/
         // *current_player = player_list[current];
 
-        /*Alur command current_player*/
+        /*ALUR COMMAND CURRENT PLAYER*/
         // while (true)
         // {
         //     try
