@@ -15,7 +15,9 @@ Matrix<T> :: Matrix(int col, int row){
     }
     this->column = col;
     this->row = row;
-    generatePossibleMap();
+    this->capacity = row * col;
+
+    this->generatePossibleMap();
 }
 
 
@@ -37,10 +39,10 @@ void Matrix<T> :: removeElement(string map){
     if(cnt == 0){
         throw IndexOutOfRange();
     } else {
-        if(!content.count(map)){
+        if(!content.count(coordinate)){
             throw EmptySpace();
         }
-        content.erase(map);
+        content.erase(coordinate);
     }
 }
 
@@ -133,9 +135,7 @@ T Matrix<T> :: getElement(string map){
     }
 }
 
-
-template<class T>
-void Matrix<T> :: generatePossibleMap(){
+void Matrix::generatePossibleMap(){
     for(int i = 0 ; i < row ; i++){
         for(int j = 0 ; j < column ; j++){
             if(i+1 < 10){
@@ -147,10 +147,9 @@ void Matrix<T> :: generatePossibleMap(){
     }
 }
 
-int main(){
-    Matrix<GameObject> tes(10,10);
-    // Animal apa(1, "APA", "hehe", 5, 0);
-
-    // tes.removeElement("A01");
-    tes.printMatrix();
-}
+// int main(){
+//     Matrix tes(10,10);
+//     tes.addElement(GameObject(10, "XXX", "Gay", 1000), "J09");
+//     tes.removeElement("A01");
+//     tes.printMatrix();
+// }

@@ -17,8 +17,13 @@ class Matrix{
         map<string, T> content;
     public:
         vector<string> possible_map;
+    public:
+        Matrix();
+
         Matrix(int, int);
+        
         int getRow();
+        
         int getCol();
         T getElement(string);
         void printMatrix(); 
