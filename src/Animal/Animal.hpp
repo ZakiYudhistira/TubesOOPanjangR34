@@ -1,7 +1,7 @@
 #ifndef ANIMAL
 #define ANIMAL
 
-#include "../GameObject/GameObject.hpp"
+#include "GameObject/GameObject.hpp"
 
 class Animal : public GameObject {
     private :

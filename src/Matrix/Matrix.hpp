@@ -14,6 +14,7 @@ class Matrix{
     private:
         int row;
         int column;
+        int capacity;
         map<string, T> content;
     public:
         vector<string> possible_map;
