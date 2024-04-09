@@ -4,7 +4,7 @@
 #include <algorithm>
 #include "Matrix.hpp"
 #include "MatrixException.hpp"
-#include "../GameObject/GameObject.hpp"
+#include "GameObject/GameObject.hpp"
 
 using namespace std;
 
