@@ -2,6 +2,9 @@
 #include "MatrixException.hpp"
 using namespace std;
 
+char const * MatrixInvalid :: what() const noexcept{
+    return "Matrix invalid";
+}
 
 char const * MatrixException :: what() const noexcept{
     return "Matrix Exception";

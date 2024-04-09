@@ -8,6 +8,11 @@ class MatrixException : public std :: exception {
     virtual char const * what() const noexcept;
 };
 
+class MatrixInvalid : public std :: exception {
+    public:
+    virtual char const * what() const noexcept;
+};
+
 class IndexOutOfRange : public MatrixException {
     public:
     virtual char const * what() const noexcept;
