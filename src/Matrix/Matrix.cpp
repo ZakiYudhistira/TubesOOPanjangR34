@@ -10,6 +10,9 @@
 using namespace std;
 
 Matrix :: Matrix(int col, int row){
+    if(col == 0 || row == 0){
+        throw MatrixInvalid();
+    }
     this->column = col;
     this->row = row;
     generatePossibleMap();
@@ -131,7 +134,6 @@ void Matrix :: generatePossibleMap(){
 int main(){
     Matrix tes(10,10);
     tes.addElement(GameObject(10, "XXX", "Gay", 1000), "J09");
-    // tes.addElement(GameObject(10, "XXX", "Gay", 1000), "A01");
     tes.removeElement("A01");
     tes.printMatrix();
 }
