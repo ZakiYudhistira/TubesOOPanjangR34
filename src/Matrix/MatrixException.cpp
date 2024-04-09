@@ -25,3 +25,7 @@ char const * FilledSpace :: what() const noexcept{
 char const * EmptySpace :: what() const noexcept{
     return "Block empty";
 }
+
+char const * MatrixFull :: what() const noexcept{
+    return "Matrix full";
+}

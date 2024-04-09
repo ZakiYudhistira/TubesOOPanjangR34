@@ -33,4 +33,9 @@ class EmptySpace : public MatrixException {
     virtual char const * what() const noexcept;
 };
 
+class MatrixFull : public MatrixException {
+    public:
+    virtual char const * what() const noexcept;
+};
+
 #endif

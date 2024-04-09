@@ -2,6 +2,7 @@
 #define FIELD
 
 #include <iostream>
+#include "Matrix.hpp"
 using namespace std;
 
 template<class T>

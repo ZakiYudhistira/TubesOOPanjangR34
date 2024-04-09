@@ -9,13 +9,14 @@
 using namespace std;
 
 template<class T>
-Matrix<T> :: Matrix(int col, int row){
+Matrix<T> :: Matrix(int col, int row){  
     if(col <= 0 || row <= 0){
         throw MatrixInvalid();
     }
     this->column = col;
     this->row = row;
     this->capacity = row * col;
+    this->add_point = 0;
 
     this->generatePossibleMap();
 }
@@ -43,12 +44,13 @@ void Matrix<T> :: removeElement(string map){
             throw EmptySpace();
         }
         content.erase(map);
+        resetPoint();
     }
 }
 
 
 template<class T>
-void Matrix<T> :: addElement(GameObject element, string map){
+void Matrix<T> :: addElement(T element, string map){
     int cnt = count(possible_map.begin(), possible_map.end(), map);
     if(cnt == 0){
         throw IndexOutOfRange();
@@ -56,11 +58,24 @@ void Matrix<T> :: addElement(GameObject element, string map){
         if(content.count(map)){
             throw FilledSpace();
         } else {
+            if(map.size() == capacity){
+                throw MatrixFull();
+            }
             content.insert({map, element});
+            resetPoint();
         }
     }
 }
 
+template<class T>
+void Matrix<T> :: addElement(T element){
+    if(add_point == -1){
+        throw MatrixFull();
+    } else {
+        content.insert({possible_map[add_point], element});
+        resetPoint();
+    }
+}
 
 template<class T>
 void Matrix<T> :: printMatrix(){
@@ -148,9 +163,33 @@ void Matrix<T> ::generatePossibleMap(){
     }
 }
 
-int main(){
-    Matrix<GameObject> tes(10,10);
-    tes.addElement(GameObject(10, "XXX", "Gay", 1000), "J09");
-    // tes.removeElement("A01");
-    tes.printMatrix();
+template<class T>
+void Matrix<T> :: resetPoint(){
+    int i = 0;
+    for(i ; i < possible_map.size() ; i++){
+        if(!content.count(possible_map[i])){
+            add_point = i;
+            break;
+        }
+    }
+    if(i == possible_map.size()){
+        add_point = -1;
+    }
 }
+
+// int main(){
+//     Matrix<GameObject> tes(3,1);
+//     tes.addElement(GameObject(10, "XXX", "Gay", 1000));
+//     tes.addElement(GameObject(10, "HOH", "Gay", 1000));
+
+//     // tes.removeElement("A01");
+
+//     tes.removeElement("A01");
+//     tes.printMatrix();
+
+//     tes.addElement(GameObject(10, "CRT", "Gay", 1000));
+//     tes.addElement(GameObject(10, "VAN", "Gay", 1000));
+//     tes.addElement(GameObject(10, "IKR", "Gay", 1000));
+//     tes.printMatrix();
+
+// }
