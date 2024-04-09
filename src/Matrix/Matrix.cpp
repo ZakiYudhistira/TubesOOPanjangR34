@@ -5,12 +5,12 @@
 #include "Matrix.hpp"
 #include "MatrixException.hpp"
 #include "../GameObject/GameObject.hpp"
-// #include "../Animal/Animal.hpp"
-// #include "../Plant/Plant.hpp"
+
 using namespace std;
 
-Matrix :: Matrix(int col, int row){
-    if(col == 0 || row == 0){
+template<class T>
+Matrix<T> :: Matrix(int col, int row){
+    if(col <= 0 || row <= 0){
         throw MatrixInvalid();
     }
     this->column = col;
@@ -18,15 +18,21 @@ Matrix :: Matrix(int col, int row){
     generatePossibleMap();
 }
 
-int Matrix :: getCol(){
+
+template<class T>
+int Matrix<T> :: getCol(){
     return column;
 }
 
-int Matrix :: getRow(){
+
+template<class T>
+int Matrix<T> :: getRow(){
     return row;
 }
 
-void Matrix :: removeElement(string map){
+
+template<class T>
+void Matrix<T> :: removeElement(string map){
     int cnt = count(possible_map.begin(), possible_map.end(), map);
     if(cnt == 0){
         throw IndexOutOfRange();
@@ -38,7 +44,9 @@ void Matrix :: removeElement(string map){
     }
 }
 
-void Matrix :: addElement(GameObject element, string map){
+
+template<class T>
+void Matrix<T> :: addElement(GameObject element, string map){
     int cnt = count(possible_map.begin(), possible_map.end(), map);
     if(cnt == 0){
         throw IndexOutOfRange();
@@ -51,7 +59,9 @@ void Matrix :: addElement(GameObject element, string map){
     }
 }
 
-void Matrix :: printMatrix(){
+
+template<class T>
+void Matrix<T> :: printMatrix(){
     cout << "     ";
     for(int i = 0 ; i < column ; i ++){
         cout << "  " << array_of_character[i] << "   ";
@@ -67,7 +77,7 @@ void Matrix :: printMatrix(){
             cout << "|";
             for(int j = 0; j < column ; j++){
                 try{
-                    GameObject temp = getElement(array_of_character[j] + to_string(0) +to_string(i+1));
+                    T temp = getElement(array_of_character[j] + to_string(0) +to_string(i+1));
                     cout << " " << temp.getCode() << " |";
                 } catch(exception &e) {
                     cout << "     |";
@@ -80,7 +90,7 @@ void Matrix :: printMatrix(){
             cout << "|";
             for(int j = 0; j < column ; j++){
                 try{
-                    GameObject temp = getElement(array_of_character[j] + to_string(i+1));
+                    T temp = getElement(array_of_character[j] + to_string(i+1));
                     cout << " " << temp.getCode() << " |";
                 } catch(exception &e) {
                     cout << "     |";
@@ -92,7 +102,9 @@ void Matrix :: printMatrix(){
     }
 }
 
-void Matrix :: printMatrixLine(){
+
+template<class T>
+void Matrix<T> :: printMatrixLine(){
     bool first = true;
     for(int i = 0 ; i < column + 1 ; i++){
         if(first){
@@ -105,7 +117,9 @@ void Matrix :: printMatrixLine(){
     cout << endl;
 }
 
-GameObject Matrix :: getElement(string map){
+
+template<class T>
+T Matrix<T> :: getElement(string map){
     int cnt = count(possible_map.begin(), possible_map.end(), map);
     if(cnt == 0){
         throw IndexOutOfRange();
@@ -119,7 +133,9 @@ GameObject Matrix :: getElement(string map){
     }
 }
 
-void Matrix :: generatePossibleMap(){
+
+template<class T>
+void Matrix<T> :: generatePossibleMap(){
     for(int i = 0 ; i < row ; i++){
         for(int j = 0 ; j < column ; j++){
             if(i+1 < 10){
@@ -132,8 +148,9 @@ void Matrix :: generatePossibleMap(){
 }
 
 int main(){
-    Matrix tes(10,10);
-    tes.addElement(GameObject(10, "XXX", "Gay", 1000), "J09");
-    tes.removeElement("A01");
+    Matrix<GameObject> tes(10,10);
+    // Animal apa(1, "APA", "hehe", 5, 0);
+
+    // tes.removeElement("A01");
     tes.printMatrix();
 }
