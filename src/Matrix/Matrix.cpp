@@ -9,13 +9,18 @@
 // #include "../Plant/Plant.hpp"
 using namespace std;
 
+Matrix::Matrix(){
+    this->row = 0;
+    this->column = 0;
+    this->capacity = 0;
+}
+
 Matrix :: Matrix(int col, int row){
-    if(col == 0 || row == 0){
-        throw MatrixInvalid();
-    }
     this->column = col;
     this->row = row;
-    generatePossibleMap();
+    this->capacity = row * col;
+
+    this->generatePossibleMap();
 }
 
 int Matrix :: getCol(){
@@ -26,15 +31,15 @@ int Matrix :: getRow(){
     return row;
 }
 
-void Matrix :: removeElement(string map){
-    int cnt = count(possible_map.begin(), possible_map.end(), map);
+void Matrix :: removeElement(string coordinate){
+    int cnt = count(possible_map.begin(), possible_map.end(), coordinate);
     if(cnt == 0){
         throw IndexOutOfRange();
     } else {
-        if(!content.count(map)){
+        if(!content.count(coordinate)){
             throw EmptySpace();
         }
-        content.erase(map);
+        content.erase(coordinate);
     }
 }
 
@@ -49,6 +54,10 @@ void Matrix :: addElement(GameObject element, string map){
             content.insert({map, element});
         }
     }
+}
+
+void Matrix::addElement(GameObject object){
+    
 }
 
 void Matrix :: printMatrix(){
@@ -119,7 +128,7 @@ GameObject Matrix :: getElement(string map){
     }
 }
 
-void Matrix :: generatePossibleMap(){
+void Matrix::generatePossibleMap(){
     for(int i = 0 ; i < row ; i++){
         for(int j = 0 ; j < column ; j++){
             if(i+1 < 10){
@@ -131,9 +140,9 @@ void Matrix :: generatePossibleMap(){
     }
 }
 
-int main(){
-    Matrix tes(10,10);
-    tes.addElement(GameObject(10, "XXX", "Gay", 1000), "J09");
-    tes.removeElement("A01");
-    tes.printMatrix();
-}
+// int main(){
+//     Matrix tes(10,10);
+//     tes.addElement(GameObject(10, "XXX", "Gay", 1000), "J09");
+//     tes.removeElement("A01");
+//     tes.printMatrix();
+// }

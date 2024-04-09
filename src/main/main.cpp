@@ -20,6 +20,8 @@
 #include "Player/Peternak.hpp"
 #include "Player/Walikota.hpp"
 
+#include "Matrix2/Matrix2.hpp"
+
 class Main
 {
 private:
@@ -71,23 +73,25 @@ public:
         std::cout << product_config;
         std::cout << recipe_config;
 
-        /*INITIALIZATION (jika new game)*/
-        string walikota, petani, peternak;
-        std::cout << "Input nama walikota : ";
-        getline(std::cin, walikota);
-        Player *ptr_walikota = new Walikota(walikota, 40, 50);
-        insertPlayer(ptr_walikota);
-        std::cout << "Input nama petani : ";
-        getline(std::cin, petani);
-        Player *ptr_petani = new Petani(petani, 40, 50);
-        insertPlayer(ptr_petani);
-        std::cout << "Input nama peternak : ";
-        getline(std::cin, peternak);
-        Player *ptr_peternak = new Peternak(peternak, 40, 50);
-        insertPlayer(ptr_peternak);
+        Matrix2 matrix_test(10, 15);
+        std::cout << matrix_test;
 
-        // for (int i = 0; i < (int)player_list.size(); i++)
-        // {
+        /*INITIALIZATION (jika new game)*/
+        // string walikota, petani, peternak;
+        // std::cout << "Input nama walikota : ";
+        // getline(std::cin, walikota);
+        // Player *ptr_walikota = new Walikota(walikota, 40, 50);
+        // insertPlayer(ptr_walikota);
+        // std::cout << "Input nama petani : ";
+        // getline(std::cin, petani);
+        // Player *ptr_petani = new Petani(petani, 40, 50);
+        // insertPlayer(ptr_petani);
+        // std::cout << "Input nama peternak : ";
+        // getline(std::cin, peternak);
+        // Player *ptr_peternak = new Peternak(peternak, 40, 50);
+        // insertPlayer(ptr_peternak);
+
+        // for (int i = 0; i < (int)player_list.size(); i++){
         //     std::cout << player_list[i]->getName() << "\n";
         // }
 

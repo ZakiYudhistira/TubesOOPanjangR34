@@ -60,6 +60,7 @@ main:
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Player/Petani.cpp -o $(OUTPUT_FOLDER)/Petani.o 
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Player/Peternak.cpp -o $(OUTPUT_FOLDER)/Peternak.o 
 
+	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Matrix2/Matrix2.cpp -o $(OUTPUT_FOLDER)/Matrix2.o 
 
 	@pwd && $(CC) $(CFLAGS) $(SOURCE_FOLDER)/main/main.cpp -o $(OUTPUT_FOLDER)/main.o 
 	@pwd && $(CC) bin/*.o -o $(OUTPUT_FOLDER)/MainApp
