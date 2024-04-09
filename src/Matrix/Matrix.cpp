@@ -28,6 +28,9 @@ void Matrix :: removeElement(string map){
     if(cnt == 0){
         throw IndexOutOfRange();
     } else {
+        if(!content.count(map)){
+            throw EmptySpace();
+        }
         content.erase(map);
     }
 }
@@ -37,7 +40,11 @@ void Matrix :: addElement(GameObject element, string map){
     if(cnt == 0){
         throw IndexOutOfRange();
     } else {
-        content.insert({map, element});
+        if(content.count(map)){
+            throw FilledSpace();
+        } else {
+            content.insert({map, element});
+        }
     }
 }
 
@@ -124,5 +131,7 @@ void Matrix :: generatePossibleMap(){
 int main(){
     Matrix tes(10,10);
     tes.addElement(GameObject(10, "XXX", "Gay", 1000), "J09");
+    // tes.addElement(GameObject(10, "XXX", "Gay", 1000), "A01");
+    tes.removeElement("A01");
     tes.printMatrix();
 }

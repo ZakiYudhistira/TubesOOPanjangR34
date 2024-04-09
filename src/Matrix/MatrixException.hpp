@@ -18,4 +18,14 @@ class ElementNotFound : public MatrixException {
     virtual char const * what() const noexcept;
 };
 
+class FilledSpace : public MatrixException {
+    public:
+    virtual char const * what() const noexcept;
+};
+
+class EmptySpace : public MatrixException {
+    public:
+    virtual char const * what() const noexcept;
+};
+
 #endif

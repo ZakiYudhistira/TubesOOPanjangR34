@@ -14,3 +14,11 @@ char const * IndexOutOfRange :: what() const noexcept{
 char const * ElementNotFound :: what() const noexcept{
     return "Element not found";
 }
+
+char const * FilledSpace :: what() const noexcept{
+    return "Block filled";
+}
+
+char const * EmptySpace :: what() const noexcept{
+    return "Block empty";
+}
