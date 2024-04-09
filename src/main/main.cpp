@@ -20,6 +20,8 @@
 #include "Player/Peternak.hpp"
 #include "Player/Walikota.hpp"
 
+#include "Matrix2/Matrix2.hpp"
+
 class Main
 {
 private:
