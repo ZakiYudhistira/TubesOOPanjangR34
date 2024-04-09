@@ -25,8 +25,10 @@ clean_session:
 	
 main:
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/pcolor/pcolor.cpp -o $(OUTPUT_FOLDER)/pcolor.o 
+	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Matrix/Matrix.cpp -o $(OUTPUT_FOLDER)/Matrix.o 
 
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Exception/Exception.cpp -o $(OUTPUT_FOLDER)/Exception.o 
+	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Matrix/MatrixException.cpp -o $(OUTPUT_FOLDER)/MatrixException.o 
 
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Config/Config.cpp -o $(OUTPUT_FOLDER)/Config.o 
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Config/GameConfig.cpp -o $(OUTPUT_FOLDER)/GameConfig.o 
@@ -60,7 +62,6 @@ main:
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Player/Petani.cpp -o $(OUTPUT_FOLDER)/Petani.o 
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Player/Peternak.cpp -o $(OUTPUT_FOLDER)/Peternak.o 
 
-	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Matrix2/Matrix2.cpp -o $(OUTPUT_FOLDER)/Matrix2.o 
 
 	@pwd && $(CC) $(CFLAGS) $(SOURCE_FOLDER)/main/main.cpp -o $(OUTPUT_FOLDER)/main.o 
 	@pwd && $(CC) bin/*.o -o $(OUTPUT_FOLDER)/MainApp
