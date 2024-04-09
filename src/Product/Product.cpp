@@ -10,6 +10,22 @@ Product::Product(int id, string code_name, string object_name, int price, int ad
     this->origin = origin;
 }
 
+Product::Product(const Product& p): GameObject(p) {
+    this->added_weight = p.added_weight;
+    this->origin = p.origin;
+}
+
+Product& Product::operator=(Product& p){
+    this->id = p.id;
+    this->code_name = p.code_name;
+    this->object_name = p.object_name;
+    this->price = p.price;
+    this->added_weight = p.added_weight;
+    this->origin = p.origin;
+
+    return *this;
+}
+
 int Product::getAddedWeight(){
     return this->added_weight;
 }

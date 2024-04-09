@@ -240,7 +240,7 @@ void FileHandler::readFile(std::string file_name, RecipeConfig& rc){
     }
 }
 
-void FileHandler::readFile(std::string file_name, __attribute__((unused)) vector<Player*>& vp){
+void FileHandler::readFile(std::string file_name, __attribute__((unused)) vector<Player*>& vp, __attribute__((unused)) AnimalConfig& ac, __attribute__((unused)) PlantConfig& pc, ProductConfig& prod, __attribute__((unused)) RecipeConfig& rc, GameConfig& gc){
     std::ifstream my_file(file_name);
     std::string my_string;
 
@@ -300,14 +300,21 @@ void FileHandler::readFile(std::string file_name, __attribute__((unused)) vector
             p = new Peternak(player_name, body_weight, gulden);
         }
 
-        // TODO: IMPLEMENT INVENTORY - TUNGGU ZAKI >:v
-
         int n_inventory = 0;
         s >> n_inventory;
+
+        Matrix<GameObject*> inventory(gc.getInventoryCol(), gc.getInventoryRow());
 
         for(int j=0; j<n_inventory; j++){
             std::string temp_item;
             s >> temp_item;
+
+            // cek what type of item is this
+            pair<Product*, bool> resp = prod.isInstanceOf(temp_item);
+            if(resp.second){
+                inventory.addElement(resp.first);
+            }
+            
         }
 
         if (type != "Walikota"){

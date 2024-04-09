@@ -51,6 +51,14 @@ GameConfig::~GameConfig(){
     
 }
 
+int GameConfig::getInventoryRow(){
+    return this->inventory_row;
+}
+
+int GameConfig::getInventoryCol(){
+    return this->inventory_col;
+}
+
 std::ostream& operator<<(std::ostream& os, GameConfig gc){
     os << std::setw(15) << "weight_to_win:"  << std::setw(20) << gc.weight_to_win << "\n"
         << std::setw(15) << "gulden_to_win:" << std::setw(20) << gc.gulden_to_win << "\n"

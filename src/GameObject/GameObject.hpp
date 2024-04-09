@@ -18,6 +18,10 @@ class GameObject {
 
         GameObject(int id, string code_name, string object_name, int price);
 
+        GameObject(const GameObject&);
+
+        GameObject& operator=(const GameObject&);
+        
         // Returns the code_name from a GameObject
         string getCode();
         // Returns the object_name from a GameObject

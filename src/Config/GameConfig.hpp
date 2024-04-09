@@ -53,6 +53,10 @@ class GameConfig: public Config {
 
         ~GameConfig();
 
+        int getInventoryRow();
+
+        int getInventoryCol();
+
         friend std::ostream& operator<<(std::ostream& os, GameConfig gc);
 };
 

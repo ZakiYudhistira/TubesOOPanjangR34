@@ -16,6 +16,8 @@ class ProductConfig {
 
         void addProduct(Product&);
 
+        pair<Product*, bool> isInstanceOf(std::string);
+
         friend std::ostream& operator<<(std::ostream& os, const ProductConfig pc);
 };
 

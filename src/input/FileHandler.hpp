@@ -34,6 +34,8 @@
 #include "Player/Peternak.hpp"
 #include "Player/Petani.hpp"
 
+#include "Matrix/Matrix.hpp"
+
 #include "Exception/Exception.hpp"
 
 class FileHandler: public InputHandler {
@@ -57,6 +59,6 @@ class FileHandler: public InputHandler {
 
         void readFile(std::string fn, RecipeConfig& rc);
 
-        void readFile(std::string fn, vector<Player*>& vp);
+        void readFile(std::string fn, vector<Player*>& vp, AnimalConfig& ac, PlantConfig& pc, ProductConfig& prod, RecipeConfig& rc, GameConfig& gc);
 };
 #endif

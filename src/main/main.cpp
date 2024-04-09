@@ -49,7 +49,7 @@ public:
             file_scan.readFile("test/input/recipe.txt", recipe_config);
 
             // testing kalau MUAT
-            file_scan.readFile("test/data/state.txt", player_list);
+            file_scan.readFile("test/data/state.txt", player_list, animal_config, plant_config, product_config, recipe_config, game_config);
         }
         catch (const Exception &e)
         {

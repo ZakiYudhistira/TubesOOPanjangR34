@@ -12,6 +12,10 @@ class Product : public GameObject {
 
         Product(int id, string code_name, string object_name, int price, int added_weight, string origin);
 
+        Product(const Product&);
+        
+        Product& operator=(Product&);
+
         // Returns the added_weight of a product; 
         int getAddedWeight();
 
