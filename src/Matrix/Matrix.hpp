@@ -4,9 +4,9 @@
 #include <iostream>
 #include <vector>
 #include <map>
+#include <algorithm>
 
 #include "MatrixException.hpp"
-#include "GameObject/GameObject.hpp"
 
 using namespace std;
 
@@ -18,6 +18,7 @@ class Matrix{
         int column;
         int capacity;
         int add_point;
+        string matrix_name;
         map<string, T> content;
         vector<string> possible_map;
     public:
@@ -29,7 +30,7 @@ class Matrix{
             this->add_point = 0;
         }
 
-        Matrix(int col, int row){
+        Matrix(int col, int row, string name){
             if(col <= 0 || row <= 0){
                 MatrixInvalid e;
                 throw e;
@@ -38,6 +39,7 @@ class Matrix{
             this->row = row;
             this->capacity = row * col;
             this->add_point = 0;
+            this->matrix_name = name;
 
             this->generatePossibleMap();
         }
@@ -45,10 +47,21 @@ class Matrix{
         Matrix(Matrix<T>& m){
             this->row = m.row;
             this->column = m.column;
+            this->matrix_name = m.matrix_name;
             this->capacity = m.capacity;
             this->add_point = m.add_point;
             this->content = m.content;
             this->possible_map = m.possible_map;
+        }
+
+        ~Matrix(){
+            for(auto const& [key,val] : content){
+                try {
+                    delete val;
+                } catch (exception &e){
+
+                }
+            }
         }
 
         Matrix& operator=(Matrix<T>& m){
@@ -85,6 +98,7 @@ class Matrix{
         }
 
         void printMatrix(){
+            printTitle();
             cout << "     ";
             for(int i = 0 ; i < column ; i ++){
                 cout << "  " << array_of_character[i] << "   ";
@@ -136,6 +150,27 @@ class Matrix{
                 }
             }
             cout << endl;
+        }
+
+        void printTitle(){
+            cout << "    ";
+            int line_length = 6*column + 1 - matrix_name.size() - 4;
+            if(4 + matrix_name.size() > line_length){
+                cout << "[ " << matrix_name << " ]";
+            } else {
+                int count_temp = line_length - line_length/2;
+                for(int i = 0 ; i < count_temp ; i++){
+                    cout << "=";
+                }
+                cout << "[ " << matrix_name << " ]";
+                for(int i = 0 ; i < line_length/2 ; i++){
+                    cout << "=";
+                }
+                cout << endl;
+
+            }
+            
+
         }
         
         void removeElement(string map){

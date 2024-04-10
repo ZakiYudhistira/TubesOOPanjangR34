@@ -21,6 +21,7 @@
 #include "Player/Walikota/Walikota.hpp"
 
 #include "Matrix2/Matrix2.hpp"
+#include "Matrix/Matrix.hpp"
 
 #include "Toko/Toko.hpp"
 
