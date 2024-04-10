@@ -30,7 +30,7 @@ int Product::getAddedWeight(){
     return this->added_weight;
 }
 
-std::ostream& operator<<(std::ostream& os, Product p){
+std::ostream& operator<<(std::ostream& os, const Product& p){
     os << std::setw(2) << p.id << ' '
         << std::setw(10) << p.code_name << ' '
         << std::setw(15) << p.object_name << ' '
@@ -40,3 +40,5 @@ std::ostream& operator<<(std::ostream& os, Product p){
 
     return os;
 }
+
+void Product::justToMakeVirtual(){}

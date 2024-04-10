@@ -15,24 +15,24 @@
 #include "Config/ProductConfig.hpp"
 #include "Config/RecipeConfig.hpp"
 
-#include "Animal/Herbivore.hpp"
-#include "Animal/Carnivore.hpp"
-#include "Animal/Omnivore.hpp"
+#include "GameObject/Animal/Herbivore/Herbivore.hpp"
+#include "GameObject/Animal/Carnivore/Carnivore.hpp"
+#include "GameObject/Animal/Omnivore/Omnivore.hpp"
 
-#include "Plant/Plant.hpp"
-#include "Plant/FruitPlant.hpp"
-#include "Plant/MaterialPlant.hpp"
+#include "GameObject/Plant/Plant.hpp"
+#include "GameObject/Plant/FruitPlant/FruitPlant.hpp"
+#include "GameObject/Plant/MaterialPlant/MaterialPlant.hpp"
 
-#include "Product/Product.hpp"
-#include "Product/FoodProduct.hpp"
-#include "Product/MaterialProduct.hpp"
+#include "GameObject/Product/Product.hpp"
+#include "GameObject/Product/FoodProduct/FoodProduct.hpp"
+#include "GameObject/Product/MaterialProduct/MaterialProduct.hpp"
 
-#include "Building/Building.hpp"
+#include "GameObject/Building/Building.hpp"
 
 #include "Player/Player.hpp"
-#include "Player/Walikota.hpp"
-#include "Player/Peternak.hpp"
-#include "Player/Petani.hpp"
+#include "Player/Walikota/Walikota.hpp"
+#include "Player/Peternak/Peternak.hpp"
+#include "Player/Petani/Petani.hpp"
 
 #include "Matrix/Matrix.hpp"
 

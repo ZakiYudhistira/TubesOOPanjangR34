@@ -3,18 +3,20 @@
 
 #include <vector>
 
-#include "Building/Building.hpp"
+#include "GameObject/Building/Building.hpp"
 
 class RecipeConfig {
     private:
-        vector<Building> building_list;
+        vector<Building*> building_list;
         int neff;
     public:
         RecipeConfig();
 
-        vector<Building> getRecipeList();
+        vector<Building*> getRecipeList();
 
-        void addRecipe(Building& b);
+        void addRecipe(Building* b);
+
+        pair<Building*, bool> isInstanceOf(std::string);
 
         friend std::ostream& operator<<(std::ostream& os, const RecipeConfig rc);
 };

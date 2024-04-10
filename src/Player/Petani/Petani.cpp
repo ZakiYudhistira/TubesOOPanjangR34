@@ -21,3 +21,11 @@ void Petani::harvest() { // this too nunggu zaki
 void Petani::printField() { // nunggu ZAKI
 
 }
+
+std::ostream& operator<<(std::ostream& os, Petani& p){
+    p.farm.printMatrix();
+    
+    os << "ini dari class petani";
+
+    return os;
+}

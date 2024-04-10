@@ -15,3 +15,8 @@ char const * GuldenNotEnough::what() const noexcept {
 char const * TypeNotFound::what() const noexcept { 
     return "There is no such type, only peternak or petani" ; 
 }
+
+char const * InvalidType::what() const noexcept { 
+    return "Invalid Input Type" ; 
+}
+

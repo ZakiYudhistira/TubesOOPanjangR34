@@ -14,11 +14,17 @@ class Building: public GameObject {
 
         Building(int id, string code, string name, int price);
 
+        Building(const Building&);
+
+        Building& operator=(Building &);
+
         ~Building();
         
         void addMaterial(pair<string, int>);
 
         friend std::ostream& operator<<(std::ostream& os, Building& b);
+
+        void justToMakeVirtual();
 };
 
 #endif

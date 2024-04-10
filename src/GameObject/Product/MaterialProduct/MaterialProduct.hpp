@@ -1,7 +1,7 @@
 #ifndef MATERIAL_PRODUCT
 #define MATERIAL_PRODUCT
 
-#include "Product.hpp"
+#include "GameObject/Product/Product.hpp"
 
 class MaterialProduct: public Product {
     private:

@@ -7,7 +7,7 @@
 #include "Exception/Exception.hpp"
 
 #include "input/InputHandler.hpp"
-#include "input/FileHandler.hpp" //---
+#include "input/FileHandler.hpp"
 
 #include "Config/GameConfig.hpp"
 #include "Config/AnimalConfig.hpp"
@@ -15,10 +15,10 @@
 #include "Config/ProductConfig.hpp"
 #include "Config/RecipeConfig.hpp"
 
-#include "Player/Player.hpp" //---
-#include "Player/Petani.hpp"
-#include "Player/Peternak.hpp"
-#include "Player/Walikota.hpp"
+#include "Player/Player.hpp"
+#include "Player/Petani/Petani.hpp"
+#include "Player/Peternak/Peternak.hpp"
+#include "Player/Walikota/Walikota.hpp"
 
 #include "Matrix2/Matrix2.hpp"
 
@@ -35,11 +35,13 @@ private:
     Player *current_player;
     int current = 0;
 
+    bool isMuat;
+
+    FileHandler file_scan;
 public:
     Main()
     {
         // input
-        FileHandler file_scan;
         try
         {
             file_scan.readFile("test/input/misc.txt", game_config);
@@ -48,8 +50,6 @@ public:
             file_scan.readFile("test/input/product.txt", product_config);
             file_scan.readFile("test/input/recipe.txt", recipe_config);
 
-            // testing kalau MUAT
-            file_scan.readFile("test/data/state.txt", player_list, animal_config, plant_config, product_config, recipe_config, game_config);
         }
         catch (const Exception &e)
         {
@@ -66,7 +66,7 @@ public:
 
     void main()
     {
-        /*MULAI PERMAINAN*/
+        /* TESTING READING ALL CONFIG GILES */
         std::cout << game_config;
         std::cout << animal_config;
         std::cout << plant_config;
@@ -74,26 +74,45 @@ public:
         std::cout << recipe_config;
 
         /*INITIALIZATION (jika new game)*/
-        string walikota, petani, peternak;
-        std::cout << "Input nama walikota : ";
-        getline(std::cin, walikota);
-        Player *ptr_walikota = new Walikota(walikota, 40, 50);
-        insertPlayer(ptr_walikota);
-        std::cout << "Input nama petani : ";
-        getline(std::cin, petani);
-        Player *ptr_petani = new Petani(petani, 40, 50);
-        insertPlayer(ptr_petani);
-        std::cout << "Input nama peternak : ";
-        getline(std::cin, peternak);
-        Player *ptr_peternak = new Peternak(peternak, 40, 50);
-        insertPlayer(ptr_peternak);
+        this->gameMode();
 
-        // for (int i = 0; i < (int)player_list.size(); i++){
-        //     std::cout << player_list[i]->getName() << "\n";
-        // }
+        if(this->isMuat){
+            // testing kalau MUAT
+            try {
+                file_scan.readFile("test/data/state.txt", player_list, animal_config, plant_config, product_config, recipe_config, game_config);
+            
+                for(int i=0; i<(int)player_list.size(); i++){
+                    std::cout << player_list[i] << std::endl;
+                }
+            } 
+            catch (const Exception &e)
+            {
+                std::cout << e.what() << '\n';
+            }
+        } else {
+            string walikota, petani, peternak;
+            std::cout << "Input nama walikota : ";
+            getline(std::cin, walikota);
+            Player *ptr_walikota = new Walikota(walikota, 40, 50);
+            insertPlayer(ptr_walikota);
+            std::cout << "Input nama petani : ";
+            getline(std::cin, petani);
+            Player *ptr_petani = new Petani(petani, 40, 50);
+            insertPlayer(ptr_petani);
+            std::cout << "Input nama peternak : ";
+            getline(std::cin, peternak);
+            Player *ptr_peternak = new Peternak(peternak, 40, 50);
+            insertPlayer(ptr_peternak);
 
-        /*CURRENT PLAYER*/
+            for (int i = 0; i < (int)player_list.size(); i++){
+                std::cout << player_list[i]->getName() << "\n";
+            }
+        }
+
+        /* seetting CURRENT PLAYER */
         // *current_player = player_list[current];
+        
+
 
         /*ALUR COMMAND CURRENT PLAYER*/
         // while (true)
@@ -107,6 +126,22 @@ public:
         //         cout << e.what() << '\n';
         //     }
         // }
+    }
+
+    void gameMode(){
+        char input_c;
+        while(input_c != 'Y' && input_c != 'N'){
+            std::cout << "Apakah anda ingin memuat atau tidak? (Y / N)\n> ";
+            std::cin >> input_c;
+
+            if(input_c == 'Y'){
+                this->isMuat = true;
+            }  else if(input_c == 'N'){
+                this->isMuat = false;
+            } else {
+                std::cout << "Invalid Input Type\n";
+            }
+        }
     }
 };
 

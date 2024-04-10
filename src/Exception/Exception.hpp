@@ -23,6 +23,11 @@ class TypeNotFound: public Exception {
     char const * what() const noexcept override;
 };
 
+class InvalidType: public Exception {
+    public:
+    char const * what() const noexcept override;
+};
+
 #endif
 
 

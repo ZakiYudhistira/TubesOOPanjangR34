@@ -57,7 +57,15 @@ class GameConfig: public Config {
 
         int getInventoryCol();
 
-        friend std::ostream& operator<<(std::ostream& os, GameConfig gc);
+        int getPenRow();
+
+        int getPenCol();
+
+        int getFieldRow();
+
+        int getFieldCol();
+
+        friend std::ostream& operator<<(std::ostream& os, GameConfig& gc);
 };
 
 #endif

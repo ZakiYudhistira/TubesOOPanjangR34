@@ -85,19 +85,20 @@ void FileHandler::readFile(std::string file_name, AnimalConfig& ac){
     int price;
 
     while(s >> id >> code >> name >> type >> weight_to_harvest >> price){
-        Animal* temp_animal = new Animal();
+        Animal* temp_animal;
         if(type == "HERBIVORE"){
-            Herbivore herbivore(id, code, name, type, price, weight_to_harvest);
-            *temp_animal = herbivore;
+            Herbivore* herbivore = new Herbivore(id, code, name, type, price, weight_to_harvest);
+            temp_animal = herbivore;
         } else if(type == "CARNIVORE"){
             Carnivore carnivore(id, code, name, type, price, weight_to_harvest);
-            *temp_animal = carnivore;
+            // *temp_animal = carnivore;
         } else if(type == "OMNIVORE"){
             Omnivore omnivore(id, code, name, type, price, weight_to_harvest);
-            *temp_animal = omnivore;
+            // *temp_animal = omnivore;
         }
 
-        ac.addAnimal(*temp_animal);
+        // std::cout << temp_animal->getType() << "\n";
+        ac.addAnimal(temp_animal);
 
         delete temp_animal;
     }
@@ -141,7 +142,7 @@ void FileHandler::readFile(std::string file_name, PlantConfig& pc){
             *temp_plant = fruit_plant;
         }
 
-        pc.addPlant(*temp_plant);
+        pc.addPlant(temp_plant);
 
         delete temp_plant;
     }
@@ -186,7 +187,7 @@ void FileHandler::readFile(std::string file_name, ProductConfig& pc){
             *temp_product = food_product;
         }
 
-        pc.addProduct(*temp_product);
+        pc.addProduct(temp_product);
 
         delete temp_product;
     }
@@ -234,7 +235,7 @@ void FileHandler::readFile(std::string file_name, RecipeConfig& rc){
             temp_building->addMaterial(material_pair);
         }
 
-        rc.addRecipe(*temp_building);
+        rc.addRecipe(temp_building);
 
         delete temp_building;
     }
@@ -303,30 +304,72 @@ void FileHandler::readFile(std::string file_name, __attribute__((unused)) vector
         int n_inventory = 0;
         s >> n_inventory;
 
-        Matrix<GameObject*> inventory(gc.getInventoryCol(), gc.getInventoryRow());
+        Matrix<GameObject*>* inventory = new Matrix<GameObject*>(gc.getInventoryCol(), gc.getInventoryRow());
 
         for(int j=0; j<n_inventory; j++){
             std::string temp_item;
             s >> temp_item;
 
             // cek what type of item is this
+            // ac pc prod rc
             pair<Product*, bool> resp = prod.isInstanceOf(temp_item);
             if(resp.second){
-                inventory.addElement(resp.first);
+                inventory->addElement(resp.first);
             }
-            
+
+            pair<Animal*, bool> resp_a = ac.isInstanceOf(temp_item);
+            if(resp_a.second){
+                inventory->addElement(resp_a.first);
+            }
+
+            pair<Plant*, bool> resp_p = pc.isInstanceOf(temp_item);
+            if(resp_p.second){
+                inventory->addElement(resp_p.first);
+            }
+
+            pair<Building*, bool> resp_r = rc.isInstanceOf(temp_item);
+            if(resp_r.second){
+                inventory->addElement(resp_r.first);
+            }
         }
 
-        if (type != "Walikota"){
+        p->setInventory(inventory);
+
+        if (type == "Petani"){
+            Matrix<Plant*> farm(gc.getFieldCol(), gc.getFieldRow());
+
             int n_game_object = 0;
             s >> n_game_object;
 
             for(int j=0; j<n_game_object; j++){
                 std::string coordinate, name;
-                int quantity;
-                s >> coordinate >> name >> quantity;
+                int plant_days;
+                s >> coordinate >> name >> plant_days;
+
+                pair<Plant*, bool> resp_p = pc.isInstanceOf(name);
+                resp_p.first->setCurrentDays(plant_days);
+
+                farm.addElement(resp_p.first, coordinate);
+            }
+        } else if(type == "Peternak"){
+            Matrix<Animal*> pen(gc.getPenCol(), gc.getPenRow());
+
+            int n_game_object = 0;
+            s >> n_game_object;
+
+            for(int j=0; j<n_game_object; j++){
+                std::string coordinate, name;
+                int animal_weight;
+                s >> coordinate >> name >> animal_weight;
+
+                pair<Animal*, bool> resp_p = ac.isInstanceOf(name);
+                resp_p.first->setCurrentWeight(animal_weight);
+
+                pen.addElement(resp_p.first, coordinate);
             }
         }
+
+        vp.push_back(p);
     }
 
     // TODO: IMPLEMENT MASUKIN KE TOKO

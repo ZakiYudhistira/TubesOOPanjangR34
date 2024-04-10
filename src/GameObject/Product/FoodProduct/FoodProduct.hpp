@@ -1,7 +1,7 @@
 #ifndef FOOD_PRODUCT
 #define FOOD_PRODUCT
 
-#include "Product.hpp"
+#include "GameObject/Product/Product.hpp"
 
 class FoodProduct: public Product {
     private:

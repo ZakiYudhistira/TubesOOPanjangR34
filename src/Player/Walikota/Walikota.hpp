@@ -1,11 +1,11 @@
 #ifndef WALIKOTA
 #define WALIKOTA
 
-#include "Player.hpp"
-#include "Petani.hpp"
-#include "Peternak.hpp"
+#include "Player/Player.hpp"
+#include "Player/Petani/Petani.hpp"
+#include "Player/Peternak/Peternak.hpp"
 
-#include "Building/Building.hpp"
+#include "GameObject/Building/Building.hpp"
 
 class Walikota : public Player {
     private :

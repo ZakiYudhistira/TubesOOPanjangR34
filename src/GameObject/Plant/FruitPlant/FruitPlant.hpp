@@ -1,7 +1,7 @@
 #ifndef FRUIT_PLANT
 #define FRUIT_PLANT
 
-#include "Plant.hpp"
+#include "GameObject/Plant/Plant.hpp"
 
 class FruitPlant: public Plant {
     private:

@@ -16,6 +16,10 @@ Player::~Player() {}
 
 void Player::eat() {} // nunggu implementasi matrix
 
+void Player::setInventory(Matrix<GameObject*>* m){
+    this->inventory = *m;
+}
+
 void Player::printInventory() {} // nunggu implementasi matrix
 
 std::string Player::getName() {

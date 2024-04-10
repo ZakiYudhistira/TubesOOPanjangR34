@@ -24,6 +24,7 @@ class Player  {
         Player(std::string name, int body_weight, int gulden) ;
         virtual ~Player() ;
         void eat() ;
+        void setInventory(Matrix<GameObject*>* m);
         void printInventory() ;
         std::string getName() ;
         int getBodyWeight() ;

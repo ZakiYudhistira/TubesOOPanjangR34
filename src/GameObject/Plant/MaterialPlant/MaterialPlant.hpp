@@ -1,7 +1,7 @@
 #ifndef MATERIAL_PLANT
 #define MATERIAL_PLANT
 
-#include "Plant.hpp"
+#include "GameObject/Plant/Plant.hpp"
 
 class MaterialPlant: public Plant {
     private:

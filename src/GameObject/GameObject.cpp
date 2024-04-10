@@ -28,6 +28,7 @@ GameObject& GameObject::operator=(const GameObject& go){
     this->price = go.price;
     return *this;
 }
+
 string GameObject :: getCode(){
     return code_name;
 }

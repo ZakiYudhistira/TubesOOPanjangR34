@@ -4,18 +4,20 @@
 #include <vector>
 
 #include "Config.hpp"
-#include "Animal/Animal.hpp"
+#include "GameObject/Animal/Animal.hpp"
 
 class AnimalConfig: public Config {
     private:
-        vector<Animal> animal_list;
+        vector<Animal*> animal_list;
         int neff;
     public:
         AnimalConfig();
 
-        vector<Animal> getAnimalList();
+        vector<Animal*> getAnimalList();
 
-        void addAnimal(Animal&);
+        void addAnimal(Animal*);
+
+        pair<Animal*, bool> isInstanceOf(std::string);
 
         friend std::ostream& operator<<(std::ostream& os, const AnimalConfig ac);
 };

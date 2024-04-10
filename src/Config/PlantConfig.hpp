@@ -4,18 +4,20 @@
 #include <vector>
 
 #include "Config.hpp"
-#include "Plant/Plant.hpp"
+#include "GameObject/Plant/Plant.hpp"
 
 class PlantConfig: public Config {
     private:
-        vector<Plant> plant_list;
+        vector<Plant*> plant_list;
         int neff;
     public:
         PlantConfig();
 
-        vector<Plant> getPlantList();
+        vector<Plant*> getPlantList();
 
-        void addPlant(Plant&);
+        void addPlant(Plant*);
+
+        pair<Plant*, bool> isInstanceOf(std::string);
 
         friend std::ostream& operator<<(std::ostream& os, const PlantConfig pc);
 };

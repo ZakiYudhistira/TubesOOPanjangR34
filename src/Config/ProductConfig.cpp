@@ -4,20 +4,20 @@ ProductConfig::ProductConfig(){
     this->neff = 0;
 }
 
-vector<Product> ProductConfig::getProductList(){
+vector<Product*> ProductConfig::getProductList(){
     return this->product_list;
 }
 
-void ProductConfig::addProduct(Product& plant){
+void ProductConfig::addProduct(Product* plant){
     this->product_list.push_back(plant);
     this->neff++;
 }
 
 pair<Product*, bool> ProductConfig::isInstanceOf(std::string s){
-    Product* new_product = new Product();
+    Product* new_product;
     for(int i=0; i<this->neff; i++){
-        if(this->product_list[i].getObjectName() == s){
-            *new_product = this->product_list[i];
+        if(this->product_list[i]->getObjectName() == s){
+            new_product = this->product_list[i];
             return make_pair(new_product, true);
         }
     }

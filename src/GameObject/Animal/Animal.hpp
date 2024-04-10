@@ -12,9 +12,18 @@ class Animal : public GameObject {
 
         Animal(int id, string code_name, string object_name, int price, int weight_to_harvest);
 
+        Animal(const Animal&);
+
+        Animal& operator=(Animal&);
+
+        void setCurrentWeight(int x);
+
         bool isHarvest() ;
 
-        friend std::ostream& operator<<(std::ostream& os, Animal a);
+        virtual string getType() = 0;
+
+        friend std::ostream& operator<<(std::ostream& os, const Animal& a);
+
 };
 
 #endif

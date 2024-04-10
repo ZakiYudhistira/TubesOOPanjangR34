@@ -3,18 +3,18 @@
 
 #include <vector>
 
-#include "Product/Product.hpp"
+#include "GameObject/Product/Product.hpp"
 
 class ProductConfig {
     private:
-        vector<Product> product_list;
+        vector<Product*> product_list;
         int neff;
     public:
         ProductConfig();
 
-        vector<Product> getProductList();
+        vector<Product*> getProductList();
 
-        void addProduct(Product&);
+        void addProduct(Product*);
 
         pair<Product*, bool> isInstanceOf(std::string);
 

@@ -1,12 +1,13 @@
 #ifndef PETERNAK
 #define PETERNAK
 
-#include "Player.hpp"
+#include "Player/Player.hpp"
+#include "GameObject/Animal/Animal.hpp"
 
 class Peternak : public Player {
     private:
         std::string type;
-        // Matrix pen ;
+        Matrix<Animal*> pen;
     public:
         Peternak();
         Peternak(std::string name, int body_weight, int gulden);
