@@ -61,7 +61,9 @@ main:
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Player/Player.cpp -o $(OUTPUT_FOLDER)/Player.o 
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Player/Walikota/Walikota.cpp -o $(OUTPUT_FOLDER)/Walikota.o 
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Player/Petani/Petani.cpp -o $(OUTPUT_FOLDER)/Petani.o 
-	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Player/Peternak/Peternak.cpp -o $(OUTPUT_FOLDER)/Peternak.o 
+	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Player/Peternak/Peternak.cpp -o $(OUTPUT_FOLDER)/Peternak.o
+
+	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Toko/Toko.cpp -o $(OUTPUT_FOLDER)/Toko.o 
 
 	@pwd && $(CC) $(CFLAGS) $(SOURCE_FOLDER)/main/main.cpp -o $(OUTPUT_FOLDER)/main.o 
 	@pwd && $(CC) bin/*.o -o $(OUTPUT_FOLDER)/MainApp

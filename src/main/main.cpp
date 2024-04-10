@@ -53,6 +53,9 @@ public:
             file_scan.readFile("test/input/plant.txt", plant_config);
             file_scan.readFile("test/input/product.txt", product_config);
             file_scan.readFile("test/input/recipe.txt", recipe_config);
+
+            // initiate TOKO
+            toko_cina = *(new Toko(animal_config, plant_config, product_config, recipe_config));
         }
         catch (const Exception &e)
         {
@@ -76,13 +79,15 @@ public:
         std::cout << product_config;
         std::cout << recipe_config;
 
+        std::cout << toko_cina;
+
         /*INITIALIZATION (jika new game)*/
         this->gameMode();
 
         if(this->isMuat){
             // testing kalau MUAT
             try {
-                file_scan.readFile("test/data/state.txt", player_list, animal_config, plant_config, product_config, recipe_config, game_config);
+                file_scan.readFile("test/data/state.txt", player_list, animal_config, plant_config, product_config, recipe_config, game_config, toko_cina);
             
                 for(int i=0; i<(int)player_list.size(); i++){
                     std::cout << *player_list[i] << std::endl;
@@ -120,9 +125,9 @@ public:
             }
         }
 
+
         /* seetting CURRENT PLAYER */
         // *current_player = player_list[current];
-        
 
 
         /*ALUR COMMAND CURRENT PLAYER*/
