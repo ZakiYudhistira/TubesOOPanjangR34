@@ -6,6 +6,7 @@
 #include <filesystem>
 #include <string>
 #include <sstream>
+#include <sys/stat.h>
 
 #include "InputHandler.hpp"
 
@@ -62,5 +63,7 @@ class FileHandler: public InputHandler {
         void readFile(std::string fn, RecipeConfig& rc);
 
         void readFile(std::string fn, vector<Player*>& vp, AnimalConfig& ac, PlantConfig& pc, ProductConfig& prod, RecipeConfig& rc, GameConfig& gc, Toko& t);
+
+        void writeFile(std::string fn, vector<Player*>& vp, AnimalConfig& ac, PlantConfig& pc, ProductConfig& prod, RecipeConfig& rc, GameConfig& gc, Toko& t);
 };
 #endif

@@ -19,8 +19,6 @@ void FileHandler::readFile(std::string file_name, GameConfig& gc){
     std::ifstream my_file(file_name);
     std::string my_string;
 
-    check_active_dir();
-
     if(!my_file){
         // if file does not exist
         ExceptionFileNotFound e;
@@ -54,6 +52,9 @@ void FileHandler::readFile(std::string file_name, GameConfig& gc){
                         pen_row, pen_col, field_row, field_col);
     
     gc = new_gc;
+
+    // close file stream
+    my_file.close();
 }
 
 void FileHandler::readFile(std::string file_name, AnimalConfig& ac){
@@ -100,6 +101,9 @@ void FileHandler::readFile(std::string file_name, AnimalConfig& ac){
         std::cout << temp_animal->getType() << "\n";
         ac.addAnimal(temp_animal);
     }
+
+    // close file stream
+    my_file.close();
 }
 
 void FileHandler::readFile(std::string file_name, PlantConfig& pc){
@@ -142,6 +146,9 @@ void FileHandler::readFile(std::string file_name, PlantConfig& pc){
 
         pc.addPlant(temp_plant);
     }
+
+    // close file stream
+    my_file.close();
 }
 
 void FileHandler::readFile(std::string file_name, ProductConfig& pc){
@@ -185,6 +192,9 @@ void FileHandler::readFile(std::string file_name, ProductConfig& pc){
 
         pc.addProduct(temp_product);
     }
+
+    // close file stream
+    my_file.close();
 }
 
 void FileHandler::readFile(std::string file_name, RecipeConfig& rc){
@@ -231,6 +241,9 @@ void FileHandler::readFile(std::string file_name, RecipeConfig& rc){
 
         rc.addRecipe(temp_building);
     }
+
+    // closing file stream
+    my_file.close();
 }
 
 void FileHandler::readFile(std::string file_name, __attribute__((unused)) vector<Player*>& vp, __attribute__((unused)) AnimalConfig& ac, __attribute__((unused)) PlantConfig& pc, ProductConfig& prod, __attribute__((unused)) RecipeConfig& rc, GameConfig& gc, Toko& t){
@@ -383,4 +396,56 @@ void FileHandler::readFile(std::string file_name, __attribute__((unused)) vector
         s >> item >> quantity;
         t.setItemQuantity(item, quantity);
     }
+
+    // close file stream
+    my_file.close();
+}
+
+void FileHandler::writeFile(std::string file_name, __attribute__((unused)) vector<Player*>& vp, __attribute__((unused)) AnimalConfig& ac, __attribute__((unused)) PlantConfig& pc, __attribute__((unused)) ProductConfig& prod, __attribute__((unused)) RecipeConfig& rc, __attribute__((unused)) GameConfig& gc, __attribute__((unused)) Toko& t){
+    std::ifstream my_file(file_name);
+    std::string my_string;
+
+    if(!my_file){
+        // if file does not exist
+        my_file.close();
+
+        std::string segment;
+        std::string temp;
+        std::vector<std::string> path;
+
+        stringstream s_fn(file_name);
+        
+        std::getline(s_fn, segment, '/');
+        temp.append(segment);
+        path.push_back(temp);
+
+        while(std::getline(s_fn, segment, '/')) {
+            temp.append("/");
+            temp.append(segment);
+            path.push_back(temp);
+        }
+
+        if(path.size() == 1){
+            std::ofstream out_file(path[0]);
+
+            // write jumlah player
+            out_file << vp.size() << "\n";
+            for(int i=0; i<(int)vp.size(); i++){
+                // write name, body weight, gulden
+                out_file << vp[i]->getName() << " " << vp[i]->getBodyWeight() << " " << vp[i]->getGulden() << "\n";
+
+                // write jumlah item inventory
+                // out_file << vp[i]->inventory->capacity;
+            }
+            out_file.close();
+        }
+        for(int i=0; i<(int)path.size(); i++){
+            std::cout << path[i] << "\n";
+        }
+    }
+
+   
+
+    // close file stream
+    my_file.close();
 }
