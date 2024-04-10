@@ -22,6 +22,8 @@
 
 #include "Matrix2/Matrix2.hpp"
 
+#include "Toko/Toko.hpp"
+
 class Main
 {
 private:
@@ -30,6 +32,8 @@ private:
     PlantConfig plant_config;
     ProductConfig product_config;
     RecipeConfig recipe_config;
+
+    Toko toko_cina;
 
     vector<Player *> player_list;
     Player *current_player;
@@ -49,7 +53,6 @@ public:
             file_scan.readFile("test/input/plant.txt", plant_config);
             file_scan.readFile("test/input/product.txt", product_config);
             file_scan.readFile("test/input/recipe.txt", recipe_config);
-
         }
         catch (const Exception &e)
         {
@@ -90,22 +93,30 @@ public:
                 std::cout << e.what() << '\n';
             }
         } else {
+            int inventory_row = game_config.getInventoryRow();
+            int inventory_col = game_config.getInventoryCol();
+            int field_row = game_config.getFieldRow();
+            int field_col = game_config.getFieldCol();
+            int pen_row = game_config.getPenRow();
+            int pen_col = game_config.getPenCol();
+
             string walikota, petani, peternak;
             std::cout << "Input nama walikota : ";
             getline(std::cin, walikota);
-            Player *ptr_walikota = new Walikota(walikota, 40, 50);
+            Player *ptr_walikota = new Walikota(walikota, 40, 50, inventory_row, inventory_col);
             insertPlayer(ptr_walikota);
             std::cout << "Input nama petani : ";
             getline(std::cin, petani);
-            Player *ptr_petani = new Petani(petani, 40, 50);
+            Player *ptr_petani = new Petani(petani, 40, 50, inventory_row, inventory_col, field_row, field_col);
             insertPlayer(ptr_petani);
             std::cout << "Input nama peternak : ";
             getline(std::cin, peternak);
-            Player *ptr_peternak = new Peternak(peternak, 40, 50);
+            Player *ptr_peternak = new Peternak(peternak, 40, 50, inventory_row, inventory_col, pen_row, pen_col);
             insertPlayer(ptr_peternak);
 
             for (int i = 0; i < (int)player_list.size(); i++){
                 std::cout << player_list[i]->getName() << "\n";
+                player_list[i]->printInventory();
             }
         }
 
@@ -129,14 +140,14 @@ public:
     }
 
     void gameMode(){
-        char input_c;
-        while(input_c != 'Y' && input_c != 'N'){
+        string input_c;
+        while(input_c != "Y" && input_c != "N"){
             std::cout << "Apakah anda ingin memuat atau tidak? (Y / N)\n> ";
-            std::cin >> input_c;
+            getline(std::cin, input_c);
 
-            if(input_c == 'Y'){
+            if(input_c == "Y"){
                 this->isMuat = true;
-            }  else if(input_c == 'N'){
+            }  else if(input_c == "N"){
                 this->isMuat = false;
             } else {
                 std::cout << "Invalid Input Type\n";

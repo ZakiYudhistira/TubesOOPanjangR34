@@ -7,10 +7,10 @@
 class Petani : public Player {
     private :
         std::string type ;
-        Matrix<Plant*> farm;
+        Matrix<Plant*>* farm;
     public :
         Petani() ;
-        Petani(std::string name, int body_weight, int gulden) ;
+        Petani(std::string name, int body_weight, int gulden, int inventory_row, int inventory_col, int farm_row, int farm_col) ;
         ~Petani() ;
         void plant() ;
         void harvest() ;

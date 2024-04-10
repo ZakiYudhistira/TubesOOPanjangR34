@@ -261,6 +261,13 @@ void FileHandler::readFile(std::string file_name, __attribute__((unused)) vector
 
     s >> n_player;
 
+    int inventory_row = gc.getInventoryRow();
+    int inventory_col = gc.getInventoryCol();
+    int field_row = gc.getFieldRow();
+    int field_col = gc.getFieldCol();
+    int pen_row = gc.getPenRow();
+    int pen_col = gc.getPenCol();
+
     for(int i=0; i<n_player; i++){
         __attribute__((unused)) Player* p;
         std::string player_name;
@@ -286,11 +293,11 @@ void FileHandler::readFile(std::string file_name, __attribute__((unused)) vector
         s >> body_weight >> gulden;
 
         if(type == "Walikota"){
-            p = new Walikota(player_name, body_weight, gulden);
+            p = new Walikota(player_name, body_weight, gulden, inventory_row, inventory_col);
         } else if(type == "Petani"){
-            p = new Petani(player_name, body_weight, gulden);
+            p = new Petani(player_name, body_weight, gulden, inventory_row, inventory_col, field_row, field_col);
         } else if(type == "Peternak"){
-            p = new Peternak(player_name, body_weight, gulden);
+            p = new Peternak(player_name, body_weight, gulden, inventory_row, inventory_col, pen_row, pen_col);
         }
 
         int n_inventory = 0;

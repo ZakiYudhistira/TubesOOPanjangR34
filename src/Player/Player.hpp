@@ -15,11 +15,11 @@ class Player  {
         std::string name ;
         int body_weight ;
         int gulden ;
-        Matrix<GameObject*> inventory;
+        Matrix<GameObject*>* inventory;
     
     public:
         Player() ;
-        Player(std::string name, int body_weight, int gulden) ;
+        Player(std::string name, int body_weight, int gulden, int inventory_row, int inventory_col) ;
         virtual ~Player() ;
         void eat() ;
         void setInventory(Matrix<GameObject*>* m);

@@ -22,7 +22,12 @@ class Matrix{
         vector<string> possible_map;
     public:
         vector<char> array_of_character = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
-        Matrix(){}
+        Matrix(){
+            this->row = 0;
+            this->column = 0;
+            this->capacity = 0;
+            this->add_point = 0;
+        }
 
         Matrix(int col, int row){
             if(col <= 0 || row <= 0){
@@ -35,6 +40,26 @@ class Matrix{
             this->add_point = 0;
 
             this->generatePossibleMap();
+        }
+
+        Matrix(Matrix<T>& m){
+            this->row = m.row;
+            this->column = m.column;
+            this->capacity = m.capacity;
+            this->add_point = m.add_point;
+            this->content = m.content;
+            this->possible_map = m.possible_map;
+        }
+
+        Matrix& operator=(Matrix<T>& m){
+            this->row = m.row;
+            this->column = m.column;
+            this->capacity = m.capacity;
+            this->add_point = m.add_point;
+            this->content = m.content;
+            this->possible_map = m.possible_map;
+
+            return *this;
         }
         
         int getRow(){
