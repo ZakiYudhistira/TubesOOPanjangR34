@@ -19,6 +19,7 @@ ostream operator<<(ostream& os, Toko t) {
     for (int i=0; i<t.num_jenis_item; i++) {
         os << (i+1) << ". " << t.items.at(i).at(0).getObjectName() << " - " << t.items.at(i).at(0).getPrice() << endl;
     }
+    return os;
 }
 
 void Toko::beli() {
