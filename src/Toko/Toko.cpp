@@ -49,6 +49,20 @@ Toko& Toko::operator=(Toko& t){
     return *this;
 }
 
+void Toko::addItem(pair<GameObject*, int> pgi){
+    this->item_list.push_back(pgi);
+    this->neff++;
+}
+
+void Toko::setItemQuantity(std::string s, int qty){
+    for(int i=0; i<this->neff; i++){
+        if(this->item_list[i].first->getObjectName() == s){
+            this->item_list[i].second = qty;
+            break;
+        }
+    }
+}
+
 int Toko::getNumJenisItem() {
     return this->neff;
 }
@@ -58,6 +72,8 @@ ostream& operator<<(ostream& os, __attribute__((unused)) Toko t) {
         << "Berikut merupakan barang-barang yang dapat Anda beli" << endl;
 
     for (int i=0; i<t.neff; i++) {
+        /* TODO: Pakein setw dari library iomapi biar rapi kek tabel! 
+            cek file gameconfig buat cara pakenya or tutorial internet */
         os << (i+1) << ". " << t.item_list[i].first->getObjectName() << " " << t.item_list[i].first->getPrice() << " " << t.item_list[i].second << endl;
     }
     return os;

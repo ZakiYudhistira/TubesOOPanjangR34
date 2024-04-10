@@ -233,7 +233,7 @@ void FileHandler::readFile(std::string file_name, RecipeConfig& rc){
     }
 }
 
-void FileHandler::readFile(std::string file_name, __attribute__((unused)) vector<Player*>& vp, __attribute__((unused)) AnimalConfig& ac, __attribute__((unused)) PlantConfig& pc, ProductConfig& prod, __attribute__((unused)) RecipeConfig& rc, GameConfig& gc){
+void FileHandler::readFile(std::string file_name, __attribute__((unused)) vector<Player*>& vp, __attribute__((unused)) AnimalConfig& ac, __attribute__((unused)) PlantConfig& pc, ProductConfig& prod, __attribute__((unused)) RecipeConfig& rc, GameConfig& gc, Toko& t){
     std::ifstream my_file(file_name);
     std::string my_string;
 
@@ -381,5 +381,6 @@ void FileHandler::readFile(std::string file_name, __attribute__((unused)) vector
         int quantity;
 
         s >> item >> quantity;
+        t.setItemQuantity(item, quantity);
     }
 }

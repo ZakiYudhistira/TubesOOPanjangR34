@@ -29,6 +29,10 @@ class Toko {
 
         Toko& operator=(Toko&);
 
+        void addItem(pair<GameObject*, int>);
+
+        void setItemQuantity(std::string, int qty);
+
         // Getter banyak jenis Item yang tersedia di toko
         int getNumJenisItem();
 

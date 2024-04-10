@@ -79,7 +79,6 @@ public:
         std::cout << product_config;
         std::cout << recipe_config;
 
-        std::cout << toko_cina;
 
         /*INITIALIZATION (jika new game)*/
         this->gameMode();
@@ -125,6 +124,8 @@ public:
             }
         }
 
+        /* TESTING TOKO CINA - (-1000) artinya unlimited*/
+        std::cout << toko_cina;
 
         /* seetting CURRENT PLAYER */
         // *current_player = player_list[current];
