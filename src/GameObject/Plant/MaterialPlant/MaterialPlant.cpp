@@ -7,3 +7,11 @@ MaterialPlant::MaterialPlant(): Plant() {
 MaterialPlant::MaterialPlant(int id, string code_name, string object_name, string type, int price, int duration_to_harvest): Plant(id, code_name, object_name, price, duration_to_harvest) {
     this->type = type;
 }
+
+string MaterialPlant::getType(){
+    return this->type;
+}
+
+void MaterialPlant::setType(string s){
+    this->type = s;
+}

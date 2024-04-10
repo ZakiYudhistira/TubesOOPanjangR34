@@ -90,17 +90,15 @@ void FileHandler::readFile(std::string file_name, AnimalConfig& ac){
             Herbivore* herbivore = new Herbivore(id, code, name, type, price, weight_to_harvest);
             temp_animal = herbivore;
         } else if(type == "CARNIVORE"){
-            Carnivore carnivore(id, code, name, type, price, weight_to_harvest);
-            // *temp_animal = carnivore;
+            Carnivore* carnivore = new Carnivore(id, code, name, type, price, weight_to_harvest);
+            temp_animal = carnivore;
         } else if(type == "OMNIVORE"){
-            Omnivore omnivore(id, code, name, type, price, weight_to_harvest);
-            // *temp_animal = omnivore;
+            Omnivore* omnivore = new Omnivore(id, code, name, type, price, weight_to_harvest);
+            temp_animal = omnivore;
         }
 
-        // std::cout << temp_animal->getType() << "\n";
+        std::cout << temp_animal->getType() << "\n";
         ac.addAnimal(temp_animal);
-
-        delete temp_animal;
     }
 }
 
@@ -133,18 +131,16 @@ void FileHandler::readFile(std::string file_name, PlantConfig& pc){
     int price;
 
     while(s >> id >> code >> name >> type >> duration_to_harvest >> price){
-        Plant* temp_plant = new Plant();
+        Plant* temp_plant;
         if(type == "MATERIAL_PLANT"){
-            MaterialPlant material_plant(id, code, name, type, price, duration_to_harvest);
-            *temp_plant = material_plant;
+            MaterialPlant* material_plant = new MaterialPlant(id, code, name, type, price, duration_to_harvest);
+            temp_plant = material_plant;
         } else if(type == "FRUIT_PLANT"){
-            FruitPlant fruit_plant(id, code, name, type, price, duration_to_harvest);
-            *temp_plant = fruit_plant;
+            FruitPlant* fruit_plant = new FruitPlant(id, code, name, type, price, duration_to_harvest);
+            temp_plant = fruit_plant;
         }
 
         pc.addPlant(temp_plant);
-
-        delete temp_plant;
     }
 }
 
@@ -178,18 +174,16 @@ void FileHandler::readFile(std::string file_name, ProductConfig& pc){
     int price;
 
     while(s >> id >> code >> name >> type >> origin >> added_weight >> price){
-        Product* temp_product = new Product();
+        Product* temp_product;
         if(added_weight == 0){
-            MaterialProduct material_product(id, code, name, price, added_weight, origin, type);
-            *temp_product = material_product;
+            MaterialProduct* material_product = new MaterialProduct(id, code, name, price, added_weight, origin, type);
+            temp_product = material_product;
         } else {
-            FoodProduct food_product(id, code, name, price, added_weight, origin, type);
-            *temp_product = food_product;
+            FoodProduct* food_product = new FoodProduct(id, code, name, price, added_weight, origin, type);
+            temp_product = food_product;
         }
 
         pc.addProduct(temp_product);
-
-        delete temp_product;
     }
 }
 
@@ -236,8 +230,6 @@ void FileHandler::readFile(std::string file_name, RecipeConfig& rc){
         }
 
         rc.addRecipe(temp_building);
-
-        delete temp_building;
     }
 }
 

@@ -28,7 +28,7 @@ std::ostream& operator<<(std::ostream& os, AnimalConfig ac){
     ac.showConfig(os);
 
     for(int i=0; i<ac.neff; i++){
-        os << ac.animal_list[i];
+        os << *ac.animal_list[i];
     }
 
     return os;

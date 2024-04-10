@@ -19,9 +19,11 @@ class Product : public GameObject {
         // Returns the added_weight of a product; 
         int getAddedWeight();
 
-        friend std::ostream& operator<<(std::ostream& os, const Product& p);
+        virtual string getType() = 0;
 
-        void justToMakeVirtual();
+        virtual void setType(string s) = 0;
+        
+        friend std::ostream& operator<<(std::ostream& os, const Product& p);
 };
 
 #endif

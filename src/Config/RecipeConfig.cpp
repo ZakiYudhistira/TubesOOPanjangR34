@@ -31,7 +31,7 @@ std::ostream& operator<<(std::ostream& os, RecipeConfig rc){
         << std::setw(5) << "price" << '\n';
     
     for(int i=0; i < rc.neff; i++){
-        os << rc.building_list[i] << '\n';
+        os << *rc.building_list[i] << '\n';
     }
 
     return os;

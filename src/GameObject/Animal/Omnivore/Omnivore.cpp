@@ -8,4 +8,10 @@ Omnivore::Omnivore(int id, string code_name, string object_name, string type, in
     this->type = type;
 }
 
-void Omnivore::justToMakeVirtual(){}
+string Omnivore::getType(){
+    return this->type;
+}
+
+void Omnivore::setType(string s){
+    this->type = s;
+}

@@ -28,7 +28,7 @@ std::ostream& operator<<(std::ostream& os, PlantConfig pc){
     pc.showConfig(os);
 
     for(int i=0; i<pc.neff; i++){
-        os << pc.plant_list[i];
+        os << *pc.plant_list[i];
     }
 
     return os;

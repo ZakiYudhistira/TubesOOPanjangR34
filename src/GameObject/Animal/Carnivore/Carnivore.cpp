@@ -8,4 +8,10 @@ Carnivore::Carnivore(int id, string code_name, string object_name, string type, 
     this->type = type;
 }
 
-void Carnivore::justToMakeVirtual(){}
+string Carnivore::getType(){
+    return this->type;
+}
+
+void Carnivore::setType(string s){
+    this->type = s;
+}

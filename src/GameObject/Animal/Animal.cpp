@@ -15,20 +15,16 @@ Animal::Animal(const Animal& p): GameObject(p) {
     this->current_weight = p.current_weight;
 }
 
-Animal& Animal::operator=(Animal& p){
-    this->code_name = p.code_name;
-    this->current_weight = p.current_weight;
-    this->id = p.id;
-    this->object_name = p.object_name;
-    this->price = p.price;
-    this->weight_to_harvest = p.weight_to_harvest;
+// Animal& Animal::operator=(Animal& p){
+//     this->code_name = p.code_name;
+//     this->current_weight = p.current_weight;
+//     this->id = p.id;
+//     this->object_name = p.object_name;
+//     this->price = p.price;
+//     this->weight_to_harvest = p.weight_to_harvest;
 
-    return *this;
-}
-
-Animal::~Animal(){
-    cout << "destructor from Animal class\n";
-}
+//     return *this;
+// }
 
 void Animal::setCurrentWeight(int x){
     this->current_weight = x;

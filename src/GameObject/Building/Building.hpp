@@ -23,8 +23,6 @@ class Building: public GameObject {
         void addMaterial(pair<string, int>);
 
         friend std::ostream& operator<<(std::ostream& os, Building& b);
-
-        void justToMakeVirtual();
 };
 
 #endif

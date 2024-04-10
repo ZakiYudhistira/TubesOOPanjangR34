@@ -11,3 +11,7 @@ Herbivore::Herbivore(int id, string code_name, string object_name, string type, 
 string Herbivore::getType(){
     return this->type;
 }
+
+void Herbivore::setType(string s){
+    this->type = s;
+}

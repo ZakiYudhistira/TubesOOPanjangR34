@@ -82,7 +82,7 @@ public:
                 file_scan.readFile("test/data/state.txt", player_list, animal_config, plant_config, product_config, recipe_config, game_config);
             
                 for(int i=0; i<(int)player_list.size(); i++){
-                    std::cout << player_list[i] << std::endl;
+                    std::cout << *player_list[i] << std::endl;
                 }
             } 
             catch (const Exception &e)

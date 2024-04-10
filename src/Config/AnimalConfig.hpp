@@ -19,7 +19,7 @@ class AnimalConfig: public Config {
 
         pair<Animal*, bool> isInstanceOf(std::string);
 
-        friend std::ostream& operator<<(std::ostream& os, const AnimalConfig ac);
+        friend std::ostream& operator<<(std::ostream& os, AnimalConfig ac);
 };
 
 #endif

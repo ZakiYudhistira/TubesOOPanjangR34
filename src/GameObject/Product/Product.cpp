@@ -40,5 +40,3 @@ std::ostream& operator<<(std::ostream& os, const Product& p){
 
     return os;
 }
-
-void Product::justToMakeVirtual(){}

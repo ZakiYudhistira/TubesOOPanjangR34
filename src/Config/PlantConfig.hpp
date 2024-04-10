@@ -19,7 +19,7 @@ class PlantConfig: public Config {
 
         pair<Plant*, bool> isInstanceOf(std::string);
 
-        friend std::ostream& operator<<(std::ostream& os, const PlantConfig pc);
+        friend std::ostream& operator<<(std::ostream& os, PlantConfig pc);
 };
 
 #endif

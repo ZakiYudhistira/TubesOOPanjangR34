@@ -55,5 +55,3 @@ std::ostream& operator<<(std::ostream& os, Building& b){
 
     return os;
 }
-
-void Building::justToMakeVirtual(){}

@@ -16,8 +16,6 @@ class Player  {
         int body_weight ;
         int gulden ;
         Matrix<GameObject*> inventory;
-        // Matrix inventory ; nunggu spek zaki
-        // strint type ; gatau ini apaan
     
     public:
         Player() ;
@@ -31,6 +29,8 @@ class Player  {
         int getGulden() ;
         void addBodyWeight(int weight) ;
         void setGulden(int gulden) ;
+
+        friend std::ostream& operator<<(std::ostream& os, Player& p);
 };
 
 #endif

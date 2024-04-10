@@ -34,8 +34,7 @@ bool Plant::isHarvest() {
     return this->current_days >= this->duration_to_harvest ;
 }
 
-std::ostream& operator<<(std::ostream& os, const Plant& a){
-    os << std::setw(2) << a.id << ' '
+std::ostream& operator<<(std::ostream& os, const Plant& a){    os << std::setw(2) << a.id << ' '
         << std::setw(10) << a.code_name << ' '
         << std::setw(15) << a.object_name << ' '
         << std::setw(5) << a.price << ' '
@@ -43,5 +42,3 @@ std::ostream& operator<<(std::ostream& os, const Plant& a){
 
     return os;
 }
-
-void Plant::justToMakeVirtual(){}

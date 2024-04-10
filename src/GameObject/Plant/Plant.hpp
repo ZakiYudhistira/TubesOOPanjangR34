@@ -20,9 +20,11 @@ class Plant : public GameObject {
 
         bool isHarvest() ;
 
-        friend std::ostream& operator<<(std::ostream& os, const Plant& p);
+        virtual string getType() = 0;
+        
+        virtual void setType(string s) = 0;
 
-        void justToMakeVirtual();
+        friend std::ostream& operator<<(std::ostream& os, const Plant& p);
 };
 
 

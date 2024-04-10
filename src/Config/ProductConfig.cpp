@@ -33,7 +33,7 @@ std::ostream& operator<<(std::ostream& os, ProductConfig pc){
         << std::setw(15) << "added weight" << '\n';
 
     for(int i=0; i<pc.neff; i++){
-        os << pc.product_list[i];
+        os << *pc.product_list[i];
     }
 
     return os;

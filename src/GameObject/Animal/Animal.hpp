@@ -14,13 +14,15 @@ class Animal : public GameObject {
 
         Animal(const Animal&);
 
-        Animal& operator=(Animal&);
+        // Animal& operator=(Animal&);
 
         void setCurrentWeight(int x);
 
         bool isHarvest() ;
 
         virtual string getType() = 0;
+
+        virtual void setType(string s) = 0;
 
         friend std::ostream& operator<<(std::ostream& os, const Animal& a);
 

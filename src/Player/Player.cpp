@@ -41,3 +41,14 @@ void Player::addBodyWeight(int weight) {
 void Player::setGulden(int gulden) {
     this->gulden = gulden ;
 }
+
+std::ostream& operator<<(std::ostream& os, Player& p){
+    p.inventory.printMatrix();
+    
+    os << p.name << " "
+        << p.body_weight << " "
+        << p.gulden << "\n";
+
+
+    return os;
+}
