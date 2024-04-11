@@ -35,6 +35,10 @@ class GameObject {
         virtual string getType() = 0;
 
         virtual int getAddedWeight() = 0;
+
+        virtual int getCurrentWeight() = 0;
+
+        virtual int getCurrentDays() = 0;
 };
 
 #endif

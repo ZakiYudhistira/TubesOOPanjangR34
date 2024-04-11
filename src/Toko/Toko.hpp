@@ -36,6 +36,9 @@ class Toko {
         // Getter banyak jenis Item yang tersedia di toko
         int getNumJenisItem();
 
+        // getter untuk item ke i
+        pair<GameObject*, int> getItemI(int i);
+
         // Operator overload untuk output item pada toko
         friend ostream& operator<<(ostream& os, Toko t);
 

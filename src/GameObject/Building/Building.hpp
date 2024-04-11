@@ -31,6 +31,10 @@ class Building: public GameObject {
 
         int getAddedWeight();
 
+        int getCurrentWeight(){return 0;}
+
+        int getCurrentDays(){return 0;}
+
         friend std::ostream& operator<<(std::ostream& os, Building& b);
 };
 

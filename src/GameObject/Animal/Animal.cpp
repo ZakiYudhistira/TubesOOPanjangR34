@@ -46,6 +46,10 @@ int Animal::getAddedWeight(){
     return 0;
 }
 
+int Animal::getCurrentWeight(){
+    return this->current_weight;
+}
+
 std::ostream& operator<<(std::ostream& os, const Animal& a){
     os << std::setw(2) << a.id << ' '
         << std::setw(10) << a.code_name << ' '

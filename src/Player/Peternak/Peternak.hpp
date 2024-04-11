@@ -17,6 +17,11 @@ class Peternak : public Player {
         void harvest();
         void printPen();
         string getType() ;
+        
+        vector<pair<GameObject*, string>> getAllPosession();
+
+        void setField(Matrix<Plant*>* m);
+        void setPen(Matrix<Animal*>* m);
 };
 
 #endif

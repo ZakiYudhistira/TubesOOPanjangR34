@@ -20,6 +20,11 @@ class Walikota : public Player {
         Building build(RecipeConfig& recipe) ;
         Player* addPlayer(GameConfig& gc) ;
         string getType() ;
+
+        void setField(Matrix<Plant*>* m);
+        void setPen(Matrix<Animal*>* m);
+        
+        vector<pair<GameObject*, string>> getAllPosession();
 } ;
 
 

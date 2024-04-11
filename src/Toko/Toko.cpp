@@ -67,6 +67,10 @@ int Toko::getNumJenisItem() {
     return this->neff;
 }
 
+pair<GameObject*, int> Toko::getItemI(int i){
+    return this->item_list[i];
+}
+
 ostream& operator<<(ostream& os, __attribute__((unused)) Toko t) {
     os  << "Selamat datang di Toko Cina!" << endl
         << "Berikut merupakan barang-barang yang dapat Anda beli" << endl;
