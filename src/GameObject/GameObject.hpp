@@ -20,6 +20,8 @@ class GameObject {
 
         GameObject(const GameObject&);
 
+        virtual ~GameObject() ;
+
         GameObject& operator=(const GameObject&);
 
         // Returns the code_name from a GameObject

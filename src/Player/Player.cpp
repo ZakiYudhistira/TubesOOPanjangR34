@@ -24,7 +24,7 @@ void Player::eat() {
     cout << "Slot : " ;
     cin >> slot ;
     Product food = this->inventory->getElement(slot) ;
-    GameObject name = food.getType() ;
+    string name = food.getType() ;
     if (name == "FOOD_PRODUCT") {
         this->addBodyWeight(food.getAddedWeight()) ;
         this->inventory->removeElement(slot) ;
@@ -41,7 +41,7 @@ void Player::setInventory(Matrix<GameObject*>* m){
 
 void Player::printInventory() {
     this->inventory->printMatrix();
-} // nunggu implementasi matrix
+}
 
 std::string Player::getName() {
     return this->name ;

@@ -14,9 +14,11 @@ void Walikota::tax() {
 
 }
 
-Building Walikota::build() {
+void Walikota::build(RecipeConfig& recipe) {
+    // cout << "Resep bangunan yang ada adalah sebagai berikut : " << endl ;
+    // cout << recipe ;
     Building hasil ;
-    return hasil ;
+    return hasil ; 
 }
 
 Player* Walikota::addPlayer(GameConfig& gc) {

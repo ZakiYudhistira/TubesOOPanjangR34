@@ -155,7 +155,7 @@ class Matrix{
         void printTitle(){
             cout << "    ";
             int line_length = 6*column + 1 - matrix_name.size() - 4;
-            if(4 + matrix_name.size() > line_length){
+            if(4 + (int) matrix_name.size() > line_length){
                 cout << "[ " << matrix_name << " ]";
             } else {
                 int count_temp = line_length - line_length/2;

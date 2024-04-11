@@ -21,7 +21,7 @@ void Petani::harvest() { // this too nunggu zaki
 
 }
 
-void Petani::printField() { // nunggu ZAKI
+void Petani::printField() { 
 
 }
 

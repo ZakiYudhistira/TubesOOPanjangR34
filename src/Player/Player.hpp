@@ -5,8 +5,10 @@
 #include <vector>
 #include <algorithm>
 
-#include "Product/Product.hpp"
+#include "GameObject/Product/Product.hpp"
 #include "Matrix/Matrix.hpp"
+#include "Matrix/Farm.hpp"
+#include "Matrix/Field.hpp"
 #include "GameObject/GameObject.hpp"
 #include "Exception/Exception.hpp"
 

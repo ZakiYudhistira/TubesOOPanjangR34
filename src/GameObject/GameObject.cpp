@@ -21,6 +21,8 @@ GameObject::GameObject(const GameObject& go){
     this->price = go.price;
 }
 
+GameObject::~GameObject() {}
+
 GameObject& GameObject::operator=(const GameObject& go){
     this->id = go.id;
     this->code_name = go.code_name;
