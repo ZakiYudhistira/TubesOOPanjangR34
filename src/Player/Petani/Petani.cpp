@@ -4,11 +4,11 @@ Petani::Petani() : Player() {
     this->type = "PETANI" ;
 }
 
-Petani::Petani(std::string name, int body_weight, int gulden, int inventory_row, int inventory_col, int farm_row, int farm_col) : Player(name, body_weight, gulden, inventory_row, inventory_col) {
+Petani::Petani(std::string name, int body_weight, int gulden, int inventory_row, int inventory_col, int field_row, int field_col) : Player(name, body_weight, gulden, inventory_row, inventory_col) {
     this->type = "PETANI" ;
 
-    // initiate farm;
-    this->farm = new Matrix<Plant*>(farm_col, farm_row, "Ladang");
+    // initiate field;
+    this->field = new Matrix<Plant*>(field_col, field_row, "Ladang");
 }
 
 Petani::~Petani() {}
@@ -26,7 +26,7 @@ void Petani::printField() {
 }
 
 std::ostream& operator<<(std::ostream& os, Petani& p){
-    p.farm->printMatrix();
+    p.field->printMatrix();
     
     os << "ini dari class petani";
 

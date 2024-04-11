@@ -17,7 +17,7 @@ class Walikota : public Player {
         Walikota(std::string name, int body_weight, int gulden, int inventory_row, int inventory_col) ;
         ~Walikota() ;
         void tax() ; // ternyata harus nunggu matrix juga
-        void build(RecipeConfig recipe) ;
+        Building build(RecipeConfig& recipe) ;
         Player* addPlayer(GameConfig& gc) ;
 } ;
 

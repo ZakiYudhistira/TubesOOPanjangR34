@@ -24,8 +24,6 @@ class GameObject {
 
         GameObject& operator=(const GameObject&);
 
-        virtual ~GameObject();
-
         int getId();
         // Returns the code_name from a GameObject
         string getCode();

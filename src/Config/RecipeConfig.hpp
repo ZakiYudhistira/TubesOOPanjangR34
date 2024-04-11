@@ -12,13 +12,15 @@ class RecipeConfig {
     public:
         RecipeConfig();
 
+        ~RecipeConfig();
+
         vector<Building*> getRecipeList();
 
         void addRecipe(Building* b);
 
         pair<Building*, bool> isInstanceOf(std::string);
 
-        friend std::ostream& operator<<(std::ostream& os, const RecipeConfig rc);
+        friend std::ostream& operator<<(std::ostream& os, RecipeConfig& rc);
 };
 
 #endif

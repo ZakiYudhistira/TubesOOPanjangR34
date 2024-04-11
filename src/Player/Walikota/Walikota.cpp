@@ -14,9 +14,8 @@ void Walikota::tax() {
 
 }
 
-void Walikota::build(RecipeConfig& recipe) {
+Building Walikota::build(__attribute__((unused)) RecipeConfig&  recipe) {
     // cout << "Resep bangunan yang ada adalah sebagai berikut : " << endl ;
-    // cout << recipe ;
     Building hasil ;
     return hasil ; 
 }

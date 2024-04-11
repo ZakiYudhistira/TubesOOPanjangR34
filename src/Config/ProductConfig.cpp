@@ -4,6 +4,12 @@ ProductConfig::ProductConfig(){
     this->neff = 0;
 }
 
+ProductConfig::~ProductConfig(){
+    for(int i=0; i<this->neff; i++){
+        delete this->product_list[i];
+    }
+}
+
 vector<Product*> ProductConfig::getProductList(){
     return this->product_list;
 }
@@ -37,7 +43,7 @@ pair<Product*, bool> ProductConfig::isInstanceOf(std::string s){
     return make_pair(new_product, false);
 }
 
-std::ostream& operator<<(std::ostream& os, ProductConfig pc){
+std::ostream& operator<<(std::ostream& os, ProductConfig& pc){
     os << std::setw(2) << "id" << ' '
         << std::setw(10) << "code name" << ' '
         << std::setw(15) << "object name" << ' '
