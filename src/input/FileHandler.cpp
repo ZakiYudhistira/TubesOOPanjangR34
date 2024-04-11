@@ -427,9 +427,18 @@ void FileHandler::writeFile(std::string file_name, vector<Player*>& vp, __attrib
 
         if(path.size() == 1){
             
-        }
-        for(int i=0; i<(int)path.size(); i++){
-            std::cout << path[i] << "\n";
+        } else {
+            for(int i=0; i<(int)path.size()-1; i++){
+                fs::path f_path = path[i];
+                if(fs::is_directory(f_path)){
+                    // exist
+                } else {
+                    // not exist
+
+                    // create path
+                    fs::create_directory(f_path);
+                }
+            }
         }
     }
 

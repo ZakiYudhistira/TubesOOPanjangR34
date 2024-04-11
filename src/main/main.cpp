@@ -99,7 +99,7 @@ public:
             }
 
             /* TESTING SIMPAN */
-            file_scan.writeFile("hasil-simpan.txt", player_list, animal_config, plant_config, product_config, recipe_config, game_config, toko_cina);
+            file_scan.writeFile("folder1/folder2/folder3/hasil-simpan.txt", player_list, animal_config, plant_config, product_config, recipe_config, game_config, toko_cina);
         } else {
             int inventory_row = game_config.getInventoryRow();
             int inventory_col = game_config.getInventoryCol();
