@@ -7,7 +7,9 @@ Modified at: 23/10/2023
 **/
 
 #include <cstdio>
+#include <string>
 #include "pcolor.hpp"
+using namespace std;
 
 void print_red(char c)
 {
@@ -25,4 +27,23 @@ void print_blue(char c)
 {
     printf("%s%c", BLUE, c);
     printf("%s", NORMAL);
+}
+
+void printStringRed(string str)
+{
+    for(int i = 0 ; i < str.size() ; i++){
+        print_red(str[i]);
+    }
+}
+
+void printStringGreen(string str)
+{
+    for(int i = 0 ; i < str.size() ; i++){
+        print_green(str[i]);
+    }
+}
+
+int main(){
+    printStringGreen("haha\n");
+    return 0;
 }
