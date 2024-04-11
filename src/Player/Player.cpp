@@ -41,7 +41,6 @@ void Player::setInventory(Matrix<GameObject*>* m){
 
 void Player::printInventory() {
     this->inventory->printMatrix();
-    std::cout << this->inventory->getElement("A01")->getType() << "\n";
 } // nunggu implementasi matrix
 
 std::string Player::getName() {
