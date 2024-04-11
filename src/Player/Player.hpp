@@ -27,6 +27,10 @@ class Player  {
         virtual ~Player() ;
         void eat() ;
         void setInventory(Matrix<GameObject*>* m);
+        virtual void setField(Matrix<Plant*>* m);
+        virtual void setPen(Matrix<Animal*>* m);
+        // get all item in inventory
+        vector<pair<GameObject*, std::string>> getAllItem();
         void printInventory() ;
         std::string getName() ;
         int getBodyWeight() ;
@@ -35,7 +39,8 @@ class Player  {
         void addGulden(int gulden) ;
         virtual string getType() = 0;
         virtual int payTax() = 0 ;
-
+        // get all item in ladang or peternakan
+        virtual std::vector<pair<GameObject*, string>> getAllPosession();
         friend std::ostream& operator<<(std::ostream& os, Player& p);
 };
 

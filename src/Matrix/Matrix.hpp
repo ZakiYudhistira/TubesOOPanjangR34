@@ -101,6 +101,18 @@ class Matrix{
             }
         }
 
+        vector<pair<T, string>> getAllElement(){
+            vector<pair<T, string>> v;
+            auto it = this->content.begin();
+            while(it != this->content.end()){
+                if(it->second != NULL){
+                    v.push_back(make_pair(it->second, it->first));
+                }
+                it++;
+            }
+            return v;
+        }
+
         void printMatrix(){
             printTitle();
             cout << "     ";

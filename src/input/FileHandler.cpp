@@ -347,7 +347,7 @@ void FileHandler::readFile(std::string file_name, __attribute__((unused)) vector
         p->setInventory(inventory);
 
         if (type == "Petani"){
-            Matrix<Plant*> farm(gc.getFieldCol(), gc.getFieldRow(), "Ladang");
+            Matrix<Plant*>* farm = new Matrix<Plant*>(gc.getFieldCol(), gc.getFieldRow(), "Ladang");
 
             int n_game_object = 0;
             s >> n_game_object;
@@ -360,10 +360,11 @@ void FileHandler::readFile(std::string file_name, __attribute__((unused)) vector
                 pair<Plant*, bool> resp_p = pc.isInstanceOf(name);
                 resp_p.first->setCurrentDays(plant_days);
 
-                farm.addElement(resp_p.first, coordinate);
+                farm->addElement(resp_p.first, coordinate);
             }
+            p->setField(farm);
         } else if(type == "Peternak"){
-            Matrix<Animal*> pen(gc.getPenCol(), gc.getPenRow(), "Peternakan");
+            Matrix<Animal*>* pen = new Matrix<Animal*>(gc.getPenCol(), gc.getPenRow(), "Peternakan");
 
             int n_game_object = 0;
             s >> n_game_object;
@@ -376,14 +377,14 @@ void FileHandler::readFile(std::string file_name, __attribute__((unused)) vector
                 pair<Animal*, bool> resp_p = ac.isInstanceOf(name);
                 resp_p.first->setCurrentWeight(animal_weight);
 
-                pen.addElement(resp_p.first, coordinate);
+                pen->addElement(resp_p.first, coordinate);
             }
+
+            p->setPen(pen);
         }
 
         vp.push_back(p);
     }
-
-    // TODO: IMPLEMENT MASUKIN KE TOKO
 
     int n_item_toko = 0;
     s >> n_item_toko;
@@ -400,7 +401,7 @@ void FileHandler::readFile(std::string file_name, __attribute__((unused)) vector
     my_file.close();
 }
 
-void FileHandler::writeFile(std::string file_name, __attribute__((unused)) vector<Player*>& vp, __attribute__((unused)) AnimalConfig& ac, __attribute__((unused)) PlantConfig& pc, __attribute__((unused)) ProductConfig& prod, __attribute__((unused)) RecipeConfig& rc, __attribute__((unused)) GameConfig& gc, __attribute__((unused)) Toko& t){
+void FileHandler::writeFile(std::string file_name, vector<Player*>& vp, __attribute__((unused)) AnimalConfig& ac, __attribute__((unused)) PlantConfig& pc, __attribute__((unused)) ProductConfig& prod, __attribute__((unused)) RecipeConfig& rc, __attribute__((unused)) GameConfig& gc, __attribute__((unused)) Toko& t){
     std::ifstream my_file(file_name);
     std::string my_string;
 
@@ -425,25 +426,70 @@ void FileHandler::writeFile(std::string file_name, __attribute__((unused)) vecto
         }
 
         if(path.size() == 1){
-            std::ofstream out_file(path[0]);
+            
+        } else {
+            for(int i=0; i<(int)path.size()-1; i++){
+                fs::path f_path = path[i];
+                if(fs::is_directory(f_path)){
+                    // exist
+                } else {
+                    // not exist
 
-            // write jumlah player
-            out_file << vp.size() << "\n";
-            for(int i=0; i<(int)vp.size(); i++){
-                // write name, body weight, gulden
-                out_file << vp[i]->getName() << " " << vp[i]->getBodyWeight() << " " << vp[i]->getGulden() << "\n";
-
-                // write jumlah item inventory
-                // out_file << vp[i]->inventory->capacity;
+                    // create path
+                    fs::create_directory(f_path);
+                }
             }
-            out_file.close();
-        }
-        for(int i=0; i<(int)path.size(); i++){
-            std::cout << path[i] << "\n";
         }
     }
 
-   
+   std::ofstream out_file(file_name);
+
+    // write jumlah player
+    out_file << vp.size() << "\n";
+    for(int i=0; i<(int)vp.size(); i++){
+        // write name, body weight, gulden
+        out_file << vp[i]->getName() << " " << vp[i]->getType() << " " << vp[i]->getBodyWeight() << " " << vp[i]->getGulden() << "\n";
+
+        // write jumlah item inventory
+        vector<pair<GameObject*, string>> inventory = vp[i]->getAllItem();
+        out_file << inventory.size() << "\n";
+        for(int i=0; i < (int)inventory.size(); i++){
+            out_file << inventory[i].first->getObjectName() << "\n";
+        }
+
+        // write jumlah tanaman di ladang
+        if(vp[i]->getType() == "Petani"){
+            vector<pair<GameObject*, string>> field = vp[i]->getAllPosession();
+            out_file << field.size() << "\n";
+            for(int i=0; i < (int)field.size(); i++){
+                out_file << field[i].second << " " << field[i].first->getObjectName() << " " << field[i].first->getCurrentDays() << "\n";
+            }
+        // write jumlah hewan di peternakan
+        } else if(vp[i]->getType() == "Peternak"){
+            vector<pair<GameObject*, string>> pen = vp[i]->getAllPosession();
+            out_file << pen.size() << "\n";
+            for(int i=0; i < (int)pen.size(); i++){
+                out_file << pen[i].second << " " << pen[i].first->getObjectName() << " " << pen[i].first->getCurrentWeight() << "\n";
+            }
+        }
+    }
+
+    // write toko ke file
+    vector<pair<GameObject*, int>> isi_toko;
+    for(int i=0; i<t.getNumJenisItem(); i++){
+        pair<GameObject*, int> temp = t.getItemI(i);
+        if(temp.second != 0 && temp.second != -1000){
+            isi_toko.push_back(temp);
+        }
+    }
+
+    out_file << isi_toko.size() << "\n";
+
+    for(int i=0; i < (int)isi_toko.size(); i++){
+        out_file << isi_toko[i].first->getObjectName() << " " << isi_toko[i].second << "\n";
+    }
+
+    out_file.close();
 
     // close file stream
     my_file.close();

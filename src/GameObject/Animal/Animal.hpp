@@ -29,7 +29,11 @@ class Animal : public GameObject {
         virtual void setType(string s) = 0;
 
         int getAddedWeight();
+
+        int getCurrentWeight();
         
+        int getCurrentDays(){return 0;}
+
         friend std::ostream& operator<<(std::ostream& os, const Animal& a);
 
 };

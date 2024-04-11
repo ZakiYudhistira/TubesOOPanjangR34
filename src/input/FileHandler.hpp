@@ -8,6 +8,8 @@
 #include <sstream>
 #include <sys/stat.h>
 
+namespace fs = std::filesystem;
+
 #include "InputHandler.hpp"
 
 #include "Config/GameConfig.hpp"

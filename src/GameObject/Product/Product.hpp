@@ -26,6 +26,10 @@ class Product : public GameObject {
         virtual string getType() = 0;
 
         virtual void setType(string s) = 0;
+
+        int getCurrentWeight(){return 0;}
+
+        int getCurrentDays(){return 0;}
         
         friend std::ostream& operator<<(std::ostream& os, const Product& p);
 };

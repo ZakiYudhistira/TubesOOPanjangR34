@@ -30,6 +30,10 @@ class Plant : public GameObject {
 
         int getAddedWeight();
 
+        int getCurrentWeight(){return 0;}
+
+        int getCurrentDays();
+
         friend std::ostream& operator<<(std::ostream& os, const Plant& p);
 };
 

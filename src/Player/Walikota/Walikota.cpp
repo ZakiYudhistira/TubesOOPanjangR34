@@ -1,11 +1,11 @@
 #include "Walikota.hpp"
 
 Walikota::Walikota() : Player() {
-    this->type = "WALIKOTA" ;
+    this->type = "Walikota" ;
 }
 
 Walikota::Walikota(std::string name, int body_weight, int gulden, int inventory_row, int inventory_col) : Player(name, body_weight, gulden, inventory_row, inventory_col) {
-    this->type = "WALIKOTA" ;
+    this->type = "Walikota" ;
 }
 
 Walikota::~Walikota(){}
@@ -78,4 +78,16 @@ string Walikota::getType() {
 
 int Walikota::payTax() {
     return 0 ;
+}
+
+vector<pair<GameObject*, string>> Walikota::getAllPosession(){
+    vector<pair<GameObject*, string>> v;
+    return v;
+}
+
+void Walikota::setField(__attribute__((unused)) Matrix<Plant*>* m){
+
+}
+void Walikota::setPen(__attribute__((unused)) Matrix<Animal*>* m){
+
 }

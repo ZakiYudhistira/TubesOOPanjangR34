@@ -46,6 +46,10 @@ int Plant::getAddedWeight(){
     return 0;
 }
 
+int Plant::getCurrentDays(){
+    return this->current_days;
+}
+
 std::ostream& operator<<(std::ostream& os, const Plant& a){    os << std::setw(2) << a.id << ' '
         << std::setw(10) << a.code_name << ' '
         << std::setw(15) << a.object_name << ' '

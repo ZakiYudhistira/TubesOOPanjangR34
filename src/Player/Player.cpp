@@ -39,10 +39,13 @@ void Player::setInventory(Matrix<GameObject*>* m){
     this->inventory = m;
 }
 
+vector<pair<GameObject*, string>> Player::getAllItem(){
+    return this->inventory->getAllElement();
+}
+
 void Player::printInventory() {
     this->inventory->printMatrix();
-    std::cout << this->inventory->getElement("A01")->getType() << "\n";
-} 
+} // nunggu implementasi matrix
 
 std::string Player::getName() {
     return this->name ;
@@ -74,3 +77,11 @@ std::ostream& operator<<(std::ostream& os, Player& p){
 
     return os;
 }
+
+vector<pair<GameObject*, string>> Player::getAllPosession(){
+    vector<pair<GameObject*, string>> v;
+    return v;
+}
+
+void Player::setField(__attribute__((unused)) Matrix<Plant*>* m){}
+void Player::setPen(__attribute__((unused)) Matrix<Animal*>* m){}

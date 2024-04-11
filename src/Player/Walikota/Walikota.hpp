@@ -21,6 +21,11 @@ class Walikota : public Player {
         Player* addPlayer(GameConfig& gc) ;
         string getType() ;
         int payTax() ;
+
+        void setField(Matrix<Plant*>* m);
+        void setPen(Matrix<Animal*>* m);
+        
+        vector<pair<GameObject*, string>> getAllPosession();
 } ;
 
 

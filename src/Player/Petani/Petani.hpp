@@ -19,6 +19,11 @@ class Petani : public Player {
         int payTax() ;
 
         friend std::ostream& operator<<(std::ostream& os, Petani& p);
+        
+        vector<pair<GameObject*, std::string>> getAllPosession();
+
+        void setField(Matrix<Plant*>* m);
+        void setPen(Matrix<Animal*>* m);
 } ;
 
 

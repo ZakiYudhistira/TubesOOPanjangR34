@@ -57,9 +57,6 @@ main:
 	
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/GameObject/Building/Building.cpp -o $(OUTPUT_FOLDER)/Building.o 
 
-	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/input/InputHandler.cpp -o $(OUTPUT_FOLDER)/InputHandler.o
-	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/input/FileHandler.cpp -o $(OUTPUT_FOLDER)/FileHandler.o 
-
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Player/Player.cpp -o $(OUTPUT_FOLDER)/Player.o 
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Player/Walikota/Walikota.cpp -o $(OUTPUT_FOLDER)/Walikota.o 
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Player/Petani/Petani.cpp -o $(OUTPUT_FOLDER)/Petani.o 
@@ -67,6 +64,9 @@ main:
 
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Toko/Toko.cpp -o $(OUTPUT_FOLDER)/Toko.o 
 
+	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/input/InputHandler.cpp -o $(OUTPUT_FOLDER)/InputHandler.o
+	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/input/FileHandler.cpp -o $(OUTPUT_FOLDER)/FileHandler.o 
+	
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/main/main.cpp -o $(OUTPUT_FOLDER)/main.o 
 	@$(CC) bin/*.o -o $(OUTPUT_FOLDER)/MainApp
 	@echo Linking object files...
