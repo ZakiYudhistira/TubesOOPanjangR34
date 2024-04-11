@@ -10,8 +10,28 @@ Walikota::Walikota(std::string name, int body_weight, int gulden, int inventory_
 
 Walikota::~Walikota(){}
 
-void Walikota::tax() {
+void Walikota::tax(vector<Player *> player_list) {
+    int len = (int)player_list.size() ;
+    int indeks = 0 ;
+    int i ; 
+    int total_tax = 0;
+    for (i = 0 ; i < len ; i++) {
+        int tax_player = 0 ;
+        string type = player_list[i]->getType() ;
+        if (type == "WALIKOTA") {
+            continue;
+        }
+        else {
+            tax_player += player_list[i]->payTax() ;
+            player_list[i]->addGulden(tax_player * -1) ;
+            this->addGulden(tax_player) ;
+            total_tax += tax_player ;
 
+            indeks++ ;
+            cout << indeks << ". " << player_list[i]->getName() << " - " << player_list[i]->getType() << ": " << tax_player << " Gulden" << endl ;
+        }
+    }
+    cout << "Total Tax : " << total_tax << " Gulden" << endl ;
 }
 
 Building Walikota::build(__attribute__((unused)) RecipeConfig&  recipe) {
@@ -54,4 +74,8 @@ Player* Walikota::addPlayer(GameConfig& gc) {
 
 string Walikota::getType() {
     return this->type ;
+}
+
+int Walikota::payTax() {
+    return 0 ;
 }

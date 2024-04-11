@@ -3,7 +3,7 @@
 #include "pcolor/pcolor.hpp"
 #include "Matrix.hpp"
 
-Farm :: Farm(int col, int row) : Matrix<Animal*>(col, row, "Farm"){};
+Farm::Farm(int col, int row) : Matrix<Animal*>(col, row, "Farm"){};
 
 void Farm :: printHarvest(){
     printTitle();
@@ -22,8 +22,8 @@ void Farm :: printHarvest(){
             cout << "|";
             for(int j = 0; j < column ; j++){
                 try{
-                    T temp = getElement(array_of_character[j] + to_string(0) +to_string(i+1));
-                    cout << " " << temp.getCode() << " |";
+                    Animal* temp = getElement(array_of_character[j] + to_string(0) +to_string(i+1));
+                    cout << " " << temp->getCode() << " |";
                 } catch(exception &e) {
                     cout << "     |";
                 }
@@ -53,8 +53,8 @@ void Farm :: printHarvest(){
     }
 }
 
-int main(){
-    Farm pp(5,5);
-    pp.printMatrix();
-    return 0;
-}
+// int main(){
+//     Farm pp(5,5);
+//     pp.printMatrix();
+//     return 0;
+// }

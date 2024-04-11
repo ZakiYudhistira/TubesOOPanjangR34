@@ -7,7 +7,7 @@
 class Peternak : public Player {
     private:
         std::string type;
-        Matrix<Animal*>* pen;
+        Farm* pen;
     public:
         Peternak();
         Peternak(std::string name, int body_weight, int gulden, int inventory_row, int inventory_col, int pen_row, int pen_col);
@@ -17,6 +17,7 @@ class Peternak : public Player {
         void harvest();
         void printPen();
         string getType() ;
+        int payTax() ;
 };
 
 #endif

@@ -16,10 +16,11 @@ class Walikota : public Player {
         Walikota() ;
         Walikota(std::string name, int body_weight, int gulden, int inventory_row, int inventory_col) ;
         ~Walikota() ;
-        void tax() ; // ternyata harus nunggu matrix juga
+        void tax(vector<Player *> player_list) ;
         Building build(RecipeConfig& recipe) ;
         Player* addPlayer(GameConfig& gc) ;
         string getType() ;
+        int payTax() ;
 } ;
 
 

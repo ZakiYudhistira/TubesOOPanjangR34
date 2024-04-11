@@ -60,8 +60,8 @@ void Player::addBodyWeight(int weight) {
     this->body_weight += weight ;
 }
 
-void Player::setGulden(int gulden) {
-    this->gulden = gulden ;
+void Player::addGulden(int gulden) {
+    this->gulden += gulden ;
 }
 
 std::ostream& operator<<(std::ostream& os, Player& p){

@@ -30,6 +30,9 @@ main:
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Matrix/MatrixException.cpp -o $(OUTPUT_FOLDER)/MatrixException.o 
 	
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Matrix/Matrix.cpp -o $(OUTPUT_FOLDER)/Matrix.o 
+	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Matrix/Farm.cpp -o $(OUTPUT_FOLDER)/Farm.o 
+	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Matrix/Field.cpp -o $(OUTPUT_FOLDER)/Field.o 
+
 
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Config/GameConfig.cpp -o $(OUTPUT_FOLDER)/GameConfig.o 
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Config/AnimalConfig.cpp -o $(OUTPUT_FOLDER)/AnimalConfig.o 

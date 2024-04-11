@@ -13,7 +13,7 @@ using namespace std;
 
 template<class T>
 class Matrix{
-    private:
+    protected:
         int row;
         int column;
         int capacity;
@@ -81,6 +81,10 @@ class Matrix{
 
         int getCol(){
             return column;
+        }
+
+        map<string, T> getContent() {
+            return content ;
         }
 
         T getElement(string map){

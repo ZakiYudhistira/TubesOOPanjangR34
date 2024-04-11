@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <cmath>
 
 #include "GameObject/Product/Product.hpp"
 #include "Matrix/Matrix.hpp"
@@ -31,8 +32,9 @@ class Player  {
         int getBodyWeight() ;
         int getGulden() ;
         void addBodyWeight(int weight) ;
-        void setGulden(int gulden) ;
+        void addGulden(int gulden) ;
         virtual string getType() = 0;
+        virtual int payTax() = 0 ;
 
         friend std::ostream& operator<<(std::ostream& os, Player& p);
 };

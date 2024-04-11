@@ -1,9 +1,9 @@
 #include "Field.hpp"
-#include "GameObject/Animal/Plant.hpp"
+#include "GameObject/Plant/Plant.hpp"
 #include "pcolor/pcolor.hpp"
 #include "Matrix.hpp"
 
-Field :: Field(int col, int row) : Matrix<Plant*>(col, row, "Field"){};
+Field::Field(int col, int row) : Matrix<Plant*>(col, row, "Field"){};
 
 void Field :: printHarvest(){
     printTitle();
@@ -22,8 +22,8 @@ void Field :: printHarvest(){
             cout << "|";
             for(int j = 0; j < column ; j++){
                 try{
-                    T temp = getElement(array_of_character[j] + to_string(0) +to_string(i+1));
-                    cout << " " << temp.getCode() << " |";
+                    Plant* temp = getElement(array_of_character[j] + to_string(0) +to_string(i+1));
+                    cout << " " << temp->getCode() << " |";
                 } catch(exception &e) {
                     cout << "     |";
                 }

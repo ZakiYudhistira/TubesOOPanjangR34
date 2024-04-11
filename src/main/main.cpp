@@ -22,6 +22,8 @@
 
 #include "Matrix2/Matrix2.hpp"
 #include "Matrix/Matrix.hpp"
+#include "Matrix/Farm.hpp"
+#include "Matrix/Field.hpp"
 
 #include "Toko/Toko.hpp"
 

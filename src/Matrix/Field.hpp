@@ -8,7 +8,7 @@ using namespace std;
 
 class Field : public Matrix<Plant*> {
     public :
-        Field(int, int);
+        Field(int col, int row);
         void printHarvest();
 };
 

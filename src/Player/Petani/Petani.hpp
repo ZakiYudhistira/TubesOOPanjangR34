@@ -7,7 +7,7 @@
 class Petani : public Player {
     private :
         std::string type ;
-        Matrix<Plant*>* field;
+        Field* field;
     public :
         Petani() ;
         Petani(std::string name, int body_weight, int gulden, int inventory_row, int inventory_col, int farm_row, int farm_col) ;
@@ -16,6 +16,7 @@ class Petani : public Player {
         void harvest() ;
         void printField() ;
         string getType() ;
+        int payTax() ;
 
         friend std::ostream& operator<<(std::ostream& os, Petani& p);
 } ;

@@ -8,7 +8,7 @@ using namespace std;
 
 class Farm : public Matrix<Animal*> {
     public :
-        Farm(int, int, string);
+        Farm(int col, int row);
         void printHarvest();
 };
 #endif
