@@ -42,8 +42,3 @@ void printStringGreen(string str)
         print_green(str[i]);
     }
 }
-
-int main(){
-    printStringGreen("haha\n");
-    return 0;
-}

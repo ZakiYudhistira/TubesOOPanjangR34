@@ -3,9 +3,10 @@
 
 #include <iostream>
 #include "Matrix.hpp"
+#include "GameObject/Animal/Animal.hpp"
 using namespace std;
 
-class Farm : public Matrix {
+class Farm : public Matrix<Animal*> {
     public :
         Farm(int, int, string);
         void printHarvest();

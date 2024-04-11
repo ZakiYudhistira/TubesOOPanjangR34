@@ -14,13 +14,15 @@ class ProductConfig {
     public:
         ProductConfig();
 
+        ~ProductConfig();
+
         vector<Product*> getProductList();
 
         void addProduct(Product*);
 
         pair<Product*, bool> isInstanceOf(std::string);
 
-        friend std::ostream& operator<<(std::ostream& os, const ProductConfig pc);
+        friend std::ostream& operator<<(std::ostream& os, ProductConfig& pc);
 };
 
 #endif

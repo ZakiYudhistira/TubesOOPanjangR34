@@ -4,6 +4,12 @@ RecipeConfig::RecipeConfig(){
     this->neff = 0;
 }
 
+RecipeConfig::~RecipeConfig(){
+    for(int i=0; i<this->neff; i++){
+        delete this->building_list[i];
+    }
+}
+
 vector<Building*> RecipeConfig::getRecipeList(){
     return this->building_list;
 }
@@ -32,7 +38,7 @@ pair<Building*, bool> RecipeConfig::isInstanceOf(std::string s){
     return make_pair(new_building, false);
 }
 
-std::ostream& operator<<(std::ostream& os, RecipeConfig rc){
+std::ostream& operator<<(std::ostream& os, RecipeConfig& rc){
     os << std::setw(2) << "id" << ' '
         << std::setw(10) << "code name" << ' '
         << std::setw(15) << "object name" << ' '

@@ -4,6 +4,12 @@ PlantConfig::PlantConfig(){
     this->neff = 0;
 }
 
+PlantConfig::~PlantConfig(){
+    for(int i=0; i<this->neff; i++){
+        delete this->plant_list[i];
+    }
+}
+
 vector<Plant*> PlantConfig::getPlantList(){
     return this->plant_list;
 }
@@ -35,8 +41,12 @@ pair<Plant*, bool> PlantConfig::isInstanceOf(std::string s){
     return make_pair(new_plant, false);
 }
 
-std::ostream& operator<<(std::ostream& os, PlantConfig pc){
-    pc.showConfig(os);
+std::ostream& operator<<(std::ostream& os, PlantConfig& pc){
+    os << std::setw(2) << "id" << ' '
+        << std::setw(10) << "code_name" << ' '
+        << std::setw(15) << "object_name" << ' '
+        << std::setw(5) << "price" << ' '
+        << std::setw(19) << "weight_to_harvest" << '\n';
 
     for(int i=0; i<pc.neff; i++){
         os << *pc.plant_list[i];

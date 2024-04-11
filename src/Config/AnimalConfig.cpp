@@ -4,6 +4,12 @@ AnimalConfig::AnimalConfig(){
     this->neff = 0;
 }
 
+AnimalConfig::~AnimalConfig(){
+    for(int i=0; i<this->neff; i++){
+        delete this->animal_list[i];
+    }
+}
+
 vector<Animal*> AnimalConfig::getAnimalList(){
     return this->animal_list;
 }
@@ -31,15 +37,19 @@ pair<Animal*, bool> AnimalConfig::isInstanceOf(std::string s){
             } else if(type == "OMNIVORE"){
                 new_animal = new Omnivore(id, code, name, "OMNIVORE", price, weight);
             }
-            
+
             return make_pair(new_animal, true);
         }
     }
     return make_pair(new_animal, false);
 }
 
-std::ostream& operator<<(std::ostream& os, AnimalConfig ac){
-    ac.showConfig(os);
+std::ostream& operator<<(std::ostream& os, AnimalConfig& ac){
+    os << std::setw(2) << "id" << ' '
+        << std::setw(10) << "code_name" << ' '
+        << std::setw(15) << "object_name" << ' '
+        << std::setw(5) << "price" << ' '
+        << std::setw(19) << "weight_to_harvest" << '\n';
 
     for(int i=0; i<ac.neff; i++){
         os << *ac.animal_list[i];

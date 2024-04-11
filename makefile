@@ -31,7 +31,6 @@ main:
 	
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Matrix/Matrix.cpp -o $(OUTPUT_FOLDER)/Matrix.o 
 
-	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Config/Config.cpp -o $(OUTPUT_FOLDER)/Config.o 
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Config/GameConfig.cpp -o $(OUTPUT_FOLDER)/GameConfig.o 
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Config/AnimalConfig.cpp -o $(OUTPUT_FOLDER)/AnimalConfig.o 
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Config/PlantConfig.cpp -o $(OUTPUT_FOLDER)/PlantConfig.o
