@@ -13,6 +13,9 @@ print_xxx(c) will print c with xxx color. Import this header to use the declared
 We only provide 8 colors. Feel free to modify/add colors if you want to.
 **/
 
+#include <string>
+using namespace std;
+
 #define NORMAL "\x1B[0m"
 #define RED "\x1B[31m"
 #define GREEN "\x1B[32m"
@@ -21,3 +24,5 @@ We only provide 8 colors. Feel free to modify/add colors if you want to.
 void print_red(char c);
 void print_green(char c);
 void print_blue(char c);
+void printStringRed(string s);
+void printStringGreen(string s);
