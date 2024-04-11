@@ -42,6 +42,10 @@ bool Plant::isHarvest() {
     return this->current_days >= this->duration_to_harvest ;
 }
 
+int Plant::getAddedWeight(){
+    return 0;
+}
+
 std::ostream& operator<<(std::ostream& os, const Plant& a){    os << std::setw(2) << a.id << ' '
         << std::setw(10) << a.code_name << ' '
         << std::setw(15) << a.object_name << ' '

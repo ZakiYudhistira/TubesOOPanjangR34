@@ -29,6 +29,8 @@ class Building: public GameObject {
 
         void addMaterial(pair<string, int>);
 
+        int getAddedWeight();
+
         friend std::ostream& operator<<(std::ostream& os, Building& b);
 };
 

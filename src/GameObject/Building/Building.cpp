@@ -59,6 +59,10 @@ void Building::addMaterial(pair<string, int> psi){
     this->neff++;
 }
 
+int Building::getAddedWeight(){
+    return 0;
+}
+
 std::ostream& operator<<(std::ostream& os, Building& b){
     os << std::setw(2) << b.id << ' '
         << std::setw(10) << b.code_name << ' '

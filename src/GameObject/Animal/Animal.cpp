@@ -42,6 +42,10 @@ int Animal::getWeightToHarvest(){
     return this->weight_to_harvest;
 }
 
+int Animal::getAddedWeight(){
+    return 0;
+}
+
 std::ostream& operator<<(std::ostream& os, const Animal& a){
     os << std::setw(2) << a.id << ' '
         << std::setw(10) << a.code_name << ' '

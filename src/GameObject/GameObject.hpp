@@ -33,6 +33,8 @@ class GameObject {
         int getPrice();
 
         virtual string getType() = 0;
+
+        virtual int getAddedWeight() = 0;
 };
 
 #endif

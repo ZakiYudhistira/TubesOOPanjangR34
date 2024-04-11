@@ -23,10 +23,10 @@ void Player::eat() {
     this->inventory->printMatrix() ;
     cout << "Slot : " ;
     cin >> slot ;
-    Product food = this->inventory->getElement(slot) ;
-    GameObject name = food.getType() ;
-    if (name == "FOOD_PRODUCT") {
-        this->addBodyWeight(food.getAddedWeight()) ;
+    GameObject* item = this->inventory->getElement(slot) ;
+    string type = item->getType() ;
+    if (type == "FOOD_PRODUCT") {
+        this->addBodyWeight(item->getAddedWeight()) ;
         this->inventory->removeElement(slot) ;
     }
     else {

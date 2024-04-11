@@ -5,7 +5,7 @@
 #include <vector>
 #include <algorithm>
 
-#include "Product/Product.hpp"
+#include "GameObject/Product/Product.hpp"
 #include "Matrix/Matrix.hpp"
 #include "GameObject/GameObject.hpp"
 #include "Exception/Exception.hpp"
