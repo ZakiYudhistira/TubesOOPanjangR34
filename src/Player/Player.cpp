@@ -12,7 +12,7 @@ Player::Player(std::string name, int body_weight, int gulden, int inventory_row,
     this->gulden = gulden;
 
     // initiate inventory
-    this->inventory = new Matrix<GameObject*>(inventory_col, inventory_row);
+    this->inventory = new Matrix<GameObject*>(inventory_col, inventory_row, "Penyimpanan");
 }
 
 Player::~Player() {}
@@ -25,6 +25,7 @@ void Player::setInventory(Matrix<GameObject*>* m){
 
 void Player::printInventory() {
     this->inventory->printMatrix();
+    std::cout << this->inventory->getElement("A01")->getType() << "\n";
 } // nunggu implementasi matrix
 
 std::string Player::getName() {

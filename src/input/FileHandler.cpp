@@ -98,7 +98,6 @@ void FileHandler::readFile(std::string file_name, AnimalConfig& ac){
             temp_animal = omnivore;
         }
 
-        std::cout << temp_animal->getType() << "\n";
         ac.addAnimal(temp_animal);
     }
 
@@ -183,10 +182,10 @@ void FileHandler::readFile(std::string file_name, ProductConfig& pc){
     while(s >> id >> code >> name >> type >> origin >> added_weight >> price){
         Product* temp_product;
         if(added_weight == 0){
-            MaterialProduct* material_product = new MaterialProduct(id, code, name, price, added_weight, origin, type);
+            MaterialProduct* material_product = new MaterialProduct(id, code, name, price, added_weight, origin, "MATERIAL_PRODUCT");
             temp_product = material_product;
         } else {
-            FoodProduct* food_product = new FoodProduct(id, code, name, price, added_weight, origin, type);
+            FoodProduct* food_product = new FoodProduct(id, code, name, price, added_weight, origin, "FOOD_PRODUCT");
             temp_product = food_product;
         }
 
@@ -316,7 +315,7 @@ void FileHandler::readFile(std::string file_name, __attribute__((unused)) vector
         int n_inventory = 0;
         s >> n_inventory;
 
-        Matrix<GameObject*>* inventory = new Matrix<GameObject*>(gc.getInventoryCol(), gc.getInventoryRow());
+        Matrix<GameObject*>* inventory = new Matrix<GameObject*>(gc.getInventoryCol(), gc.getInventoryRow(), "Penyimpanan");
 
         for(int j=0; j<n_inventory; j++){
             std::string temp_item;
@@ -348,7 +347,7 @@ void FileHandler::readFile(std::string file_name, __attribute__((unused)) vector
         p->setInventory(inventory);
 
         if (type == "Petani"){
-            Matrix<Plant*> farm(gc.getFieldCol(), gc.getFieldRow());
+            Matrix<Plant*> farm(gc.getFieldCol(), gc.getFieldRow(), "Ladang");
 
             int n_game_object = 0;
             s >> n_game_object;
@@ -364,7 +363,7 @@ void FileHandler::readFile(std::string file_name, __attribute__((unused)) vector
                 farm.addElement(resp_p.first, coordinate);
             }
         } else if(type == "Peternak"){
-            Matrix<Animal*> pen(gc.getPenCol(), gc.getPenRow());
+            Matrix<Animal*> pen(gc.getPenCol(), gc.getPenRow(), "Peternakan");
 
             int n_game_object = 0;
             s >> n_game_object;

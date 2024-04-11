@@ -26,8 +26,16 @@ Plant& Plant::operator=(Plant& p){
     return *this;
 }
 
+Plant::~Plant(){
+    cout << "destructor from Plant class\n";
+}
+
 void Plant::setCurrentDays(int x){
     this->current_days = x;
+}
+
+int Plant::getDurationToHarvest(){
+    return this->duration_to_harvest;
 }
 
 bool Plant::isHarvest() {

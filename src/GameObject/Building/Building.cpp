@@ -1,17 +1,18 @@
 #include "Building.hpp"
 
 Building::Building(): GameObject(), neff(0) {
-
+    this->type = "Building";
 };
 
 Building::Building(int id, string code, string name, int price): GameObject(id, code, name, price) {
-
+    this->type = "Building";
 }
 
 Building::~Building(){
     this->material_list.clear();
     this->code_name = "";
     this->neff = 0;
+    this->type = "Building";
 }
 
 Building::Building(const Building& b): GameObject(b){
@@ -21,6 +22,8 @@ Building::Building(const Building& b): GameObject(b){
     for(int i=0; i<b.neff; i++){
         this->material_list.push_back(b.material_list[i]);
     }
+
+    this->type = "Building";
 }
 
 Building& Building::operator=(Building& b){
@@ -29,6 +32,7 @@ Building& Building::operator=(Building& b){
     this->neff = b.neff;
     this->object_name = b.object_name;
     this->price = b.price;
+    this->type = b.type;
 
     // copy material list;
     for(int i=0; i<b.neff; i++){
@@ -36,6 +40,18 @@ Building& Building::operator=(Building& b){
     }
 
     return *this;
+}
+
+vector<pair<string, int>> Building::getMaterialList(){
+    return this->material_list;
+}
+
+int Building::getNeff(){
+    return this->neff;
+}
+
+string Building::getType(){
+    return this->type;
 }
 
 void Building::addMaterial(pair<string, int> psi){

@@ -14,11 +14,15 @@ class Animal : public GameObject {
 
         Animal(const Animal&);
 
-        // Animal& operator=(Animal&);
+        Animal& operator=(Animal&);
+
+        virtual ~Animal();
 
         void setCurrentWeight(int x);
 
         bool isHarvest() ;
+
+        int getWeightToHarvest();
 
         virtual string getType() = 0;
 

@@ -16,7 +16,11 @@ class Plant : public GameObject {
 
         Plant& operator=(Plant&);
 
+        virtual ~Plant();
+
         void setCurrentDays(int x);
+
+        int getDurationToHarvest();
 
         bool isHarvest() ;
 

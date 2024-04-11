@@ -5,6 +5,9 @@
 
 #include "Config.hpp"
 #include "GameObject/Animal/Animal.hpp"
+#include "GameObject/Animal/Carnivore/Carnivore.hpp"
+#include "GameObject/Animal/Herbivore/Herbivore.hpp"
+#include "GameObject/Animal/Omnivore/Omnivore.hpp"
 
 class AnimalConfig: public Config {
     private:
