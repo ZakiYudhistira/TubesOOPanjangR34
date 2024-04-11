@@ -28,6 +28,8 @@ class GameObject {
         string getObjectName();
         // Returns the price or value from a GameObject
         int getPrice();
+
+        virtual string getType() ;
 };
 
 #endif

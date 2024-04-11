@@ -28,6 +28,11 @@ class InvalidType: public Exception {
     char const * what() const noexcept override;
 };
 
+class IsNotFood: public Exception {
+    public :
+    char const * what() const noexcept override;
+};
+
 #endif
 
 

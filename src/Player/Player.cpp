@@ -17,7 +17,23 @@ Player::Player(std::string name, int body_weight, int gulden, int inventory_row,
 
 Player::~Player() {}
 
-void Player::eat() {} // nunggu implementasi matrix
+void Player::eat() {
+    string slot ;
+    cout << "Choose food from inventory" << endl ;
+    this->inventory->printMatrix() ;
+    cout << "Slot : " ;
+    cin >> slot ;
+    Product food = this->inventory->getElement(slot) ;
+    GameObject name = food.getType() ;
+    if (name == "FOOD_PRODUCT") {
+        this->addBodyWeight(food.getAddedWeight()) ;
+        this->inventory->removeElement(slot) ;
+    }
+    else {
+        IsNotFood e ;
+        throw e ;
+    }
+} 
 
 void Player::setInventory(Matrix<GameObject*>* m){
     this->inventory = m;

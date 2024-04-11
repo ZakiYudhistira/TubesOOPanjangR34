@@ -20,3 +20,7 @@ char const * InvalidType::what() const noexcept {
     return "Invalid Input Type" ; 
 }
 
+char const * IsNotFood::what() const noexcept {
+    return "Food not found!" ;
+}
+ 
