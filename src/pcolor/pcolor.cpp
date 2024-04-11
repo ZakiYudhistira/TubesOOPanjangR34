@@ -31,14 +31,14 @@ void print_blue(char c)
 
 void printStringRed(string str)
 {
-    for(int i = 0 ; i < str.size() ; i++){
+    for(int i = 0 ; i < (int)str.size() ; i++){
         print_red(str[i]);
     }
 }
 
 void printStringGreen(string str)
 {
-    for(int i = 0 ; i < str.size() ; i++){
+    for(int i = 0 ; i < (int)str.size() ; i++){
         print_green(str[i]);
     }
 }
