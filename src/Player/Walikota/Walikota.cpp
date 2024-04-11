@@ -51,3 +51,7 @@ Player* Walikota::addPlayer(GameConfig& gc) {
         return baru ;
     }
 }   
+
+string Walikota::getType() {
+    return this->type ;
+}

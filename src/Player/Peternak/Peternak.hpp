@@ -16,6 +16,7 @@ class Peternak : public Player {
         void feed();
         void harvest();
         void printPen();
+        string getType() ;
 };
 
 #endif
