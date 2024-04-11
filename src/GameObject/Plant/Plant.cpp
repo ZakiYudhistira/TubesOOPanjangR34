@@ -26,12 +26,24 @@ Plant& Plant::operator=(Plant& p){
     return *this;
 }
 
+Plant::~Plant(){
+    cout << "destructor from Plant class\n";
+}
+
 void Plant::setCurrentDays(int x){
     this->current_days = x;
 }
 
+int Plant::getDurationToHarvest(){
+    return this->duration_to_harvest;
+}
+
 bool Plant::isHarvest() {
     return this->current_days >= this->duration_to_harvest ;
+}
+
+int Plant::getAddedWeight(){
+    return 0;
 }
 
 std::ostream& operator<<(std::ostream& os, const Plant& a){    os << std::setw(2) << a.id << ' '

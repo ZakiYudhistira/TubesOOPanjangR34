@@ -65,7 +65,7 @@ main:
 
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Toko/Toko.cpp -o $(OUTPUT_FOLDER)/Toko.o 
 
-	@pwd && $(CC) $(CFLAGS) $(SOURCE_FOLDER)/main/main.cpp -o $(OUTPUT_FOLDER)/main.o 
-	@pwd && $(CC) bin/*.o -o $(OUTPUT_FOLDER)/MainApp
+	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/main/main.cpp -o $(OUTPUT_FOLDER)/main.o 
+	@$(CC) bin/*.o -o $(OUTPUT_FOLDER)/MainApp
 	@echo Linking object files...
 	@rm -f *.o

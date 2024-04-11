@@ -16,8 +16,12 @@ class Product : public GameObject {
         
         Product& operator=(Product&);
 
+        virtual ~Product();
+
         // Returns the added_weight of a product; 
         int getAddedWeight();
+
+        string getOrigin();
 
         virtual string getType() = 0;
 

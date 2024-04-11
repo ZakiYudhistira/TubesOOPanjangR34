@@ -15,16 +15,20 @@ Animal::Animal(const Animal& p): GameObject(p) {
     this->current_weight = p.current_weight;
 }
 
-// Animal& Animal::operator=(Animal& p){
-//     this->code_name = p.code_name;
-//     this->current_weight = p.current_weight;
-//     this->id = p.id;
-//     this->object_name = p.object_name;
-//     this->price = p.price;
-//     this->weight_to_harvest = p.weight_to_harvest;
+Animal& Animal::operator=(Animal& p){
+    this->code_name = p.code_name;
+    this->current_weight = p.current_weight;
+    this->id = p.id;
+    this->object_name = p.object_name;
+    this->price = p.price;
+    this->weight_to_harvest = p.weight_to_harvest;
 
-//     return *this;
-// }
+    return *this;
+}
+
+Animal::~Animal(){
+    cout << "destructor from Animal Class\n";
+}
 
 void Animal::setCurrentWeight(int x){
     this->current_weight = x;
@@ -32,6 +36,14 @@ void Animal::setCurrentWeight(int x){
 
 bool Animal::isHarvest() {
     return this->current_weight >= this->weight_to_harvest ;
+}
+
+int Animal::getWeightToHarvest(){
+    return this->weight_to_harvest;
+}
+
+int Animal::getAddedWeight(){
+    return 0;
 }
 
 std::ostream& operator<<(std::ostream& os, const Animal& a){

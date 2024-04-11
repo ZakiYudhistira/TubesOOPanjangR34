@@ -9,6 +9,7 @@ class Building: public GameObject {
     private:
         vector<pair<string, int>> material_list;
         int neff;
+        string type;
     public:
         Building();
 
@@ -20,7 +21,15 @@ class Building: public GameObject {
 
         ~Building();
         
+        vector<pair<string, int>> getMaterialList();
+
+        int getNeff();
+        
+        string getType();
+
         void addMaterial(pair<string, int>);
+
+        int getAddedWeight();
 
         friend std::ostream& operator<<(std::ostream& os, Building& b);
 };

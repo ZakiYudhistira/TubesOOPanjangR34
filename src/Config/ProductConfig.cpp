@@ -17,7 +17,20 @@ pair<Product*, bool> ProductConfig::isInstanceOf(std::string s){
     Product* new_product;
     for(int i=0; i<this->neff; i++){
         if(this->product_list[i]->getObjectName() == s){
-            new_product = this->product_list[i];
+            int id = this->product_list[i]->getId();
+            std::string type = this->product_list[i]->getType();
+            std::string code = this->product_list[i]->getCode();
+            std::string name = this->product_list[i]->getObjectName();
+            std::string origin = this->product_list[i]->getOrigin();
+            int price = this->product_list[i]->getPrice();
+            int added = this->product_list[i]->getAddedWeight();
+            
+            if(type == "MATERIAL_PRODUCT"){
+                new_product = new MaterialProduct(id, code, name, price, added, origin, "PRODUCT_MATERIAL_PLANT");
+            } else if(type == "FOOD_PRODUCT"){
+                new_product = new FoodProduct(id, code, name, price, added, origin, "PRODUCT_FRUIT_PLANT");
+            }
+
             return make_pair(new_product, true);
         }
     }

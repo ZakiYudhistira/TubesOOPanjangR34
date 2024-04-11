@@ -5,6 +5,8 @@
 
 #include "Config.hpp"
 #include "GameObject/Plant/Plant.hpp"
+#include "GameObject/Plant/FruitPlant/FruitPlant.hpp"
+#include "GameObject/Plant/MaterialPlant/MaterialPlant.hpp"
 
 class PlantConfig: public Config {
     private:

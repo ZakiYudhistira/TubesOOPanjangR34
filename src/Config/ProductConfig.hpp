@@ -4,6 +4,8 @@
 #include <vector>
 
 #include "GameObject/Product/Product.hpp"
+#include "GameObject/Product/FoodProduct/FoodProduct.hpp"
+#include "GameObject/Product/MaterialProduct/MaterialProduct.hpp"
 
 class ProductConfig {
     private:
