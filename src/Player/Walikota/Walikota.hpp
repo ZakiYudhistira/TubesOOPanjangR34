@@ -19,6 +19,7 @@ class Walikota : public Player {
         void tax() ; // ternyata harus nunggu matrix juga
         Building build(RecipeConfig& recipe) ;
         Player* addPlayer(GameConfig& gc) ;
+        string getType() ;
 } ;
 
 

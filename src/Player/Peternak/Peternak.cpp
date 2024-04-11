@@ -23,3 +23,7 @@ void Peternak::harvest() { // matrix also
 void Peternak::printPen() { // matrix also
 
 }
+
+string Peternak::getType() {
+    return this->type ;
+}

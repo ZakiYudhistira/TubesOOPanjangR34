@@ -15,6 +15,7 @@ class Petani : public Player {
         void plant() ;
         void harvest() ;
         void printField() ;
+        string getType() ;
 
         friend std::ostream& operator<<(std::ostream& os, Petani& p);
 } ;

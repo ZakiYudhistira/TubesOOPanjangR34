@@ -25,6 +25,10 @@ void Petani::printField() {
 
 }
 
+string Petani::getType() {
+    return this->type ;
+}
+
 std::ostream& operator<<(std::ostream& os, Petani& p){
     p.field->printMatrix();
     

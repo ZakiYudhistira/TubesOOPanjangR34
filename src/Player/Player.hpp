@@ -32,6 +32,7 @@ class Player  {
         int getGulden() ;
         void addBodyWeight(int weight) ;
         void setGulden(int gulden) ;
+        virtual string getType() ;
 
         friend std::ostream& operator<<(std::ostream& os, Player& p);
 };
