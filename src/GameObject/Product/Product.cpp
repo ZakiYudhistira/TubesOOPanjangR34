@@ -26,8 +26,16 @@ Product& Product::operator=(Product& p){
     return *this;
 }
 
+Product::~Product(){
+    cout << "destructor from Product class\n";
+}
+
 int Product::getAddedWeight(){
     return this->added_weight;
+}
+
+string Product::getOrigin(){
+    return this->origin;
 }
 
 std::ostream& operator<<(std::ostream& os, const Product& p){

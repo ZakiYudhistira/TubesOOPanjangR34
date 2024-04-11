@@ -8,7 +8,7 @@ Petani::Petani(std::string name, int body_weight, int gulden, int inventory_row,
     this->type = "PETANI" ;
 
     // initiate farm;
-    this->farm = new Matrix<Plant*>(farm_col, farm_row);
+    this->farm = new Matrix<Plant*>(farm_col, farm_row, "Ladang");
 }
 
 Petani::~Petani() {}

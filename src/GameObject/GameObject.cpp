@@ -31,6 +31,14 @@ GameObject& GameObject::operator=(const GameObject& go){
     return *this;
 }
 
+GameObject::~GameObject(){
+    cout << "destructor from GameObject\n";
+}
+
+int GameObject::getId(){
+    return this->id;
+}
+
 string GameObject :: getCode(){
     return code_name;
 }

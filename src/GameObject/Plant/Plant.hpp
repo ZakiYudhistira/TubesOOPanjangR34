@@ -16,13 +16,19 @@ class Plant : public GameObject {
 
         Plant& operator=(Plant&);
 
+        virtual ~Plant();
+
         void setCurrentDays(int x);
+
+        int getDurationToHarvest();
 
         bool isHarvest() ;
 
         virtual string getType() = 0;
         
         virtual void setType(string s) = 0;
+
+        int getAddedWeight();
 
         friend std::ostream& operator<<(std::ostream& os, const Plant& p);
 };
