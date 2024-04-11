@@ -85,7 +85,7 @@ vector<pair<GameObject*, std::string>> Petani::getAllPosession(){
     return p;
 }
 
-void Petani::setField(Matrix<Plant*>* m){
+void Petani::setField(Field* m){
     this->field = m;
 }
-void Petani::setPen(__attribute__((unused)) Matrix<Animal*>* m){}
+void Petani::setPen(__attribute__((unused)) Farm* m){}

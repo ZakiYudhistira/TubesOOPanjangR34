@@ -76,10 +76,10 @@ vector<pair<GameObject*, string>> Peternak::getAllPosession(){
     return p;
 }
 
-void Peternak::setField(__attribute__((unused)) Matrix<Plant*>* m){
+void Peternak::setField(__attribute__((unused)) Field* m){
 
 }
 
-void Peternak::setPen(Matrix<Animal*>* m){
+void Peternak::setPen(Farm* m){
     this->pen = m;
 }

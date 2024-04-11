@@ -22,8 +22,8 @@ class Petani : public Player {
         
         vector<pair<GameObject*, std::string>> getAllPosession();
 
-        void setField(Matrix<Plant*>* m);
-        void setPen(Matrix<Animal*>* m);
+        void setField(Field* m);
+        void setPen(Farm* m);
 } ;
 
 
