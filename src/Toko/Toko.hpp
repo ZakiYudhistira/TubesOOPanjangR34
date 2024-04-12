@@ -10,6 +10,7 @@
 #include "Config/RecipeConfig.hpp"
 
 #include "GameObject/GameObject.hpp"
+#include "Player/Player.hpp"
 
 using namespace std;
 
@@ -45,10 +46,10 @@ class Toko {
         friend ostream& operator<<(ostream& os, Toko t);
 
         // Melakukan pembelian dari seorang player pada toko
-        void beli();
+        void beli(vector<GameObject*> sold);
 
         // Melakukan penjualan untuk seorang player dari toko
-        pair<GameObject*, int> jual();
+        pair<GameObject*, int> jual(Player* current_player);
 };
 
 #endif
