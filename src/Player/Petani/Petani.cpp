@@ -92,17 +92,6 @@ void Petani::setField(Field* m){
 }
 void Petani::setPen(__attribute__((unused)) Farm* m){}
 
-void Petani::currentTurn(){
-    // print banner giliran pemain saat ini
-    this->printCurrentTurn();
+void Petani::currentTurn(string){
 
-    // nerima perintah
-    string command;
-
-    while(command != "NEXT"){
-        cout << "> ";
-        cin >> command;
-    }
-
-    cout << "Giliran dilanjutkan ke pemain berikutnya.\n";
 }

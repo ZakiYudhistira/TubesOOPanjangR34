@@ -96,11 +96,3 @@ ostream& operator<<(ostream& os, Player& p){
 
     return os;
 }
-
-vector<pair<GameObject*, string>> Player::getAllPosession(){
-    vector<pair<GameObject*, string>> v;
-    return v;
-}
-
-void Player::setField(__attribute__((unused)) Matrix<Plant*>* m){}
-void Player::setPen(__attribute__((unused)) Matrix<Animal*>* m){}

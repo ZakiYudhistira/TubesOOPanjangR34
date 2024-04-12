@@ -83,24 +83,13 @@ vector<pair<GameObject*, string>> Walikota::getAllPosession(){
     return v;
 }
 
-void Walikota::setField(__attribute__((unused)) Matrix<Plant*>* m){
+void Walikota::setField(__attribute__((unused)) Field* m){
 
 }
-void Walikota::setPen(__attribute__((unused)) Matrix<Animal*>* m){
+void Walikota::setPen(__attribute__((unused)) Farm* m){
 
 }
 
-void Walikota::currentTurn(){
-    // print banner giliran pemain saat ini
-    this->printCurrentTurn();
-
-    // nerima perintah
-    string command;
-
-    while(command != "NEXT"){
-        cout << "> ";
-        cin >> command;
-    }
-
-    cout << "Giliran dilanjutkan ke pemain berikutnya.\n";
+void Walikota::currentTurn(string){
+    
 }
