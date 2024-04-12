@@ -38,11 +38,11 @@ class Walikota : public Player {
         /*
         * Override Function. tidak berlaku pada walikota
         */
-        void setField(Matrix<Plant*>* m);
+        void setField(Field* m);
         /*
         * Override Function. tidak berlaku pada walikota
         */
-        void setPen(Matrix<Animal*>* m);
+        void setPen(Farm* m);
         /*
         * Fungsi untuk membuat bangunan dan mengembalikan bangunan
         * @param recipe `RecipeConfig&` dafter recipe
