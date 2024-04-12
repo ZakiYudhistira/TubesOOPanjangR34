@@ -138,7 +138,7 @@ class Player  {
         * Virtual Function.
         * fungsi untuk melakukan action / perintah pada setiap turn.
         */
-        virtual void currentTurn() = 0;
+        virtual void currentTurn(string) = 0;
 };
 
 #endif

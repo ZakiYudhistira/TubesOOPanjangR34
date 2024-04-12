@@ -27,6 +27,8 @@
 
 #include "Toko/Toko.hpp"
 
+using namespace std;
+
 class Main
 {
 private:
@@ -68,18 +70,18 @@ public:
     void insertPlayer(Player *new_player)
     {
         this->player_list.push_back(new_player);
-        std::sort(this->player_list.begin(), this->player_list.end(), [](Player *lhs, Player *rhs)
+        sort(this->player_list.begin(), this->player_list.end(), [](Player *lhs, Player *rhs)
                   { return lhs->getName() < rhs->getName(); });
     }
 
     void main()
     {
         /* TESTING READING ALL CONFIG GILES */
-        std::cout << game_config;
-        std::cout << animal_config;
-        std::cout << plant_config;
-        std::cout << product_config;
-        std::cout << recipe_config;
+        cout << game_config;
+        cout << animal_config;
+        cout << plant_config;
+        cout << product_config;
+        cout << recipe_config;
 
 
         /*INITIALIZATION (jika new game)*/
@@ -91,16 +93,15 @@ public:
                 file_scan.readFile("test/data/state.txt", player_list, animal_config, plant_config, product_config, recipe_config, game_config, toko_cina);
             
                 for(int i=0; i<(int)player_list.size(); i++){
-                    std::cout << *player_list[i] << std::endl;
+                    cout << *player_list[i] << endl;
                 }
             } 
             catch (const Exception &e)
             {
-                std::cout << e.what() << '\n';
+                cout << e.what() << '\n';
             }
 
-            /* TESTING SIMPAN */
-            file_scan.writeFile("folder1/folder2/folder3/hasil-simpan.txt", player_list, animal_config, plant_config, product_config, recipe_config, game_config, toko_cina);
+            
         } else {
             int inventory_row = game_config.getInventoryRow();
             int inventory_col = game_config.getInventoryCol();
@@ -110,31 +111,49 @@ public:
             int pen_col = game_config.getPenCol();
 
             string walikota, petani, peternak;
-            std::cout << "Input nama walikota : ";
-            getline(std::cin, walikota);
+            cout << "Input nama walikota : ";
+            getline(cin, walikota);
             Player *ptr_walikota = new Walikota(walikota, 40, 50, inventory_row, inventory_col);
             insertPlayer(ptr_walikota);
-            std::cout << "Input nama petani : ";
-            getline(std::cin, petani);
+            cout << "Input nama petani : ";
+            getline(cin, petani);
             Player *ptr_petani = new Petani(petani, 40, 50, inventory_row, inventory_col, field_row, field_col);
             insertPlayer(ptr_petani);
-            std::cout << "Input nama peternak : ";
-            getline(std::cin, peternak);
+            cout << "Input nama peternak : ";
+            getline(cin, peternak);
             Player *ptr_peternak = new Peternak(peternak, 40, 50, inventory_row, inventory_col, pen_row, pen_col);
             insertPlayer(ptr_peternak);
 
             for (int i = 0; i < (int)player_list.size(); i++){
-                std::cout << player_list[i]->getName() << "\n";
+                cout << player_list[i]->getName() << "\n";
                 player_list[i]->printInventory();
             }
         }
 
         /* TESTING TOKO CINA - (-1000) artinya unlimited*/
-        std::cout << toko_cina;
+        cout << toko_cina;
 
         int current_player_idx = 0;
         while(true){
-            player_list[current_player_idx]->currentTurn();
+            // print banner giliran pemain saat ini
+            player_list[current_player_idx]->printCurrentTurn();
+
+            // nerima perintah
+            string command;
+
+            while(command != "NEXT"){
+                cout << "> ";
+                cin >> command;
+                if(command == "SIMPAN"){
+                    /* TESTING SIMPAN */
+                    file_scan.writeFile("folder1/folder2/folder3/hasil-simpan.txt", player_list, animal_config, plant_config, product_config, recipe_config, game_config, toko_cina);
+                } else {
+                    player_list[current_player_idx]->currentTurn(command);
+                }
+            }
+
+            cout << "Giliran dilanjutkan ke pemain berikutnya.\n";
+            
             current_player_idx++;
             if(current_player_idx == (int)player_list.size()){
                 current_player_idx = 0;
@@ -145,15 +164,15 @@ public:
     void gameMode(){
         string input_c;
         while(input_c != "Y" && input_c != "N"){
-            std::cout << "Apakah anda ingin memuat atau tidak? (Y / N)\n> ";
-            getline(std::cin, input_c);
+            cout << "Apakah anda ingin memuat atau tidak? (Y / N)\n> ";
+            getline(cin, input_c);
 
             if(input_c == "Y"){
                 this->isMuat = true;
             }  else if(input_c == "N"){
                 this->isMuat = false;
             } else {
-                std::cout << "Invalid Input Type\n";
+                cout << "Invalid Input Type\n";
             }
         }
     }

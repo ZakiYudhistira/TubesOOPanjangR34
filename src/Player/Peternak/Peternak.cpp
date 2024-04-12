@@ -86,17 +86,6 @@ void Peternak::setPen(Farm* m){
     this->pen = m;
 }
 
-void Peternak::currentTurn(){
-    // print banner giliran pemain saat ini
-    this->printCurrentTurn();
+void Peternak::currentTurn(string){
 
-    // nerima perintah
-    string command;
-
-    while(command != "NEXT"){
-        cout << "> ";
-        cin >> command;
-    }
-
-    cout << "Giliran dilanjutkan ke pemain berikutnya.\n";
 }

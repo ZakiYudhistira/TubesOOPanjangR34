@@ -43,7 +43,7 @@ namespace fs = std::filesystem;
 
 #include "Exception/Exception.hpp"
 
-class FileHandler: public InputHandler {
+class FileHandler {
     private:
 
     public:

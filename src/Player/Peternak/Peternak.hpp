@@ -80,7 +80,7 @@ class Peternak : public Player {
         * Override Function.
         * fungsi untuk melakukan action / perintah pada setiap turn.
         */
-        void currentTurn();
+        void currentTurn(string);
 
 };
 

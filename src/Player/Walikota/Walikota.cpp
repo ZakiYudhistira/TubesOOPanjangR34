@@ -90,17 +90,6 @@ void Walikota::setPen(__attribute__((unused)) Matrix<Animal*>* m){
 
 }
 
-void Walikota::currentTurn(){
-    // print banner giliran pemain saat ini
-    this->printCurrentTurn();
-
-    // nerima perintah
-    string command;
-
-    while(command != "NEXT"){
-        cout << "> ";
-        cin >> command;
-    }
-
-    cout << "Giliran dilanjutkan ke pemain berikutnya.\n";
+void Walikota::currentTurn(string){
+    
 }
