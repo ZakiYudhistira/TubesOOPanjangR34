@@ -13,6 +13,8 @@ class Petani : public Player {
         string type ;
         /* pointer ke pen (peternakan) dari pemain*/
         Field* field;
+        /* list perintah yang boleh dijalankan */
+        vector<string> command_list = {"CETAK_PENYIMPANAN", "CETAK_LADANG", "TANAM", "MAKAN", "BELI", ""};
     public :
         /*
         * Default Constructor.

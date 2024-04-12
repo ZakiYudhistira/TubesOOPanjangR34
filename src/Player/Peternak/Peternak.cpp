@@ -87,5 +87,5 @@ void Peternak::setPen(Farm* m){
 }
 
 void Peternak::currentTurn(string){
-
+    this->pen->printHarvest();
 }

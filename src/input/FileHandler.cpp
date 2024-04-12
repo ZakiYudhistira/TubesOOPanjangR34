@@ -281,7 +281,7 @@ void FileHandler::readFile(std::string file_name, __attribute__((unused)) vector
     int pen_col = gc.getPenCol();
 
     for(int i=0; i<n_player; i++){
-        __attribute__((unused)) Player* p;
+        Player* p;
         std::string player_name;
         std::string type;
         int body_weight;
@@ -347,7 +347,7 @@ void FileHandler::readFile(std::string file_name, __attribute__((unused)) vector
         p->setInventory(inventory);
 
         if (type == "Petani"){
-            Matrix<Plant*>* farm = new Matrix<Plant*>(gc.getFieldCol(), gc.getFieldRow(), "Ladang");
+            Field* field = new Field(gc.getFieldCol(), gc.getFieldRow());
 
             int n_game_object = 0;
             s >> n_game_object;
@@ -360,11 +360,11 @@ void FileHandler::readFile(std::string file_name, __attribute__((unused)) vector
                 pair<Plant*, bool> resp_p = pc.isInstanceOf(name);
                 resp_p.first->setCurrentDays(plant_days);
 
-                farm->addElement(resp_p.first, coordinate);
+                field->addElement(resp_p.first, coordinate);
             }
-            p->setField(farm);
+            p->setField(field);
         } else if(type == "Peternak"){
-            Matrix<Animal*>* pen = new Matrix<Animal*>(gc.getPenCol(), gc.getPenRow(), "Peternakan");
+            Farm* farm = new Farm(gc.getPenCol(), gc.getPenRow());
 
             int n_game_object = 0;
             s >> n_game_object;
@@ -377,10 +377,10 @@ void FileHandler::readFile(std::string file_name, __attribute__((unused)) vector
                 pair<Animal*, bool> resp_p = ac.isInstanceOf(name);
                 resp_p.first->setCurrentWeight(animal_weight);
 
-                pen->addElement(resp_p.first, coordinate);
+                farm->addElement(resp_p.first, coordinate);
             }
 
-            p->setPen(pen);
+            p->setPen(farm);
         }
 
         vp.push_back(p);

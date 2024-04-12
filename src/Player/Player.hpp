@@ -107,12 +107,12 @@ class Player  {
         * Virtual Function.
         * untuk Petani set ladangnya.
         */
-        virtual void setField(Matrix<Plant*>* m);
+        virtual void setField(Field* m) = 0;
         /*
         * Virtual Function.
         * untuk Peternak set ladangnya.
         */
-        virtual void setPen(Matrix<Animal*>* m);
+        virtual void setPen(Farm* m) = 0;
         /*
         * Virtual Function.
         * untuk child class mengembalikan tipe (PETANI, PETERNAK, WALIKOTA)
@@ -133,7 +133,7 @@ class Player  {
         *       mengembalikan vector berisi hewan dan koordinat
         * @return list `vector<pair<GameObject*, string>>` 
         */
-        virtual vector<pair<GameObject*, string>> getAllPosession();
+        virtual vector<pair<GameObject*, string>> getAllPosession() = 0;
         /*
         * Virtual Function.
         * fungsi untuk melakukan action / perintah pada setiap turn.
