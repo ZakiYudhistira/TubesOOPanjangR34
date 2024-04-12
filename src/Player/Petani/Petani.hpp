@@ -6,11 +6,11 @@
 
 class Petani : public Player {
     private :
-        std::string type ;
+        string type ;
         Field* field;
     public :
         Petani() ;
-        Petani(std::string name, int body_weight, int gulden, int inventory_row, int inventory_col, int farm_row, int farm_col) ;
+        Petani(string name, int body_weight, int gulden, int inventory_row, int inventory_col, int farm_row, int farm_col) ;
         ~Petani() ;
         void plant() ;
         void harvest() ;
@@ -18,9 +18,11 @@ class Petani : public Player {
         string getType() ;
         int payTax() ;
 
-        friend std::ostream& operator<<(std::ostream& os, Petani& p);
+        void currentTurn();
+
+        friend ostream& operator<<(ostream& os, Petani& p);
         
-        vector<pair<GameObject*, std::string>> getAllPosession();
+        vector<pair<GameObject*, string>> getAllPosession();
 
         void setField(Field* m);
         void setPen(Farm* m);

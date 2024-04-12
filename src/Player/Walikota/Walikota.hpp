@@ -11,16 +11,18 @@
 
 class Walikota : public Player {
     private :
-        std::string type ;
+        string type ;
     public :
         Walikota() ;
-        Walikota(std::string name, int body_weight, int gulden, int inventory_row, int inventory_col) ;
+        Walikota(string name, int body_weight, int gulden, int inventory_row, int inventory_col) ;
         ~Walikota() ;
         void tax(vector<Player *> player_list) ;
         Building build(RecipeConfig& recipe) ;
         Player* addPlayer(GameConfig& gc) ;
         string getType() ;
         int payTax() ;
+
+        void currentTurn();
 
         void setField(Matrix<Plant*>* m);
         void setPen(Matrix<Animal*>* m);

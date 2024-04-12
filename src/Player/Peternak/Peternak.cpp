@@ -4,7 +4,7 @@ Peternak::Peternak() : Player() {
     this->type = "Peternak" ;
 }
 
-Peternak::Peternak(std::string name, int body_weight, int gulden, int inventory_row, int inventory_col, int pen_row, int pen_col) : Player(name, body_weight, gulden, inventory_row, inventory_col) {
+Peternak::Peternak(string name, int body_weight, int gulden, int inventory_row, int inventory_col, int pen_row, int pen_col) : Player(name, body_weight, gulden, inventory_row, inventory_col) {
     this->type = "Peternak" ;
 
     this->pen = new Farm(pen_col, pen_row);
@@ -31,14 +31,14 @@ string Peternak::getType() {
 int Peternak::payTax() {
     double gulden = -11 ;
     // hitung total kekayaan dari Inventory
-    std::map<std::string, GameObject*>::iterator it = this->inventory->getContent().begin();
+    map<string, GameObject*>::iterator it = this->inventory->getContent().begin();
     while (it != this->inventory->getContent().end()) { 
         gulden += it->second->getPrice() ;
         it++; 
     }
 
     // hitung total kekayaan dari Field
-    std::map<std::string, Animal*>::iterator it2 = this->pen->getContent().begin();
+    map<string, Animal*>::iterator it2 = this->pen->getContent().begin();
     while (it2 != this->pen->getContent().end()) { 
         gulden += it2->second->getPrice() ;
         it++; 
@@ -82,4 +82,21 @@ void Peternak::setField(__attribute__((unused)) Field* m){
 
 void Peternak::setPen(Farm* m){
     this->pen = m;
+}
+
+void Peternak::currentTurn(){
+    string title = this->name + " - " + this->getType();
+    cout << "+";
+    for(int i=0; i<(int)title.length() + 2; i++){
+        cout << "-";
+    }
+    cout << "+\n";
+
+    cout << "| " << title << " |\n";
+
+    cout << "+";
+    for(int i=0; i<(int)title.length() + 2; i++){
+        cout << "-";
+    }
+    cout << "+\n";
 }

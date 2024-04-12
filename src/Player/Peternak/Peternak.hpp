@@ -6,11 +6,11 @@
 
 class Peternak : public Player {
     private:
-        std::string type;
+        string type;
         Farm* pen;
     public:
         Peternak();
-        Peternak(std::string name, int body_weight, int gulden, int inventory_row, int inventory_col, int pen_row, int pen_col);
+        Peternak(string name, int body_weight, int gulden, int inventory_row, int inventory_col, int pen_row, int pen_col);
         ~Peternak();
         void ternak();
         void feed();
@@ -18,6 +18,8 @@ class Peternak : public Player {
         void printPen();
         string getType() ;
         int payTax() ;
+
+        void currentTurn();
         
         vector<pair<GameObject*, string>> getAllPosession();
 

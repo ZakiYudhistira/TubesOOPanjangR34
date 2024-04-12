@@ -4,7 +4,7 @@ Walikota::Walikota() : Player() {
     this->type = "Walikota" ;
 }
 
-Walikota::Walikota(std::string name, int body_weight, int gulden, int inventory_row, int inventory_col) : Player(name, body_weight, gulden, inventory_row, inventory_col) {
+Walikota::Walikota(string name, int body_weight, int gulden, int inventory_row, int inventory_col) : Player(name, body_weight, gulden, inventory_row, inventory_col) {
     this->type = "Walikota" ;
 }
 
@@ -52,15 +52,15 @@ Player* Walikota::addPlayer(GameConfig& gc) {
         GuldenNotEnough e;
         throw e ;
     }
-    std::string name, type ;
-    std::cout << "Enter player's type : " ;
-    std::cin >> type ;
+    string name, type ;
+    cout << "Enter player's type : " ;
+    cin >> type ;
     transform(name.begin(), name.end(), name.begin(), ::tolower); 
     if (type != "petani" || type != "peternak") {
         throw TypeNotFound() ;
     }
-    std::cout << "Enter player's name : " ;
-    std::cin >> name ;
+    cout << "Enter player's name : " ;
+    cin >> name ;
 
     this->gulden -= 50 ;
     if (type == "petani") {
@@ -90,4 +90,7 @@ void Walikota::setField(__attribute__((unused)) Matrix<Plant*>* m){
 }
 void Walikota::setPen(__attribute__((unused)) Matrix<Animal*>* m){
 
+}
+
+void Walikota::currentTurn(){
 }

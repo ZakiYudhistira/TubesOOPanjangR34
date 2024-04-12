@@ -38,8 +38,7 @@ private:
 
     Toko toko_cina;
 
-    vector<Player *> player_list;
-    Player *current_player;
+    vector<Player*> player_list;
     int current = 0;
 
     bool isMuat;
@@ -133,22 +132,14 @@ public:
         /* TESTING TOKO CINA - (-1000) artinya unlimited*/
         std::cout << toko_cina;
 
-        /* seetting CURRENT PLAYER */
-        // *current_player = player_list[current];
-
-
-        /*ALUR COMMAND CURRENT PLAYER*/
-        // while (true)
-        // {
-        //     try
-        //     {
-        //         /*Alur Command*/
-        //     }
-        //     catch (const Exception &e)
-        //     {
-        //         cout << e.what() << '\n';
-        //     }
-        // }
+        int current_player_idx = 0;
+        while(true){
+            player_list[current_player_idx]->currentTurn();
+            current_player_idx++;
+            if(current_player_idx == (int)player_list.size()){
+                current_player_idx = 0;
+            }
+        }
     }
 
     void gameMode(){
