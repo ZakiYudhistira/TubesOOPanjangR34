@@ -23,7 +23,13 @@ void Farm :: printHarvest(){
             for(int j = 0; j < column ; j++){
                 try{
                     Animal* temp = getElement(array_of_character[j] + to_string(0) +to_string(i+1));
-                    cout << " " << temp->getCode() << " |";
+                    cout << " ";
+                    if(temp->isHarvest()){
+                        printStringGreen(temp->getCode());
+                    } else {
+                        printStringRed(temp->getCode());
+                    }
+                    cout << " |";
                 } catch(exception &e) {
                     cout << "     |";
                 }

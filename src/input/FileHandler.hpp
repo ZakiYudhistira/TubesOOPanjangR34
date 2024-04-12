@@ -10,7 +10,7 @@
 
 namespace fs = std::filesystem;
 
-#include "InputHandler.hpp"
+// #include "InputHandler.hpp"
 
 #include "Config/GameConfig.hpp"
 #include "Config/AnimalConfig.hpp"

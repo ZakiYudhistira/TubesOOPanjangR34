@@ -6,7 +6,7 @@
 
 #include "Exception/Exception.hpp"
 
-#include "input/InputHandler.hpp"
+// #include "input/InputHandler.hpp"
 #include "input/FileHandler.hpp"
 
 #include "Config/GameConfig.hpp"
@@ -20,7 +20,6 @@
 #include "Player/Peternak/Peternak.hpp"
 #include "Player/Walikota/Walikota.hpp"
 
-#include "Matrix2/Matrix2.hpp"
 #include "Matrix/Matrix.hpp"
 #include "Matrix/Farm.hpp"
 #include "Matrix/Field.hpp"
@@ -180,9 +179,11 @@ public:
 
 int main()
 {
-    Main m;
-
-    m.main();
+    Farm jos(5,5);
+    jos.addElement(new Herbivore(12, "JAR", "Vanson", "Fruit Plant",56, 0));
+    jos.addElement(new Carnivore(12, "COC", "Vanson", "Fruit Plant",56, 7));
+    jos.removeElement("A01");
+    jos.printHarvest();
 
     return 0;
 }
