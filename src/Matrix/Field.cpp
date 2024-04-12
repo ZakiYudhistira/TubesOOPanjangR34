@@ -2,6 +2,11 @@
 #include "GameObject/Plant/Plant.hpp"
 #include "pcolor/pcolor.hpp"
 #include "Matrix.hpp"
+#include <vector>
+#include <iostream>
+#include <map>
+#include <string>
+using namespace std;
 
 Field::Field(int col, int row) : Matrix<Plant*>(col, row, "Field"){};
 
@@ -56,5 +61,25 @@ void Field :: printHarvest(){
             cout << endl << "    ";
             printMatrixLine();
         }
-    }
+    };
 }
+
+void Field :: updatePlant(){
+    for(auto i = content.begin() ; i != content.end() ; i++){
+        i->second->incrementCurrentDays();
+    }
+};
+
+// vector<Plant*> Field :: harvest(){
+//     int index = -1;
+//     map<string, int> index_map;
+//     vector<string> harvest_able;
+//     vector<int> object_count;
+//     printHarvest();
+//     for(auto i = content.begin() ; i != content.end() ; i++){
+//         if(i->second->isHarvest()){
+//             string code = i->second->getCode();
+//             harvest_able.push_back(code);
+//         }
+//     }
+// }

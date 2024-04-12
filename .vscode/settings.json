@@ -1,5 +1,4 @@
 {
-    "cmake.sourceDirectory": "/mnt/c/Users/Asus Tuf Gaming/Documents/Github Desktop/TubesOOPanjangR34",
     "files.associations": {
         "*.mq5": "mq4",
         "string": "cpp",
@@ -74,5 +73,5 @@
         "thread": "cpp",
         "version": "cpp"
     },
-    "C_Cpp.errorSquiggles": "disabled"
+    "C_Cpp.errorSquiggles": "enabled"
 }

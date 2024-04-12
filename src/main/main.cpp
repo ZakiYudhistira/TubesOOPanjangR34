@@ -179,10 +179,13 @@ public:
 
 int main()
 {
-    Farm jos(5,5);
-    jos.addElement(new Herbivore(12, "JAR", "Vanson", "Fruit Plant",56, 0));
-    jos.addElement(new Carnivore(12, "COC", "Vanson", "Fruit Plant",56, 7));
-    jos.removeElement("A01");
+    Field jos(5,5);
+    jos.addElement(new FruitPlant(12, "JAR", "Vanson", "Fruit Plant",56, 2));
+    jos.addElement(new MaterialPlant(12, "COC", "Vanson", "Fruit Plant",56, 3));
+    int n = 2;
+    for(int i = 0 ; i < n ; i++){
+        jos.updatePlant();
+    }
     jos.printHarvest();
 
     return 0;
