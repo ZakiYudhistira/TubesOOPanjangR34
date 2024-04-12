@@ -47,7 +47,24 @@ vector<pair<GameObject*, string>> Player::getAllItem(){
 
 void Player::printInventory() {
     this->inventory->printMatrix();
-} // nunggu implementasi matrix
+} 
+
+void Player::printCurrentTurn(){
+    string title = this->name + " - " + this->getType();
+    cout << "+";
+    for(int i=0; i<(int)title.length() + 2; i++){
+        cout << "-";
+    }
+    cout << "+\n";
+
+    cout << "| " << title << " |\n";
+
+    cout << "+";
+    for(int i=0; i<(int)title.length() + 2; i++){
+        cout << "-";
+    }
+    cout << "+\n";
+}
 
 string Player::getName() {
     return this->name ;

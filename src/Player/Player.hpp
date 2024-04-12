@@ -72,6 +72,14 @@ class Player  {
         */
         void printInventory() ;
         /*
+        * Fungsi untuk menampilkan turn siapa saat ini.
+        *
+        * `+-------------+`
+        * `| Name - Type |`
+        * `+-------------+`
+        */
+        void printCurrentTurn();
+        /*
         * Fungsi mengembalikan seluruh item pada inventory
         * @return vector item barang pada inventory
         */

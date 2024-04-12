@@ -13,11 +13,13 @@
 
 using namespace std;
 
+/* Class. Toko */
 class Toko {
     private:
+        /* daftar item yang dijual besert kuantitasnya */
         vector<pair<GameObject*, int>> item_list;
+        /* banyak jenis item pada toko */
         int neff;
-
     public:
         // Default Constructor
         Toko();

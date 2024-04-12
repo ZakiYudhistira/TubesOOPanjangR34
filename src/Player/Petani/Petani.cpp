@@ -93,18 +93,16 @@ void Petani::setField(Field* m){
 void Petani::setPen(__attribute__((unused)) Farm* m){}
 
 void Petani::currentTurn(){
-    string title = this->name + " - " + this->getType();
-    cout << "+";
-    for(int i=0; i<(int)title.length() + 2; i++){
-        cout << "-";
-    }
-    cout << "+\n";
+    // print banner giliran pemain saat ini
+    this->printCurrentTurn();
 
-    cout << "| " << title << " |\n";
+    // nerima perintah
+    string command;
 
-    cout << "+";
-    for(int i=0; i<(int)title.length() + 2; i++){
-        cout << "-";
+    while(command != "NEXT"){
+        cout << "> ";
+        cin >> command;
     }
-    cout << "+\n";
+
+    cout << "Giliran dilanjutkan ke pemain berikutnya.\n";
 }
