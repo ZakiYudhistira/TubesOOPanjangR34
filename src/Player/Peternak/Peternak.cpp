@@ -10,7 +10,9 @@ Peternak::Peternak(string name, int body_weight, int gulden, int inventory_row, 
     this->pen = new Farm(pen_col, pen_row);
 }
 
-Peternak::~Peternak() {}
+Peternak::~Peternak() {
+    delete this->pen;
+}
 
 void Peternak::ternak() {} // matrikx boi
 

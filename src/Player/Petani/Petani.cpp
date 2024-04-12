@@ -11,7 +11,9 @@ Petani::Petani(string name, int body_weight, int gulden, int inventory_row, int 
     this->field = new Field(field_col, field_row);
 }
 
-Petani::~Petani() {}
+Petani::~Petani() {
+    delete this->field;
+}
 
 void Petani::plant() { // this too nunggu zaki
 

@@ -8,8 +8,6 @@ Walikota::Walikota(string name, int body_weight, int gulden, int inventory_row, 
     this->type = "Walikota" ;
 }
 
-Walikota::~Walikota(){}
-
 void Walikota::tax(vector<Player *> player_list) {
     int len = (int)player_list.size() ;
     int indeks = 0 ;
@@ -34,10 +32,10 @@ void Walikota::tax(vector<Player *> player_list) {
     cout << "Total Tax : " << total_tax << " Gulden" << endl ;
 }
 
-Building Walikota::build(__attribute__((unused)) RecipeConfig&  recipe) {
+Building* Walikota::build(__attribute__((unused)) RecipeConfig&  recipe) {
     // cout << "Resep bangunan yang ada adalah sebagai berikut : " << endl ;
-    Building hasil ;
-    return hasil ; 
+    Building *hasil = new Building();
+    return hasil;
 }
 
 Player* Walikota::addPlayer(GameConfig& gc) {
