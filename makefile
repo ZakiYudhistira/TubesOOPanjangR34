@@ -63,9 +63,6 @@ main:
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Player/Peternak/Peternak.cpp -o $(OUTPUT_FOLDER)/Peternak.o
 
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Toko/Toko.cpp -o $(OUTPUT_FOLDER)/Toko.o 
-
-
-	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/input/FileHandler.cpp -o $(OUTPUT_FOLDER)/FileHandler.o 
 	
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/main/main.cpp -o $(OUTPUT_FOLDER)/main.o 
 	@$(CC) bin/*.o -o $(OUTPUT_FOLDER)/MainApp
