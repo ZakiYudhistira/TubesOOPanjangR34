@@ -86,3 +86,18 @@ ostream& operator<<(ostream& os, __attribute__((unused)) Toko t) {
 void Toko::beli() {
     
 }
+
+pair<GameObject*, int> Toko::jual(int gulden_player) {
+    pair<GameObject*, int> item_bought;
+    int idx_to_buy;
+    int quantity;
+    
+    cout << "Barang yang ingin dibeli : ";
+    cin >> idx_to_buy;
+    cout << "Kuantitas : ";
+    cin >> quantity;
+
+    item_bought = make_pair(this->getItemI(idx_to_buy).first, quantity);
+
+    return item_bought;
+}

@@ -24,7 +24,7 @@ class Toko {
         // Default Constructor
         Toko();
 
-        // Constructor dengan item-item yang telah ditentukan
+        // Constructor dengan item-item yang telah ditentukan dari config
         Toko(AnimalConfig& ac, PlantConfig& pc, ProductConfig& prod, RecipeConfig& rc);
 
         Toko(Toko& t);
@@ -48,7 +48,7 @@ class Toko {
         void beli();
 
         // Melakukan penjualan untuk seorang player dari toko
-        void jual();
+        pair<GameObject*, int> jual();
 };
 
 #endif
