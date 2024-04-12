@@ -6,7 +6,6 @@
 
 #include "Exception/Exception.hpp"
 
-#include "input/InputHandler.hpp"
 #include "input/FileHandler.hpp"
 
 #include "Config/GameConfig.hpp"

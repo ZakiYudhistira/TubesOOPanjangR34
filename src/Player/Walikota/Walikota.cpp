@@ -83,10 +83,10 @@ vector<pair<GameObject*, string>> Walikota::getAllPosession(){
     return v;
 }
 
-void Walikota::setField(__attribute__((unused)) Matrix<Plant*>* m){
+void Walikota::setField(__attribute__((unused)) Field* m){
 
 }
-void Walikota::setPen(__attribute__((unused)) Matrix<Animal*>* m){
+void Walikota::setPen(__attribute__((unused)) Farm* m){
 
 }
 

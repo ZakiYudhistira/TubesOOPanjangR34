@@ -10,8 +10,6 @@
 
 namespace fs = std::filesystem;
 
-#include "InputHandler.hpp"
-
 #include "Config/GameConfig.hpp"
 #include "Config/AnimalConfig.hpp"
 #include "Config/PlantConfig.hpp"
@@ -38,6 +36,8 @@ namespace fs = std::filesystem;
 #include "Player/Petani/Petani.hpp"
 
 #include "Matrix/Matrix.hpp"
+#include "Matrix/Farm.hpp"
+#include "Matrix/Field.hpp"
 
 #include "Toko/Toko.hpp"
 

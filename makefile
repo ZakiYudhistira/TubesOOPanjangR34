@@ -64,7 +64,6 @@ main:
 
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Toko/Toko.cpp -o $(OUTPUT_FOLDER)/Toko.o 
 
-	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/input/InputHandler.cpp -o $(OUTPUT_FOLDER)/InputHandler.o
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/input/FileHandler.cpp -o $(OUTPUT_FOLDER)/FileHandler.o 
 	
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/main/main.cpp -o $(OUTPUT_FOLDER)/main.o 
