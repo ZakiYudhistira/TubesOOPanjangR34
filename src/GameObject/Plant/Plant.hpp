@@ -20,6 +20,8 @@ class Plant : public GameObject {
 
         void setCurrentDays(int x);
 
+        void incrementCurrentDays();
+
         int getDurationToHarvest();
 
         bool isHarvest() ;
