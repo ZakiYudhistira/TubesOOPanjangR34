@@ -627,9 +627,14 @@ void Main::writeFile(std::string file_name, vector<Player*>& vp, __attribute__((
 
 int main()
 {
-    Main m;
-
-    m.main();
+    Field jos(5,5);
+    jos.addElement(new FruitPlant(12, "JAR", "Vanson", "Fruit Plant",56, 2));
+    jos.addElement(new MaterialPlant(12, "COC", "Vanson", "Fruit Plant",56, 3));
+    int n = 2;
+    for(int i = 0 ; i < n ; i++){
+        jos.updatePlant();
+    }
+    jos.printHarvest();
 
     return 0;
 }
