@@ -1,6 +1,7 @@
 #include "Field.hpp"
 #include "GameObject/Plant/Plant.hpp"
 #include "pcolor/pcolor.hpp"
+#include "FieldException.hpp"
 #include "Matrix.hpp"
 #include <vector>
 #include <iostream>
@@ -70,16 +71,34 @@ void Field :: updatePlant(){
     }
 };
 
-// vector<Plant*> Field :: harvest(){
-//     int index = -1;
-//     map<string, int> index_map;
-//     vector<string> harvest_able;
-//     vector<int> object_count;
-//     printHarvest();
-//     for(auto i = content.begin() ; i != content.end() ; i++){
-//         if(i->second->isHarvest()){
-//             string code = i->second->getCode();
-//             harvest_able.push_back(code);
-//         }
-//     }
-// }
+vector<Plant*> Field :: harvest(){
+    printHarvest();
+    
+    vector<pair<Plant*, int>> type_count;
+
+    vector<Plant*> ret;
+
+    for(auto i = content.begin() ; i != content.end() ; i++){
+        // int count = 0;
+        int j;
+        for(j = 0; j < (int)type_count.size() ; j++){
+            if(i->second->isHarvest()){
+                if(i->second->getCode() == type_count[j].first->getCode()){
+                    type_count[j].second++;
+                }
+            }
+        }
+        if(j == (int)type_count.size()){
+            type_count.push_back({i->second, 1});
+        }
+    }
+    if(type_count.size() == 0){
+        throw NoHarvestObject();
+    }
+
+    cout << endl << endl;
+    for(int i = 0 ; i < (int)type_count.size() ; i++){
+        cout << " - "  << type_count[i].first->getCode() << ": " << type_count[i].first->getObjectName() << endl;
+    }
+    return ret;
+}

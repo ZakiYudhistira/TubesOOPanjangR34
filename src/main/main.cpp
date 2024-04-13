@@ -734,7 +734,7 @@ int main()
     for(int i = 0 ; i < n ; i++){
         jos.updatePlant();
     }
-    jos.printHarvest();
+    jos.harvest();
 
     return 0;
 }
