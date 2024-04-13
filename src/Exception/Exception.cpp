@@ -39,3 +39,11 @@ char const *invalidCommand::what() const noexcept
 {
     return "Invalid command!";
 }
+
+char const *RecipeNotFound::what() const noexcept {
+    return "You don't have that recipe!" ;
+}
+
+char const *MaterialNotEnough::what() const noexcept {
+    return "You don't have enough material" ;
+}

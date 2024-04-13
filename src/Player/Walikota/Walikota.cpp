@@ -38,11 +38,85 @@ void Walikota::tax(vector<Player *> player_list)
     cout << "Total Tax : " << total_tax << " Gulden" << endl;
 }
 
-Building *Walikota::build(__attribute__((unused)) RecipeConfig &recipe)
+void Walikota::build(RecipeConfig &recipe)
 {
-    // cout << "Resep bangunan yang ada adalah sebagai berikut : " << endl ;
-    Building *hasil = new Building();
-    return hasil;
+    vector<Building*> building_list = recipe.getRecipeList() ;
+
+    // Show all available recipes 
+    cout << "Building recipes available : " << endl ;
+    for (int i = 1 ; i <= (int)building_list.size() ; i++) {
+        vector<pair<string, int>> material_list = building_list[i]->getMaterialList() ;
+        cout << "\t" << i << ". " << building_list[i-1]->getCode() << " (" ; 
+        cout << building_list[i]->getPrice() << " gulden, " ;
+        for (int j = 0 ; j < (int)material_list.size() ; j++) {
+            if (j == (int)material_list.size()) {
+                cout << material_list[j].first << " " << material_list[j].second << ")" << endl ;
+            }
+            else {
+                cout << material_list[j].first << " " << material_list[j].second << ", " ;
+            }
+        }
+    }
+
+    // input which recipe from user
+    string make = "null";
+    Building *building ;
+    cout << "Which building do you want to make : " ;
+    cin >> make ;
+    for (int i = 0 ; i < (int)building_list.size() ; i++) {
+        if (make == building_list[i]->getCode()) {
+            make = building_list[i]->getCode() ;
+            building = building_list[i] ;
+        }
+    }
+    if (make == "null") {
+        throw RecipeNotFound() ;
+    }
+
+    // validate materials and gulden
+    vector<pair<string, int>> material = building->getMaterialList() ;
+    vector<pair<GameObject *, string>> all_possession = this->inventory->getAllElement() ;
+    vector<pair<string, int>> slot = {};
+    if (this->getGulden() < building->getPrice()) {
+        pair<string, int> in ;
+        in.first = "Gulden" ;
+        in.second = building->getPrice() - this->getGulden() ;
+        slot.push_back(in) ;
+    }
+    for (int i = 0 ; i < (int)material.size() ; i++) {
+        int count_material = this->inventory->countItem(material[i].first) ;
+        if (material[i].second > count_material) {
+            pair<string, int> in ;
+            in.first = material[i].first ;
+            in.second = material[i].second - count_material ;
+            slot.push_back(in) ;
+        }
+    }
+    if ((int)slot.size() == 0) {
+        Building *hasil = new Building(*building);
+        // remove materials from inventory
+        for (int i = 0 ; i < (int)material.size() ; i++) {
+            int times = material[i].second ;
+            int j = 0 ;
+            while (times != 0) {
+                if (all_possession[j].first->getObjectName() == material[i].first) {
+                    this->inventory->removeElement(all_possession[j].second) ;
+                    times-- ;
+                }
+                j++ ;
+            }
+        }
+        this->inventory->addElement(hasil) ;
+    }
+    else {
+        cout << "Insufficient resources! You still need " ;
+        for (int i = 0 ; i < (int)slot.size() ; i++) {
+            if (i == (int)slot.size() - 1) {
+                cout << slot[i].second << " " << slot[i].first <<  "." << endl ;
+            }
+            cout << slot[i].second << " " << slot[i].first <<  ", " ;
+        }
+    }
 }
 
 Player* Walikota::addPlayer(GameConfig& gc, vector<Player *> player_list) {

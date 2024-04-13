@@ -50,7 +50,7 @@ public:
      * @param recipe `RecipeConfig&` dafter recipe
      * @param building `Building*` bangunan baru
      */
-    Building *build(RecipeConfig &recipe);
+    void build(RecipeConfig &recipe);
     /*
      * Fungsi untuk membuat player baru dan mengembalikan player
      * @param gc `GameConfig&` game configuration

@@ -20,7 +20,7 @@ class Building: public GameObject {
         Building& operator=(Building &);
 
         ~Building();
-        
+         
         vector<pair<string, int>> getMaterialList();
 
         int getNeff();

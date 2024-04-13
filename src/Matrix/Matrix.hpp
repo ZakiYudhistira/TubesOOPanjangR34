@@ -112,7 +112,7 @@ class Matrix{
             }
             return v;
         }
-
+ 
         void printMatrix(){
             printTitle();
             cout << "     ";
@@ -251,6 +251,10 @@ class Matrix{
             if(i == (int)possible_map.size()){
                 add_point = -1;
             }
+        }
+
+        int countItem(__attribute__((unused)) string name) { // needs implementation, help zaki
+            return 0 ;
         }
 };
 #endif

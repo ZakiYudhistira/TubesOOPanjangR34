@@ -22,5 +22,5 @@ class RecipeConfig {
 
         friend std::ostream& operator<<(std::ostream& os, RecipeConfig& rc);
 };
-
+ 
 #endif
