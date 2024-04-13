@@ -51,8 +51,8 @@ void Petani::harvest(ProductConfig &product_list){
     }
 }
 
-void Petani::printField()
-{
+void Petani::printField() {
+    this->field->printHarvest() ;
 }
 
 string Petani::getType()

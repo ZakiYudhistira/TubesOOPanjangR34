@@ -51,8 +51,8 @@ void Peternak::harvest(ProductConfig &product_list) {
 
 }
 
-void Peternak::printPen()
-{ // matrix also
+void Peternak::printPen() {
+    this->pen->printHarvest() ;
 }
 
 string Peternak::getType()
