@@ -135,7 +135,6 @@ vector<Plant*> Field :: harvest(){
     cout << "Berapa petak yang ingin dipanen: ";
     cin >> count;
 
-    cout<< type_count[index_harvest - 1].second << " " << type_count[index_harvest - 1].first->getCode() << endl;
     if(count < 1 || count > type_count[index_harvest - 1].second){
         throw HarvestCountInvalid();
     }
@@ -143,7 +142,7 @@ vector<Plant*> Field :: harvest(){
     cout << endl;
 
     cout << "Pilih petak yang akan dipanen:" << endl;
-    for(int i = 0 ; i < type_count[index_harvest - 1].second ; i++){
+    for(int i = 0 ; i < count ; i++){
     while(true){
         string coordinate;
         cout << "Petak ke-" << i+1 << ": ";
@@ -154,11 +153,12 @@ vector<Plant*> Field :: harvest(){
                     throw InvalidObject();
                 }
                 ret.push_back(temp);
+                removeElement(coordinate);
                 break;
-            } catch (IndexOutOfRange &e){
-                cout << "Invalid index, please try again" << endl;
-            } catch (InvalidObject &e) {
+            } catch (InvalidObject &e){
                 cout << "Invalid plant to harvest, please try again" << endl;
+            } catch (MatrixException &e) {
+                cout << "Invalid index, please try again" << endl;
             }
         }
     }
