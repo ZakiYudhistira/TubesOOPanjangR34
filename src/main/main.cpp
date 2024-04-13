@@ -732,11 +732,17 @@ int main()
     jos.addElement(new MaterialPlant(12, "COC", "Clashson", "Fruit Plant",56, 3));
     jos.addElement(new FruitPlant(12, "VOC", "Clash", "Fruit Plant",56, 2));
     jos.addElement(new FruitPlant(12, "VOC", "Clash", "Fruit Plant",56, 2));
+    cout << jos.getElementCount("VOC") << endl;
     int n = 2;
     for(int i = 0 ; i < n ; i++){
         jos.updatePlant();
     }
-    jos.harvest();
+    vector<Plant*> tes = jos.harvest();
+    for(int i = 0 ; i < (int)tes.size() ; i++){
+        cout << tes[i]->getCode() << endl;
+    }
+
+    jos.printHarvest();
 
     return 0;
 }

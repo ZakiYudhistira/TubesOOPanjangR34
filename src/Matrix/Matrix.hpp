@@ -252,5 +252,15 @@ class Matrix{
                 add_point = -1;
             }
         }
+
+        int getElementCount(string el){
+            int count = 0;
+            for(auto it = content.begin() ; it != content.end() ; it++){
+                if(el == it->second->getCode()){
+                    count++;
+                }
+            }
+            return count;
+        }
 };
 #endif
