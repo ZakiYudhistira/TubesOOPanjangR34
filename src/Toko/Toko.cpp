@@ -92,7 +92,7 @@ ostream& operator<<(ostream& os, __attribute__((unused)) Toko t) {
 }
 
 void Toko::beli(vector<GameObject*> sold) {
-    for (int i=0; i<sold.size(); i++) {
+    for (int i=0; i < (int)sold.size(); i++) {
         bool exists = false;
         int j=0;
         while (!exists && j < this->neff) {
@@ -131,4 +131,5 @@ pair<GameObject*, int> Toko::jual(Player* current_player) {
         this->item_list[idx_to_buy-1].second -= quantity;
         return item_bought;
     }
+    return item_bought ; // direturn supaya ga error
 }
