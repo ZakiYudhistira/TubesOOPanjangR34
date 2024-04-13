@@ -4,25 +4,85 @@
 #include "Player/Player.hpp"
 #include "GameObject/Animal/Animal.hpp"
 
-class Peternak : public Player {
-    private:
-        std::string type;
-        Farm* pen;
-    public:
-        Peternak();
-        Peternak(std::string name, int body_weight, int gulden, int inventory_row, int inventory_col, int pen_row, int pen_col);
-        ~Peternak();
-        void ternak();
-        void feed();
-        void harvest();
-        void printPen();
-        string getType() ;
-        int payTax() ;
-        
-        vector<pair<GameObject*, string>> getAllPosession();
+/*
+ * Class. Peternak
+ */
+class Peternak : public Player
+{
+private:
+    /* type dari suatu pemain */
+    string type;
+    /* pointer ke pen (peternakan) dari pemain*/
+    Farm *pen;
 
-        void setField(Field* m);
-        void setPen(Farm* m);
+public:
+    /*
+     * Default Constructor.
+     */
+    Peternak();
+    /*
+     * User Define Constructor. set name bodyweight gulden dan inventory
+     * @param name `string` nama dari pemain
+     * @param body_weight `int` berat badan
+     * @param gulden `int` jumlah gulden
+     * @param inventory_row `int` baris dari inventory
+     * @param inventory_col `int` kolom dari inventory
+     */
+    Peternak(string name, int body_weight, int gulden, int inventory_row, int inventory_col, int pen_row, int pen_col);
+    /*
+     * Destructor. untuk delete pointer ke pen
+     */
+    ~Peternak();
+    /*
+     * Fungsi untuk menempatkan hewan dari inventory ke pen
+     *
+     */
+    void ternak();
+    /*
+     * Fungsi untuk memberi makan hewan pada pen
+     */
+    void feed();
+    /*
+     * Fungsi untuk menempatkan hewan dari pen ke inventory.
+     *
+     */
+    void harvest();
+    /*
+     * Override Function. tidak berlaku pada peternak
+     */
+    void setField(Field *m);
+    /*
+     * Override Function.
+     * untuk Peternak set peternakannya.
+     */
+    void setPen(Farm *m);
+    /*
+     * Fungsi untuk menampilkan pen dari peternak
+     */
+    void printPen();
+    /*
+     * Override Function.
+     * untuk child class mengembalikan tipe (PETANI, PETERNAK, WALIKOTA)
+     * @return type `string` tipe dari player.
+     */
+    string getType();
+    /*
+     * Override Function.
+     * untuk child class membayar pajak.
+     * @return jumlah_gulden `int` jumlah gulden yang harus disetor.
+     */
+    int payTax();
+    /*
+     * Override Function.
+     * mengembalikan vector berisi hewan dan koordinat
+     * @return list `vector<pair<GameObject*, string>>`
+     */
+    vector<pair<GameObject *, string>> getAllPosession();
+    /*
+     * Override Function.
+     * fungsi untuk melakukan action / perintah pada setiap turn.
+     */
+    void currentTurn(string);
 };
 
 #endif

@@ -34,6 +34,10 @@ void Plant::setCurrentDays(int x){
     this->current_days = x;
 }
 
+void Plant::incrementCurrentDays(){
+    current_days++;
+}
+
 int Plant::getDurationToHarvest(){
     return this->duration_to_harvest;
 }

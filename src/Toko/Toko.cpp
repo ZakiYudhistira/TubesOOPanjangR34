@@ -1,4 +1,6 @@
 #include "Toko.hpp"
+#include "Exception/Exception.hpp"
+#include "Player/Player.hpp"
 
 Toko::Toko() {
     this->neff = 0;
@@ -76,13 +78,57 @@ ostream& operator<<(ostream& os, __attribute__((unused)) Toko t) {
         << "Berikut merupakan barang-barang yang dapat Anda beli" << endl;
 
     for (int i=0; i<t.neff; i++) {
-        /* TODO: Pakein setw dari library iomapi biar rapi kek tabel! 
-            cek file gameconfig buat cara pakenya or tutorial internet */
-        os << (i+1) << ". " << t.item_list[i].first->getObjectName() << " " << t.item_list[i].first->getPrice() << " " << t.item_list[i].second << endl;
+        if (t.item_list[i].first->getType() == "MATERIAL_PLANT"
+            || t.item_list[i].first->getType() == "FRUIT_PLANT"
+            || t.item_list[i].first->getType() == "HERBIVORE"
+            || t.item_list[i].first->getType() == "CARNIVORE"
+            || t.item_list[i].first->getType() == "OMNIVORE") {
+            os << (i+1) << ". " << std::setw(10) << t.item_list[i].first->getObjectName() << std::setw(15) << t.item_list[i].first->getPrice() << endl;
+        } else {
+            os << (i+1) << ". " << std::setw(10) << t.item_list[i].first->getObjectName() << std::setw(15) << t.item_list[i].first->getPrice() << std::setw(15) << t.item_list[i].second << endl;
+        }
     }
     return os;
 }
 
-void Toko::beli() {
-    
+void Toko::beli(vector<GameObject*> sold) {
+    for (int i=0; i<sold.size(); i++) {
+        bool exists = false;
+        int j=0;
+        while (!exists && j < this->neff) {
+            if (this->item_list[j].first->getObjectName() == sold[i]->getObjectName()) {
+                exists = true;
+            }
+            j++;
+        }
+        if (exists) {
+            j--;
+            this->item_list[j].second++;
+        } else {
+            pair<GameObject*, int> added_item = make_pair(sold[i], 1);
+            this->item_list.push_back(added_item);
+            this->neff++;
+        }
+    }
+}
+
+pair<GameObject*, int> Toko::jual(Player* current_player) {
+    pair<GameObject*, int> item_bought;
+    int idx_to_buy;
+    int quantity;
+
+    cout << "Barang yang ingin dibeli : ";
+    cin >> idx_to_buy;
+    cout << "Kuantitas : ";
+    cin >> quantity;
+
+    if (quantity > this->item_list[idx_to_buy-1].second) {
+        // throw QuantityNotEnoughException();
+    } else if (quantity*this->item_list[idx_to_buy-1].first->getPrice() > current_player->getGulden()) {
+        throw GuldenNotEnough();
+    } else {
+        item_bought = make_pair(this->item_list[idx_to_buy-1].first, quantity);
+        this->item_list[idx_to_buy-1].second -= quantity;
+        return item_bought;
+    }
 }

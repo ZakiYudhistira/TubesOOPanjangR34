@@ -3,34 +3,46 @@
 
 #include <exception>
 
-class Exception: public std::exception {
-    public:
-    virtual char const * what() const noexcept;
+class Exception : public std::exception
+{
+public:
+    virtual char const *what() const noexcept;
 };
 
-class ExceptionFileNotFound: public Exception {
-    public:
-    char const * what() const noexcept override;
+class ExceptionFileNotFound : public Exception
+{
+public:
+    char const *what() const noexcept override;
 };
 
-class GuldenNotEnough: public Exception {
-    public:
-    char const * what() const noexcept override;
+class GuldenNotEnough : public Exception
+{
+public:
+    char const *what() const noexcept override;
 };
 
-class TypeNotFound: public Exception {
-    public:
-    char const * what() const noexcept override;
+class TypeNotFound : public Exception
+{
+public:
+    char const *what() const noexcept override;
 };
 
-class InvalidType: public Exception {
-    public:
-    char const * what() const noexcept override;
+class InvalidType : public Exception
+{
+public:
+    char const *what() const noexcept override;
 };
 
-class IsNotFood: public Exception {
-    public :
-    char const * what() const noexcept override;
+class IsNotFood : public Exception
+{
+public:
+    char const *what() const noexcept override;
+};
+
+class invalidCommand : public Exception
+{
+public:
+    char const *what() const noexcept override;
 };
 
 class InvalidName: public Exception {
@@ -39,5 +51,3 @@ class InvalidName: public Exception {
 };
 
 #endif
-
-

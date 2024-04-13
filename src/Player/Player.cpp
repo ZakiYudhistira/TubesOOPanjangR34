@@ -6,7 +6,7 @@ Player::Player(){
     this->gulden = 0;
 }
 
-Player::Player(std::string name, int body_weight, int gulden, int inventory_row, int inventory_col){
+Player::Player(string name, int body_weight, int gulden, int inventory_row, int inventory_col){
     this->name = name;
     this->body_weight = body_weight;
     this->gulden = gulden;
@@ -15,7 +15,9 @@ Player::Player(std::string name, int body_weight, int gulden, int inventory_row,
     this->inventory = new Matrix<GameObject*>(inventory_col, inventory_row, "Penyimpanan");
 }
 
-Player::~Player() {}
+Player::~Player() {
+    delete this->inventory;
+}
 
 void Player::eat() {
     string slot ;
@@ -45,9 +47,26 @@ vector<pair<GameObject*, string>> Player::getAllItem(){
 
 void Player::printInventory() {
     this->inventory->printMatrix();
-} // nunggu implementasi matrix
+} 
 
-std::string Player::getName() {
+void Player::printCurrentTurn(){
+    string title = this->name + " - " + this->getType();
+    cout << "+";
+    for(int i=0; i<(int)title.length() + 2; i++){
+        cout << "-";
+    }
+    cout << "+\n";
+
+    cout << "| " << title << " |\n";
+
+    cout << "+";
+    for(int i=0; i<(int)title.length() + 2; i++){
+        cout << "-";
+    }
+    cout << "+\n";
+}
+
+string Player::getName() {
     return this->name ;
 }
 
@@ -67,7 +86,7 @@ void Player::addGulden(int gulden) {
     this->gulden += gulden ;
 }
 
-std::ostream& operator<<(std::ostream& os, Player& p){
+ostream& operator<<(ostream& os, Player& p){
     p.inventory->printMatrix();
     
     os << p.name << " "
@@ -77,11 +96,3 @@ std::ostream& operator<<(std::ostream& os, Player& p){
 
     return os;
 }
-
-vector<pair<GameObject*, string>> Player::getAllPosession(){
-    vector<pair<GameObject*, string>> v;
-    return v;
-}
-
-void Player::setField(__attribute__((unused)) Matrix<Plant*>* m){}
-void Player::setPen(__attribute__((unused)) Matrix<Animal*>* m){}

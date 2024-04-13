@@ -23,14 +23,6 @@ pair<Building*, bool> RecipeConfig::isInstanceOf(std::string s){
     Building* new_building;
     for(int i=0; i<this->neff; i++){
         if(this->building_list[i]->getObjectName() == s){
-            // int id = this->building_list[i]->getId();
-            // std::string type = this->building_list[i]->getType();
-            // std::string code = this->building_list[i]->getCode();
-            // std::string name = this->building_list[i]->getObjectName();
-            // int price = this->building_list[i]->getPrice();
-            // vector<pair<string, int>> material_list = this->building_list[i]->getMaterialList();
-            
-
             new_building = new Building(*this->building_list[i]);
             return make_pair(new_building, true);
         }

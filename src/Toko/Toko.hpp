@@ -10,19 +10,22 @@
 #include "Config/RecipeConfig.hpp"
 
 #include "GameObject/GameObject.hpp"
+#include "Player/Player.hpp"
 
 using namespace std;
 
+/* Class. Toko */
 class Toko {
     private:
+        /* daftar item yang dijual besert kuantitasnya */
         vector<pair<GameObject*, int>> item_list;
+        /* banyak jenis item pada toko */
         int neff;
-
     public:
         // Default Constructor
         Toko();
 
-        // Constructor dengan item-item yang telah ditentukan
+        // Constructor dengan item-item yang telah ditentukan dari config
         Toko(AnimalConfig& ac, PlantConfig& pc, ProductConfig& prod, RecipeConfig& rc);
 
         Toko(Toko& t);
@@ -43,10 +46,10 @@ class Toko {
         friend ostream& operator<<(ostream& os, Toko t);
 
         // Melakukan pembelian dari seorang player pada toko
-        void beli();
+        void beli(vector<GameObject*> sold);
 
         // Melakukan penjualan untuk seorang player dari toko
-        void jual();
+        pair<GameObject*, int> jual(Player* current_player);
 };
 
 #endif

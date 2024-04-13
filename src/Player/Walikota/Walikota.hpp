@@ -9,24 +9,76 @@
 #include "Config/RecipeConfig.hpp"
 #include "GameObject/Building/Building.hpp"
 
-class Walikota : public Player {
-    private :
-        std::string type ;
-    public :
-        Walikota() ;
-        Walikota(std::string name, int body_weight, int gulden, int inventory_row, int inventory_col) ;
-        ~Walikota() ;
-        void tax(vector<Player *> player_list) ;
-        Building build(RecipeConfig& recipe) ;
-        Player* addPlayer(GameConfig& gc, vector<Player *> player_list) ;
-        string getType() ;
-        int payTax() ;
+#include "Exception/Exception.hpp"
 
-        void setField(Matrix<Plant*>* m);
-        void setPen(Matrix<Animal*>* m);
-        
-        vector<pair<GameObject*, string>> getAllPosession();
-} ;
+/*
+ * Class. Walikota
+ */
+class Walikota : public Player
+{
+private:
+    /* type dari suatu pemain */
+    string type;
 
-
+public:
+    /*
+     * Default Constructor.
+     */
+    Walikota();
+    /*
+     * User Define Constructor. set name bodyweight gulden dan inventory
+     * @param name `string` nama dari pemain
+     * @param body_weight `int` berat badan
+     * @param gulden `int` jumlah gulden
+     * @param inventory_row `int` baris dari inventory
+     * @param inventory_col `int` kolom dari inventory
+     */
+    Walikota(string name, int body_weight, int gulden, int inventory_row, int inventory_col);
+    /*
+     * Fungsi untuk mengambil pajak dari seluruh player.
+     * @param player_list `vector<Player*>` list player
+     */
+    void tax(vector<Player *> player_list);
+    /*
+     * Override Function. tidak berlaku pada walikota
+     */
+    void setField(Field *m);
+    /*
+     * Override Function. tidak berlaku pada walikota
+     */
+    void setPen(Farm *m);
+    /*
+     * Fungsi untuk membuat bangunan dan mengembalikan bangunan
+     * @param recipe `RecipeConfig&` dafter recipe
+     * @param building `Building*` bangunan baru
+     */
+    Building *build(RecipeConfig &recipe);
+    /*
+     * Fungsi untuk membuat player baru dan mengembalikan player
+     * @param gc `GameConfig&` game configuration
+     * @param player `Player*` player baru
+     */
+    Player *addPlayer(GameConfig &gc);
+    /*
+     * Override Function.
+     * untuk child class mengembalikan tipe (PETANI, PETERNAK, WALIKOTA)
+     * @return type `string` tipe dari player.
+     */
+    string getType();
+    /*
+     * Override Function.
+     * untuk child class membayar pajak.
+     * @return jumlah_gulden `int` jumlah gulden yang harus disetor.
+     */
+    int payTax();
+    /*
+     * Override Function. tidak berlaku pada walikota
+     */
+    vector<pair<GameObject *, string>> getAllPosession();
+    /*
+     * Override Function.
+     * fungsi untuk melakukan action / perintah pada setiap turn.
+     */
+    void currentTurn(string);
+};
 #endif
