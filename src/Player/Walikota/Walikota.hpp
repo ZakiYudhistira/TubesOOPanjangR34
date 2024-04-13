@@ -18,7 +18,7 @@ class Walikota : public Player {
         ~Walikota() ;
         void tax(vector<Player *> player_list) ;
         Building build(RecipeConfig& recipe) ;
-        Player* addPlayer(GameConfig& gc) ;
+        Player* addPlayer(GameConfig& gc, vector<Player *> player_list) ;
         string getType() ;
         int payTax() ;
 

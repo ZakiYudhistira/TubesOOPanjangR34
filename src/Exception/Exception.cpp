@@ -23,4 +23,8 @@ char const * InvalidType::what() const noexcept {
 char const * IsNotFood::what() const noexcept {
     return "Food not found!" ;
 }
+
+char const * InvalidName::what() const noexcept {
+    return "Name must be unique!" ;
+}
  

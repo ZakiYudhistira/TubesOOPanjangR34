@@ -40,7 +40,7 @@ Building Walikota::build(__attribute__((unused)) RecipeConfig&  recipe) {
     return hasil ; 
 }
 
-Player* Walikota::addPlayer(GameConfig& gc) {
+Player* Walikota::addPlayer(GameConfig& gc, vector<Player *> player_list) {
     int inventory_row = gc.getInventoryRow();
     int inventory_col = gc.getInventoryCol();
     int field_row = gc.getFieldRow();
@@ -61,6 +61,13 @@ Player* Walikota::addPlayer(GameConfig& gc) {
     }
     std::cout << "Enter player's name : " ;
     std::cin >> name ;
+    int len = (int)player_list.size() ;
+    for (int i = 0 ; i < len ; i++) {
+        string test = player_list[i]->getName() ;
+        if (name == test) {
+            throw InvalidName() ;
+        }
+    }
 
     this->gulden -= 50 ;
     if (type == "petani") {

@@ -33,6 +33,11 @@ class IsNotFood: public Exception {
     char const * what() const noexcept override;
 };
 
+class InvalidName: public Exception {
+    public :
+    char const * what() const noexcept override;
+};
+
 #endif
 
 
