@@ -9,8 +9,6 @@
 #include "Config/RecipeConfig.hpp"
 #include "GameObject/Building/Building.hpp"
 
-#include "Exception/Exception.hpp"
-
 /*
  * Class. Walikota
  */
@@ -58,7 +56,7 @@ public:
      * @param gc `GameConfig&` game configuration
      * @param player `Player*` player baru
      */
-    Player *addPlayer(GameConfig &gc);
+    Player *addPlayer(GameConfig &gc, vector<Player *> player_list);
     /*
      * Override Function.
      * untuk child class mengembalikan tipe (PETANI, PETERNAK, WALIKOTA)
