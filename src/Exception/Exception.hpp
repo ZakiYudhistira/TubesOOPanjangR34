@@ -50,4 +50,15 @@ class InvalidName: public Exception {
     char const * what() const noexcept override;
 };
 
+class RecipeNotFound: public Exception {
+    public :
+    char const * what() const noexcept override;
+};
+
+class MaterialNotEnough: public Exception { // ini ga kepake coba tanya Vanson
+    public :
+    char const * what() const noexcept override;
+};
+
+
 #endif

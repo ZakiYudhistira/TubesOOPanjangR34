@@ -71,6 +71,8 @@ class Player  {
         * Fungsi untuk menampilkan inventory dari player
         */
         void printInventory() ;
+
+        int getInventoryAvailableCount();
         /*
         * Fungsi untuk menampilkan turn siapa saat ini.
         *
