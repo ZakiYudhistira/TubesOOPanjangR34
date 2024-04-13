@@ -12,7 +12,7 @@ class Field : public Matrix<Plant*> {
         Field(int col, int row);
         void printHarvest();
         void updatePlant();
-        // vector<Plant*> harvest();
+        vector<Plant*> harvest();
         
 };
 

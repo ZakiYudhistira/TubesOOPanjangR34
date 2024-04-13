@@ -253,12 +253,14 @@ class Matrix{
             }
         }
 
-        int countItem(__attribute__((unused)) string name) { // needs implementation, help zaki
-            return 0 ;
-        }
-
-        int getSlotAvailableCount() {
-            return capacity-content.size();
+        int getElementCount(string el){
+            int count = 0;
+            for(auto it = content.begin() ; it != content.end() ; it++){
+                if(el == it->second->getCode()){
+                    count++;
+                }
+            }
+            return count;
         }
 };
 #endif
