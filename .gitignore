@@ -31,3 +31,5 @@ bin/ProductConfig.o
 bin/RecipeConfig.o
 bin/Toko.o
 bin/Walikota.o
+bin/main.o
+bin/Field.o

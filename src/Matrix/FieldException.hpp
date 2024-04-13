@@ -13,4 +13,18 @@ class NoHarvestObject : public FieldException {
     virtual char const * what() const noexcept;
 };
 
+class HarvestOutOfBounds : public FieldException {
+    public:
+    virtual char const * what() const noexcept;
+};
+
+class HarvestCountInvalid : public FieldException {
+    public:
+    virtual char const * what() const noexcept;
+};
+
+class InvalidObject : public FieldException {
+    public:
+    virtual char const * what() const noexcept;
+};
 #endif

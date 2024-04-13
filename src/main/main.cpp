@@ -728,8 +728,10 @@ void Main::writeFile(std::string file_name, vector<Player *> &vp, __attribute__(
 int main()
 {
     Field jos(5,5);
-    jos.addElement(new FruitPlant(12, "JAR", "Vanson", "Fruit Plant",56, 2));
-    jos.addElement(new MaterialPlant(12, "COC", "Vanson", "Fruit Plant",56, 3));
+    jos.addElement(new FruitPlant(12, "JAR", "JAVA", "Fruit Plant",56, 2));
+    jos.addElement(new MaterialPlant(12, "COC", "Clashson", "Fruit Plant",56, 3));
+    jos.addElement(new FruitPlant(12, "VOC", "Clash", "Fruit Plant",56, 2));
+    jos.addElement(new FruitPlant(12, "VOC", "Clash", "Fruit Plant",56, 2));
     int n = 2;
     for(int i = 0 ; i < n ; i++){
         jos.updatePlant();
