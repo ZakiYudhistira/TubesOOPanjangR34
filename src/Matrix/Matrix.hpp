@@ -256,5 +256,9 @@ class Matrix{
         int countItem(__attribute__((unused)) string name) { // needs implementation, help zaki
             return 0 ;
         }
+
+        int getSlotAvailableCount() {
+            return capacity-content.size();
+        }
 };
 #endif
