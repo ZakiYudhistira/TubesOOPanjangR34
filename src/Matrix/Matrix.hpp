@@ -252,5 +252,9 @@ class Matrix{
                 add_point = -1;
             }
         }
+
+        int getSlotAvailableCount() {
+            return capacity-content.size();
+        }
 };
 #endif

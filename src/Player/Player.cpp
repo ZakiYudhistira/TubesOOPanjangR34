@@ -49,6 +49,10 @@ void Player::printInventory() {
     this->inventory->printMatrix();
 } 
 
+int Player::getInventoryAvailableCount() {
+    return this->inventory->getSlotAvailableCount();
+}
+
 void Player::printCurrentTurn(){
     string title = this->name + " - " + this->getType();
     cout << "+";
