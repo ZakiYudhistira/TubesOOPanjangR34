@@ -256,11 +256,15 @@ class Matrix{
         int getElementCount(string el){
             int count = 0;
             for(auto it = content.begin() ; it != content.end() ; it++){
-                if(el == it->second->getCode()){
+                if(el == it->second->getObjectName()){
                     count++;
                 }
             }
             return count;
+        }
+
+        int getSlotAvailableCount() {
+            return capacity - (int)content.size() ;
         }
 };
 #endif

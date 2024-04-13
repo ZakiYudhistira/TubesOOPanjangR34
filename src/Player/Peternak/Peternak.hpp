@@ -3,6 +3,7 @@
 
 #include "Player/Player.hpp"
 #include "GameObject/Animal/Animal.hpp"
+#include "Config/ProductConfig.hpp"
 
 /*
  * Class. Peternak
@@ -43,10 +44,10 @@ public:
      */
     void feed();
     /*
-     * Fungsi untuk menempatkan hewan dari pen ke inventory.
+     * Fungsi untuk menempatkan hasil hewan dari pen ke inventory.
      *
      */
-    void harvest();
+    void harvest(ProductConfig &product_list);
     /*
      * Override Function. tidak berlaku pada peternak
      */

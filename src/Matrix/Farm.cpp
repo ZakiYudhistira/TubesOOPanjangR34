@@ -65,7 +65,7 @@ void Farm :: printHarvest(){
     }
 }
 
-vector<Animal*> Farm :: harvest(){
+vector<Animal*> Farm :: harvest(__attribute__((unused)) int slot_available){
     printHarvest();
     
     vector<pair<Animal*, int>> type_count;

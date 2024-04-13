@@ -71,7 +71,7 @@ void Field :: updatePlant(){
     }
 };
 
-vector<Plant*> Field :: harvest(){
+vector<Plant*> Field :: harvest(__attribute__((unused)) int slot_available){
     printHarvest();
     
     vector<pair<Plant*, int>> type_count;

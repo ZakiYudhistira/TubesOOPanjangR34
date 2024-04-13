@@ -38,8 +38,7 @@ void Walikota::tax(vector<Player *> player_list)
     cout << "Total Tax : " << total_tax << " Gulden" << endl;
 }
 
-void Walikota::build(RecipeConfig &recipe)
-{
+void Walikota::build(RecipeConfig &recipe) {
     vector<Building*> building_list = recipe.getRecipeList() ;
 
     // Show all available recipes 
@@ -84,7 +83,7 @@ void Walikota::build(RecipeConfig &recipe)
         slot.push_back(in) ;
     }
     for (int i = 0 ; i < (int)material.size() ; i++) {
-        int count_material = this->inventory->countItem(material[i].first) ;
+        int count_material = this->inventory->getElementCount(material[i].first) ;
         if (material[i].second > count_material) {
             pair<string, int> in ;
             in.first = material[i].first ;

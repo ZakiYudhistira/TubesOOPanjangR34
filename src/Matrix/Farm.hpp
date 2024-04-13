@@ -10,6 +10,6 @@ class Farm : public Matrix<Animal*> {
     public :
         Farm(int col, int row);
         void printHarvest();
-        vector<Animal*> harvest();
+        vector<Animal*> harvest(int slot_available);
 };
 #endif

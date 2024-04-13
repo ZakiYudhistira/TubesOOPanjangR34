@@ -10,7 +10,7 @@ class Product : public GameObject {
     private:
         /* berat yang ditambahkan jika dikonsumsi */
         int added_weight;
-        /* asal produk */
+        /* nama asal produk */
         string origin;
     public:
         /* 

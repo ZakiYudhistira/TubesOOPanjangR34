@@ -3,6 +3,7 @@
  
 #include "Player/Player.hpp"
 #include "GameObject/Plant/Plant.hpp"
+#include "Config/ProductConfig.hpp"
 
 /*
 * Class. Petani
@@ -42,7 +43,7 @@ class Petani : public Player {
         * Fungsi untuk menempatkan tanaman dari field ke inventory.
         * 
         */
-        void harvest() ;
+        void harvest(ProductConfig& product_list) ;
         /*
         * Override Function.
         * untuk Petani set ladangnya.

@@ -737,7 +737,8 @@ int main()
     for(int i = 0 ; i < n ; i++){
         jos.updatePlant();
     }
-    vector<Plant*> tes = jos.harvest();
+    int slot_available = 100 ; //ini supaya ga error
+    vector<Plant*> tes = jos.harvest(slot_available);
     for(int i = 0 ; i < (int)tes.size() ; i++){
         cout << tes[i]->getCode() << endl;
     }
