@@ -51,3 +51,11 @@ char const *MaterialNotEnough::what() const noexcept {
 char const *ItemNotFound::what() const noexcept {
     return "Invalid item!" ;
 }
+
+char const *AnimalNotFound::what() const noexcept {
+    return "There is no animal!" ;
+}
+
+char const *NoFoodFound::what() const noexcept {
+    return "You have no food for this animal!" ;
+}

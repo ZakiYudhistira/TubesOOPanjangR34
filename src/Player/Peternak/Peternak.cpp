@@ -86,7 +86,71 @@ void Peternak::ternak() {
     }   
 }
 
-void Peternak::feed() {} // matrix boi
+void Peternak::feed() {
+    // choose animal to feed
+    if (this->pen->getSlotAvailableCount() == this->pen->getCapacity()) {
+        throw AnimalNotFound() ;
+    }
+    string slot_animal ;
+    Animal* animal ;
+    cout << "Choose an animal to feed!" << endl ;
+    this->pen->printHarvest() ;
+    while(true) {
+        cout << "Slot : " ;
+        cin >> slot_animal ;
+        try {
+            animal = this->pen->getElement(slot_animal) ;
+            cout << "You choose " << animal->getObjectName() << " to feed." << endl ;
+            break;
+        }
+        catch(MatrixException &e) {
+            cout << e.what() << endl ;
+        }
+    }
+
+    // check food available
+    if ((animal->getType() == "CARNIVORE") && (this->inventory->getAnimalProductCount() == 0)) {
+        throw NoFoodFound() ;
+    }
+    if ((animal->getType() == "HERBIVORE") && (this->inventory->getFruitProductCount() == 0)) {
+        throw NoFoodFound() ;
+    }
+    if ((this->inventory->getAnimalProductCount() == 0) && (this->inventory->getFruitProductCount() == 0)) {
+        throw NoFoodFound() ;
+    }
+
+    // choose food
+    string slot_food ;
+    GameObject* food ;
+    cout << "Choose the food for the animal!" << endl ;
+    this->inventory->printMatrix() ;
+    while (true) {
+        cout << "Slot : " ;
+        cin >> slot_food ;
+        try {
+            food = this->inventory->getElement(slot_food) ;
+            if ((animal->getType() == "CARNIVORE") && (food->getType() != "PRODUCT_ANIMAL")) {
+                throw IsNotFood() ;
+            }
+            if ((animal->getType() == "HERBIVORE") && (food->getType() != "PRODUCT_FRUIT_PLANT")) {
+                throw IsNotFood() ;
+            }
+            if ((animal->getType() == "OMNIVORE") && ((food->getType() != "PRODUCT_ANIMAL") || (food->getType() != "PRODUCT_FRUIT_PLANT"))) {
+                throw IsNotFood() ;
+            }            
+
+            break ;
+        }
+        catch(IsNotFood &e) {
+            cout << "The food is not suitable! Pick another!" << endl ;
+        }
+    }
+
+    // feed the animal
+    animal->setCurrentWeight(animal->getCurrentWeight() + food->getAddedWeight()) ;
+    this->inventory->removeElement(slot_food) ;
+    cout << "You successfully feed " << animal->getObjectName() << "with " << food->getObjectName() << ", it's weight becomes " << animal->getCurrentWeight() << endl ;
+}
 
 void Peternak::harvest(ProductConfig &product_list)
 {

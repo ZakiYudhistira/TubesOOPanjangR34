@@ -65,4 +65,14 @@ class ItemNotFound: public Exception {
     char const * what() const noexcept override;
 };
 
+class AnimalNotFound: public Exception {
+    public :
+    char const * what() const noexcept override;
+};
+
+class NoFoodFound: public Exception {
+    public :
+    char const * what() const noexcept override;
+};
+
 #endif
