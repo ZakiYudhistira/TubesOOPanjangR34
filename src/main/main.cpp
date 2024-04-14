@@ -16,7 +16,7 @@ Main::Main()
         // initiate TOKO
         toko_cina = *(new Toko(animal_config, plant_config, product_config, recipe_config));
     }
-    catch (const Exception &e)
+    catch (const exception &e)
     {
         cout << e.what() << '\n';
     }
@@ -47,7 +47,7 @@ void Main::main()
         {
             this->gameMode(input_c);
         }
-        catch (Exception &e)
+        catch (exception &e)
         {
             cout << e.what() << endl;
         }
@@ -71,7 +71,7 @@ void Main::main()
                 }
                 isRepeat = false;
             }
-            catch (const Exception &e)
+            catch (const exception &e)
             {
                 cout << e.what() << '\n';
             }
@@ -137,7 +137,7 @@ void Main::main()
                             writeFile(this->f_path, player_list, toko_cina);
                             isRepeat = false;
                         }
-                        catch (Exception &e)
+                        catch (exception &e)
                         {
                             cout << e.what() << endl;
                             cout << "Creating new file . . .\n";
@@ -152,7 +152,7 @@ void Main::main()
                     player_list[current_player_idx]->currentTurn(command, player_list, current_player_idx, game_config, animal_config, plant_config, product_config, recipe_config, toko_cina);
                 }
             }
-            catch (const Exception &e)
+            catch (const exception &e)
             {
                 cout << e.what() << endl;
             }

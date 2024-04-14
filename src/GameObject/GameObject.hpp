@@ -95,6 +95,8 @@ class GameObject {
         virtual int getDurationToHarvest() = 0 ;
 
         virtual int getWeightToHarvest() = 0 ;
+
+        virtual string getOrigin() = 0;
 };
 
 #endif

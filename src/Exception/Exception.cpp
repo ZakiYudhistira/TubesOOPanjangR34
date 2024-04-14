@@ -1,10 +1,5 @@
 #include "Exception.hpp"
 
-char const *Exception::what() const noexcept
-{
-    return "Default Exception";
-}
-
 char const *ExceptionFileNotFound::what() const noexcept
 {
     return "File not found!";
@@ -13,6 +8,21 @@ char const *ExceptionFileNotFound::what() const noexcept
 char const *GuldenNotEnough::what() const noexcept
 {
     return "Gulden anda tidak cukup";
+}
+
+char const *InventoryFullException::what() const noexcept
+{
+    return "Inventory FULL!";
+}
+
+char const *QuantityNotEnoughException::what() const noexcept
+{
+    return "Quantity Not Enough!";
+}
+
+char const *InventoryNotAvailableException::what() const noexcept
+{
+    return "Inventory Error";
 }
 
 char const *TypeNotFound::what() const noexcept

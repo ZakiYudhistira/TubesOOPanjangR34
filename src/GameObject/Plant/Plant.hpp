@@ -38,6 +38,8 @@ class Plant : public GameObject {
 
         int getCurrentDays();
 
+        string getOrigin(){return "";}
+
         friend std::ostream& operator<<(std::ostream& os, const Plant& p);
 };
 

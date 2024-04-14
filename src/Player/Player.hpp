@@ -12,6 +12,7 @@
 #include "Matrix/Field.hpp"
 #include "GameObject/GameObject.hpp"
 #include "Exception/Exception.hpp"
+#include "Toko/Toko.hpp"
 
 #include "Config/GameConfig.hpp"
 #include "Config/ProductConfig.hpp"
@@ -112,6 +113,12 @@ public:
      * @return guldent `int` jumlah gulden player.
      */
     int getGulden();
+
+    void buy(Toko& toko_cina);
+
+    void sell(Toko& toko_cina);
+    // Menerima input petak saat pembelian hingga masukan valid
+    vector<string> inputPetakBeli(int quantity);
     /*
      * Operator Overloading. Untuk debug
      */
@@ -151,7 +158,7 @@ public:
      * Virtual Function.
      * fungsi untuk melakukan action / perintah pada setiap turn.
      */
-    virtual void currentTurn(string, vector<Player *>, int, GameConfig, ProductConfig, RecipeConfig) = 0;
+    virtual void currentTurn(string command, vector<Player *>& player_list, int current_player_idx, GameConfig& game_config, __attribute__((unused)) AnimalConfig&, __attribute__((unused)) PlantConfig& plant_config, __attribute__((unused)) ProductConfig& product_config, RecipeConfig& recipe_config, Toko& toko_cina) = 0;
 };
 
 #endif

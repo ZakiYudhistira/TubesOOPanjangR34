@@ -210,7 +210,7 @@ void Walikota::setPen(__attribute__((unused)) Farm *m)
 {
 }
 
-void Walikota::currentTurn(string command, vector<Player *> player_list, int current_player_idx, GameConfig game_config, __attribute__((unused)) ProductConfig product_config, recipe_config, Toko toko_cina)
+void Walikota::currentTurn(string command, vector<Player *>& player_list, __attribute__((unused)) int current_player_idx, GameConfig& game_config, __attribute__((unused)) AnimalConfig& animal_config, __attribute__((unused)) PlantConfig& plant_config, __attribute__((unused)) ProductConfig& product_config, RecipeConfig& recipe_config, Toko& toko_cina)
 {
     if (command == "PUNGUT_PAJAK")
     {
@@ -233,13 +233,14 @@ void Walikota::currentTurn(string command, vector<Player *> player_list, int cur
     else if (command == "BELI")
     {
         // Beli
-        toko_cina.beli(player_list[current_player_idx]);
+        toko_cina.printToko();
+        this->buy(toko_cina);
         cout << command << " succeed\n";
     }
     else if (command == "JUAL")
     {
         // Jual
-        toko_cina.jual(player_list[current_player_idx]);
+        this->sell(toko_cina);
         cout << command << " succeed\n";
     }
     else if (command == "TAMBAH_PEMAIN")

@@ -4,13 +4,15 @@
 #include <vector>
 #include <string>
 
+#include "Exception/Exception.hpp"
+
 #include "Config/AnimalConfig.hpp"
 #include "Config/PlantConfig.hpp"
 #include "Config/ProductConfig.hpp"
 #include "Config/RecipeConfig.hpp"
 
 #include "GameObject/GameObject.hpp"
-#include "Player/Player.hpp"
+#include "Matrix/MatrixException.hpp"
 
 using namespace std;
 
@@ -43,6 +45,8 @@ public:
     // Getter banyak jenis Item yang tersedia di toko
     int getNumJenisItem();
 
+    int getCheapestPrice();
+
     // getter untuk item ke i
     pair<GameObject *, int> getItemI(int i);
 
@@ -50,13 +54,12 @@ public:
     void printToko();
 
     // Melakukan pembelian dari seorang player pada toko
-    void beli(Player *current_player);
+    GameObject* beli(int idx, int quantity, int gulden, int inventory_available);
 
     // Melakukan penjualan untuk seorang player dari toko
-    void jual(Player *current_player);
+    int jual(vector<GameObject*> sold);
 
-    // Menerima input petak saat pembelian hingga masukan valid
-    vector<string> inputPetakBeli(int quantity);
+    
 };
 
 #endif

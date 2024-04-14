@@ -70,13 +70,13 @@ class Product : public GameObject {
         friend std::ostream& operator<<(std::ostream& os, const Product& p);
         /*
         * Virtual Function.
-        * untuk child class mengembalikan tipe (MATERIAL_PRODUCT, FOOD_PRODUCT)
+        * untuk child class mengembalikan tipe (MATERIAL_PRODUCT, PRODUCT_FRUIT_PLANT, PRODUCT_ANIMAL)
         * @return type `string` tipe dari objek.
         */
         virtual string getType() = 0;
         /*
         * Virtual Function.
-        * untuk child class set tipe (MATERIAL_PRODUCT, FOOD_PRODUCT)
+        * untuk child class set tipe (MATERIAL_PRODUCT, PRODUCT_FRUIT_PLANT, PRODUCT_ANIMAL)
         * @param type `string` tipe dari objek.
         */
         virtual void setType(string s) = 0;

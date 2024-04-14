@@ -215,7 +215,7 @@ void Petani::setField(Field *m)
 }
 void Petani::setPen(__attribute__((unused)) Farm *m) {}
 
-void Petani::currentTurn(string command, vector<Player *> player_list, int current_player_idx, __attribute__((unused)) GameConfig game_config, ProductConfig product_config, __attribute__((unused)) recipe_config, Toko toko_cina)
+void Petani::currentTurn(string command, __attribute__((unused)) vector<Player *>& player_list, __attribute__((unused)) int current_player_idx, __attribute__((unused)) GameConfig& game_config, __attribute__((unused)) AnimalConfig& animal_config, __attribute__((unused)) PlantConfig& plant_config, __attribute__((unused)) ProductConfig& product_config, __attribute__((unused)) RecipeConfig& recipe_config, Toko& toko_cina)
 {
     if (command == "CETAK_LADANG")
     {
@@ -234,13 +234,14 @@ void Petani::currentTurn(string command, vector<Player *> player_list, int curre
     else if (command == "BELI")
     {
         // Beli
-        toko_cina.beli(player_list[current_player_idx]);
+        toko_cina.printToko();
+        this->buy(toko_cina);
         cout << command << " succeed\n";
     }
     else if (command == "JUAL")
     {
         // Jual
-        toko_cina.jual(player_list[current_player_idx]);
+        this->sell(toko_cina);
         cout << command << " succeed\n";
     }
     else if (command == "PANEN")

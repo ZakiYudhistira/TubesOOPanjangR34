@@ -39,6 +39,8 @@ class Building: public GameObject {
         
         int getWeightToHarvest() {return 0 ;}
 
+        string getOrigin() {return "";}
+
         friend std::ostream& operator<<(std::ostream& os, Building& b);
 };
 
