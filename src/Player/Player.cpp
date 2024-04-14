@@ -27,7 +27,7 @@ void Player::eat() {
     cin >> slot ;
     GameObject* item = this->inventory->getElement(slot) ;
     string type = item->getType() ;
-    if (type == "FOOD_PRODUCT") {
+    if (type == "") {
         this->addBodyWeight(item->getAddedWeight()) ;
         this->inventory->removeElement(slot) ;
     }

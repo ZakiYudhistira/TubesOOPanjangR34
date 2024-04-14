@@ -33,8 +33,8 @@ pair<Product*, bool> ProductConfig::isInstanceOf(std::string s){
             
             if(type == "MATERIAL_PRODUCT"){
                 new_product = new MaterialProduct(id, code, name, price, added, origin, "PRODUCT_MATERIAL_PLANT");
-            } else if(type == "FOOD_PRODUCT"){
-                new_product = new FoodProduct(id, code, name, price, added, origin, "PRODUCT_FRUIT_PLANT");
+            } else if(type == "PRODUCT_FRUIT_PLANT" || type == "PRODUCT_ANIMAL"){
+                new_product = new FoodProduct(id, code, name, price, added, origin, type);
             }
 
             return make_pair(new_product, true);

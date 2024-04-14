@@ -107,9 +107,6 @@ void Main::main()
         }
     }
 
-    /* TESTING TOKO CINA - (-1000) artinya unlimited*/
-    cout << toko_cina;
-
     int current_player_idx = 0;
     while (true)
     {
@@ -139,7 +136,7 @@ void Main::main()
                             isRepeat = false;
                         } catch (Exception& e){
                             cout << e.what() << endl;
-                            cout << "Creating new file . . .";
+                            cout << "Creating new file . . .\n";
                             writeFile(this->f_path, player_list, toko_cina);
 
                             isRepeat = false;
@@ -400,7 +397,7 @@ void Main::readFile(std::string file_name, ProductConfig &pc)
         }
         else
         {
-            FoodProduct *food_product = new FoodProduct(id, code, name, price, added_weight, origin, "FOOD_PRODUCT");
+            FoodProduct *food_product = new FoodProduct(id, code, name, price, added_weight, origin, type);
             temp_product = food_product;
         }
 
