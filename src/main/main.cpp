@@ -128,10 +128,6 @@ void Main::main()
         cout << "Giliran dilanjutkan ke pemain berikutnya.\n";
 
         current_player_idx += 1 % ((int)player_list.size() - 1);
-        // if (current_player_idx == (int)player_list.size())
-        // {
-        //     current_player_idx = 0;
-        // }
     }
 }
 
