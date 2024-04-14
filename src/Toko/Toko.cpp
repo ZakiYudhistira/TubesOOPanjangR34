@@ -73,63 +73,130 @@ pair<GameObject*, int> Toko::getItemI(int i){
     return this->item_list[i];
 }
 
-ostream& operator<<(ostream& os, __attribute__((unused)) Toko t) {
-    os  << "Selamat datang di Toko Cina!" << endl
+void Toko::printToko() {
+    cout  << "Selamat datang di Toko Cina!" << endl
         << "Berikut merupakan barang-barang yang dapat Anda beli" << endl;
 
-    for (int i=0; i<t.neff; i++) {
-        if (t.item_list[i].first->getType() == "MATERIAL_PLANT"
-            || t.item_list[i].first->getType() == "FRUIT_PLANT"
-            || t.item_list[i].first->getType() == "HERBIVORE"
-            || t.item_list[i].first->getType() == "CARNIVORE"
-            || t.item_list[i].first->getType() == "OMNIVORE") {
-            os << std::setw(2) << (i+1) << ". " << std::setw(20) << t.item_list[i].first->getObjectName() << std::setw(15) << t.item_list[i].first->getPrice() << endl;
-        } else {
-            os << std::setw(2) << (i+1) << ". " << std::setw(20) << t.item_list[i].first->getObjectName() << std::setw(15) << t.item_list[i].first->getPrice() << std::setw(15) << t.item_list[i].second << endl;
+    for (int i=0; i<this->neff; i++) {
+        cout << (i+1) << ". " << std::setw(10) << this->item_list[i].first->getObjectName() << std::setw(15) << this->item_list[i].first->getPrice();
+        if (this->item_list[i].second != -1000) {
+            cout << std::setw(15) << this->item_list[i].second;
         }
+        cout << endl;
     }
-    return os;
 }
 
-void Toko::beli(vector<GameObject*> sold) {
-    for (int i=0; i < (int)sold.size(); i++) {
-        bool exists = false;
-        int j=0;
-        while (!exists && j < this->neff) {
-            if (this->item_list[j].first->getObjectName() == sold[i]->getObjectName()) {
-                exists = true;
+void Toko::beli(Player* current_player) {
+    cout << "Berikut merupakan penyimpanan Anda" << endl;
+    current_player->printInventory();
+    cout << "Silahkan pilih petak yang ingin Anda jual" << endl;
+    vector<string> petak_jual;
+    string input_petak;
+    cout << "Petak : ";
+    getline(cin, input_petak);
+    stringstream ssinput(input_petak);
+    string s;
+    while (ssinput >> s) {
+        petak_jual.push_back(s);
+    }
+
+    int gulden_given=0;
+    vector<GameObject*> sold;
+    // try {
+        for (int i=0; i<(int) petak_jual.size(); i++) {
+            sold.push_back(current_player->getInventory(petak_jual[i]));
+        }
+        for (int i=0; i<(int) sold.size(); i++) {
+            bool exists = false;
+            int j=0;
+            while (!exists && j < this->neff) {
+                if (this->item_list[j].first->getObjectName() == sold[i]->getObjectName()) {
+                    exists = true;
+                }
+                j++;
             }
-            j++;
+            if (exists) {
+                j--;
+                if (this->item_list[j].second != -1000) {
+                    this->item_list[j].second++;
+                }
+            } else {
+                pair<GameObject*, int> added_item = make_pair(sold[i], 1);
+                this->item_list.push_back(added_item);
+                this->neff++;
+            }
+            gulden_given += sold[i]->getPrice();
         }
-        if (exists) {
-            j--;
-            this->item_list[j].second++;
+        current_player->addGulden(gulden_given);
+        cout << "Barang Anda berhasil dijual! Uang Anda bertambah " << gulden_given << "gulden!\n";
+    // } catch (Exception e) {
+    //     cout << "";
+    // }
+}
+
+void Toko::jual(Player* current_player) {
+    if (this->cheapest_price > current_player->getGulden()) {
+        throw GuldenNotEnough();
+    } else if (current_player->getInventoryAvailableCount() == 0) {
+        // throw InventoryFullException();
+    } else {
+        GameObject* item_bought;
+        this->printToko();
+        cout << "Uang Anda : " << current_player->getGulden() << endl;
+        cout << "Slot penyimpanan tersedia : " << current_player->getInventoryAvailableCount() << endl;
+        int idx_to_buy;
+        int quantity;
+
+        cout << "Barang yang ingin dibeli : ";
+        cin >> idx_to_buy;
+        cout << "Kuantitas : ";
+        cin >> quantity;
+
+        
+        if (quantity > this->item_list[idx_to_buy-1].second && this->item_list[idx_to_buy-1].second != -1000) {
+            // throw QuantityNotEnoughException();
+            cout << "quantity error";
+        } else if (quantity*this->item_list[idx_to_buy-1].first->getPrice() > current_player->getGulden()) {
+            throw GuldenNotEnough();
+        } else if (current_player->getInventoryAvailableCount() < quantity) {
+            // throw InventoryNotAvailableException();
+            cout << "inventory error";
+        } else if (idx_to_buy > this->neff) {
+            // throw IndexOutOfRangeException();
+            cout << "index error";
         } else {
-            pair<GameObject*, int> added_item = make_pair(sold[i], 1);
-            this->item_list.push_back(added_item);
-            this->neff++;
+            item_bought = this->item_list[idx_to_buy-1].first;
+            this->item_list[idx_to_buy-1].second -= quantity;
+            current_player->addGulden(quantity*item_bought->getPrice()*(-1));
+            cout << "Selamat, Anda berhasil membeli " << quantity << " " << item_bought->getObjectName()
+                << ". Uang Anda tersisa " << current_player->getGulden() << " gulden." << endl;
+            cout << "Pilih slot untuk menyimpan barang yang Anda beli!" << endl;
+            current_player->printInventory();
+            vector<string> petak_beli = this->inputPetakBeli(quantity);
+            current_player->addInventory(item_bought, petak_beli);
+            cout << item_bought->getObjectName() << " berhasil disimpan dalam penyimpanan!" << endl;
         }
     }
 }
 
-pair<GameObject*, int> Toko::jual(Player* current_player) {
-    pair<GameObject*, int> item_bought;
-    int idx_to_buy;
-    int quantity;
-
-    cout << "Barang yang ingin dibeli : ";
-    cin >> idx_to_buy;
-    cout << "Kuantitas : ";
-    cin >> quantity;
-
-    if (quantity > this->item_list[idx_to_buy-1].second) {
-        // throw QuantityNotEnoughException();
-    } else if (quantity*this->item_list[idx_to_buy-1].first->getPrice() > current_player->getGulden()) {
-        throw GuldenNotEnough();
-    } else {
-        item_bought = make_pair(this->item_list[idx_to_buy-1].first, quantity);
-        this->item_list[idx_to_buy-1].second -= quantity;
-        return item_bought;
+vector<string> Toko::inputPetakBeli(int quantity) {
+    vector<string> petak_beli;
+    string input_petak;
+    string s;
+    while ((int) petak_beli.size() != quantity) {
+        cout << quantity << endl;
+        cout << petak_beli.size() << endl;
+        petak_beli.clear();
+        cout << "Petak : ";
+        getline(cin, input_petak);
+        stringstream ssinput(input_petak);
+        while (getline(ssinput, s, ',')) {
+            petak_beli.push_back(s);
+            cout << s << endl;
+        }
+        if ((int) petak_beli.size() != quantity) {
+            cout << "Masukkan sesuai kuantitas yang Anda beli!" << endl;
+        }
     }
-    return item_bought ; // direturn supaya ga error
+    return petak_beli;
 }
