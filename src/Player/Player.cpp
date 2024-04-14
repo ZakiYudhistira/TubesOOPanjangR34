@@ -45,6 +45,20 @@ vector<pair<GameObject*, string>> Player::getAllItem(){
     return this->inventory->getAllElement();
 }
 
+void Player::addInventory(GameObject* item, string slot) {
+    this->inventory->addElement(item, slot);
+}
+
+void Player::addInventory(GameObject* item, vector<string> slots) {
+    for (int i=0; i<(int)slots.size(); i++) {
+        this->inventory->addElement(item, slots[i]);
+    }
+}
+
+GameObject* Player::getInventory(string location) {
+    return this->inventory->getElement(location);
+}
+
 void Player::printInventory() {
     this->inventory->printMatrix();
 } 

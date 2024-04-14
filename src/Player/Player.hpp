@@ -73,6 +73,12 @@ public:
      */
     void printInventory();
 
+    void addInventory(GameObject* item, string slot);
+
+    void addInventory(GameObject* item, vector<string> slot);
+
+    GameObject* getInventory(string location);
+
     int getInventoryAvailableCount();
     /*
      * Fungsi untuk menampilkan turn siapa saat ini.

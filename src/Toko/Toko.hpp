@@ -21,6 +21,8 @@ class Toko {
         vector<pair<GameObject*, int>> item_list;
         /* banyak jenis item pada toko */
         int neff;
+        /* Harga terendah barang pada toko */
+        int cheapest_price;
     public:
         // Default Constructor
         Toko();
@@ -43,13 +45,16 @@ class Toko {
         pair<GameObject*, int> getItemI(int i);
 
         // Operator overload untuk output item pada toko
-        friend ostream& operator<<(ostream& os, Toko t);
+        void printToko();
 
         // Melakukan pembelian dari seorang player pada toko
-        void beli(vector<GameObject*> sold);
+        void beli(Player* current_player);
 
         // Melakukan penjualan untuk seorang player dari toko
-        pair<GameObject*, int> jual(Player* current_player);
+        void jual(Player* current_player);
+
+        // Menerima input petak saat pembelian hingga masukan valid
+        vector<string> inputPetakBeli(int quantity);
 };
 
 #endif
