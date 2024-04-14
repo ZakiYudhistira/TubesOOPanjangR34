@@ -175,7 +175,7 @@ void Peternak::harvest(ProductConfig &product_list)
                 j++;
             }
         }
-        if (product_to_make->getType() == "MATERIAL_PRODUCT")
+        if (product_to_make->getType() == "PRODUCT_MATERIAL_PLANT")
         {
             MaterialProduct *hasil = new MaterialProduct(product_to_make->getId(), product_to_make->getCode(), product_to_make->getObjectName(), product_to_make->getPrice(), product_to_make->getAddedWeight(), product_to_make->getOrigin(), product_to_make->getType());
             this->inventory->addElement(hasil);
@@ -187,7 +187,7 @@ void Peternak::harvest(ProductConfig &product_list)
         }
     }
 }
-
+ 
 void Peternak::printPen()
 {
     this->pen->printHarvest();
