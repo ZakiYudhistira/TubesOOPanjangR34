@@ -158,9 +158,9 @@ vector<Animal*> Farm :: harvest(__attribute__((unused)) int slot_available){
                 removeElement(coordinate);
                 break;
             } catch (InvalidObject &e){
-                cout << "Invalid plant to harvest, please try again" << endl;
+                cout << "Invalid animal to harvest, please try again" << endl;
             } catch (NotHarvestAble &e){
-                cout << e.what() << ", please try again" << endl;
+                cout << "Animal " << e.what() << ", please try again" << endl;
             } catch (MatrixException &e) {
                 cout << "Invalid index, please try again" << endl;
             }

@@ -27,5 +27,5 @@ char const * InsufficientSpace :: what() const noexcept{
 }
 
 char const * NotHarvestAble :: what() const noexcept{
-    return "Plant Not Harvestable";
+    return "Not Harvestable";
 }

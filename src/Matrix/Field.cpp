@@ -166,7 +166,7 @@ vector<Plant*> Field :: harvest(__attribute__((unused)) int slot_available){
             } catch (InvalidObject &e){
                 cout << "Invalid plant to harvest, please try again" << endl;
             } catch (NotHarvestAble &e){
-                cout << e.what() << ", please try again" << endl;
+                cout << "Plant " << e.what() << ", please try again" << endl;
             } catch (MatrixException &e) {
                 cout << "Invalid index, please try again" << endl;
             }
