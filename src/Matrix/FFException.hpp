@@ -32,4 +32,9 @@ class InsufficientSpace : public FFException {
     public:
     virtual char const * what() const noexcept;
 };
+
+class NotHarvestAble : public FFException {
+    public:
+    virtual char const * what() const noexcept;
+};
 #endif

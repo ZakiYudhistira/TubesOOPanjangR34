@@ -731,12 +731,12 @@ int main()
     jos.addElement(new FruitPlant(12, "JAR", "JAVA", "Fruit Plant",56, 2));
     jos.addElement(new MaterialPlant(12, "COC", "Clashson", "Fruit Plant",56, 3));
     jos.addElement(new FruitPlant(12, "VOC", "Clash", "Fruit Plant",56, 2));
-    jos.addElement(new FruitPlant(12, "VOC", "Clash", "Fruit Plant",56, 2));
     cout << jos.getElementCount("VOC") << endl;
     int n = 2;
     for(int i = 0 ; i < n ; i++){
         jos.updatePlant();
     }
+    jos.addElement(new FruitPlant(12, "VOC", "Clash", "Fruit Plant",56, 2));
     int slot_available = 100 ; //ini supaya ga error
     vector<Plant*> tes = jos.harvest(slot_available);
     for(int i = 0 ; i < (int)tes.size() ; i++){

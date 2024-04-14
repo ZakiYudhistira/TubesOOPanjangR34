@@ -31,12 +31,3 @@ bin/ProductConfig.o
 bin/RecipeConfig.o
 bin/Toko.o
 bin/Walikota.o
-bin/main.o
-bin/Field.o
-bin/Farm.o
-bin/Field.o
-bin/main.o
-bin/Petani.o
-bin/Peternak.o
-bin/Player.o
-bin/Walikota.o
