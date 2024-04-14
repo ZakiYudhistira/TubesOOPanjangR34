@@ -60,5 +60,9 @@ class MaterialNotEnough: public Exception { // ini ga kepake coba tanya Vanson
     char const * what() const noexcept override;
 };
 
+class ItemNotFound: public Exception {
+    public :
+    char const * what() const noexcept override;
+};
 
 #endif

@@ -3,6 +3,9 @@
 
 #include "Player/Player.hpp"
 #include "GameObject/Animal/Animal.hpp"
+#include "GameObject/Animal/Carnivore/Carnivore.hpp"
+#include "GameObject/Animal/Herbivore/Herbivore.hpp"
+#include "GameObject/Animal/Omnivore/Omnivore.hpp"
 #include "Config/ProductConfig.hpp"
 
 /*

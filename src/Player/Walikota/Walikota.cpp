@@ -20,13 +20,16 @@ void Walikota::tax(vector<Player *> player_list)
     {
         int tax_player = 0;
         string type = player_list[i]->getType();
-        if (type == "WALIKOTA")
+        if (type == "Walikota")
         {
             continue;
         }
         else
         {
             tax_player += player_list[i]->payTax();
+            if (tax_player > player_list[i]->getGulden()) {
+                tax_player = player_list[i]->getGulden() ;
+            }
             player_list[i]->addGulden(tax_player * -1);
             this->addGulden(tax_player);
             total_tax += tax_player;

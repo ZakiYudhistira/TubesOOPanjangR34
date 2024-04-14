@@ -162,6 +162,6 @@ vector<Plant*> Field :: harvest(__attribute__((unused)) int slot_available){
             }
         }
     }
-
+ 
     return ret;
 }

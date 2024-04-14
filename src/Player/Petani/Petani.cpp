@@ -18,10 +18,70 @@ Petani::~Petani()
     delete this->field;
 }
 
-void Petani::plant()
-{ // this too nunggu zaki
+void Petani::plant() {
+    cout << "Choose plant from inventory!" << endl ;
+    this->inventory->printMatrix() ;
+    string slot ;
+
+    // Input and validate plant from inventory
+    Plant *hasil ;
+    while(true) {
+        cout << "Slot : " ;
+        cin >> slot ;
+        try {
+            GameObject* plant = this->inventory->getElement(slot) ;
+            if (this->field->getSlotAvailableCount() == 0) {
+                throw MatrixFull() ;
+            }
+            if (plant->getType() == "FRUIT_PLANT") {
+                FruitPlant *hasilf = new FruitPlant(plant->getId(), plant->getCode(), plant->getObjectName(), plant->getType(), plant->getPrice(), plant->getDurationToHarvest()) ;
+                this->inventory->removeElement(slot) ;
+                cout << "You choose " << hasilf->getObjectName() << "." << endl ;
+                hasil = hasilf ;
+                break;
+            }
+            else if (plant->getType() == "MATERIAL_PLANT") {
+                MaterialPlant *hasilm = new MaterialPlant(plant->getId(), plant->getCode(), plant->getObjectName(), plant->getType(), plant->getPrice(), plant->getDurationToHarvest()) ;
+                this->inventory->removeElement(slot) ;
+                cout << "You choose " << hasilm->getObjectName() << "." << endl ;
+                hasil = hasilm ;
+                break;
+            }
+            else {
+                throw ItemNotFound() ;
+            }
+        }
+        catch(MatrixFull &e) {
+            cout << "There is no space in your field!" << endl ;
+        }
+        catch(MatrixException &e) {
+            cout << "Input invalid, try again!" << endl ;
+        }
+        catch(ItemNotFound &e) {
+            cout << e.what() << endl ;
+        }
+    }
+
+    // Put the plant into the field
+    cout << "Choose space to plant!" << endl ;
+    this->field->printHarvest() ;
+    while(true) {
+        cout << "Slot : " ;
+        cin >> slot ;
+        try {
+            this->field->addElement(hasil) ;
+            cout << hasil->getObjectName() << " successfully planted!" << endl ;
+            break;            
+        }
+
+        catch(MatrixException &e) {
+            cout << "Input invalid, try again!" << endl ;
+        }
+    }   
 }
  
+
+
 void Petani::harvest(ProductConfig &product_list){
     int slot_available = this->inventory->getSlotAvailableCount() ;
     vector<Plant*> harvest_list = this->field->harvest(slot_available) ;
@@ -63,6 +123,8 @@ string Petani::getType()
 int Petani::payTax()
 {
     double gulden = -13;
+    gulden += this->getGulden() ;
+    
     // hitung total kekayaan dari Inventory
     map<string, GameObject *>::iterator it = this->inventory->getContent().begin();
     while (it != this->inventory->getContent().end())

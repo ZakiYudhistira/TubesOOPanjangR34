@@ -3,6 +3,9 @@
  
 #include "Player/Player.hpp"
 #include "GameObject/Plant/Plant.hpp"
+#include "GameObject/Plant/FruitPlant/FruitPlant.hpp"
+#include "GameObject/Plant/MaterialPlant/MaterialPlant.hpp"
+
 #include "Config/ProductConfig.hpp"
 
 /*

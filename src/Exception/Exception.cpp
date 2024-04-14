@@ -47,3 +47,7 @@ char const *RecipeNotFound::what() const noexcept {
 char const *MaterialNotEnough::what() const noexcept {
     return "You don't have enough material" ;
 }
+
+char const *ItemNotFound::what() const noexcept {
+    return "Invalid item!" ;
+}

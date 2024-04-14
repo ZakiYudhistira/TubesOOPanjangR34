@@ -60,6 +60,10 @@ class Product : public GameObject {
         * Override Function. tidak berlaku pada Produk
         */
         int getCurrentDays(){return 0;}
+
+        int getDurationToHarvest(){return 0;}
+
+        int getWeightToHarvest() {return 0;}
         /*
         * Operator Overloading. Untuk debug
         */

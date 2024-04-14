@@ -91,6 +91,10 @@ class GameObject {
         * @return current_days `int` dari plant.
         */
         virtual int getCurrentDays() = 0;
+
+        virtual int getDurationToHarvest() = 0 ;
+
+        virtual int getWeightToHarvest() = 0 ;
 };
 
 #endif

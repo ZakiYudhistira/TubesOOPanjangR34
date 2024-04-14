@@ -17,7 +17,74 @@ Peternak::~Peternak()
     delete this->pen;
 }
 
-void Peternak::ternak() {} // matrikx boi
+void Peternak::ternak() {
+    cout << "Choose an animal from inventory!" << endl ;
+    this->inventory->printMatrix() ;
+    string slot ;
+
+    // Input and validate animal from inventory
+    Animal *hasil ;
+    while(true) {
+        cout << "Slot : " ;
+        cin >> slot ;
+        try {
+            GameObject* animal = this->inventory->getElement(slot) ;
+            if (this->pen->getSlotAvailableCount() == 0) {
+                throw MatrixFull() ;
+            }
+            if (animal->getType() == "CARNIVORE") {
+                Carnivore *hasilc = new Carnivore(animal->getId(), animal->getCode(), animal->getObjectName(), animal->getType(), animal->getPrice(), animal->getWeightToHarvest()) ;
+                this->inventory->removeElement(slot) ;
+                cout << "You choose " << hasilc->getObjectName() << "." << endl ;
+                hasil = hasilc ;
+                break;
+            }
+            else if (animal->getType() == "HERBIVORE") {
+                Herbivore *hasilh = new Herbivore(animal->getId(), animal->getCode(), animal->getObjectName(), animal->getType(), animal->getPrice(), animal->getWeightToHarvest()) ;
+                this->inventory->removeElement(slot) ;
+                cout << "You choose " << hasilh->getObjectName() << "." << endl ;
+                hasil = hasilh ;
+                break;
+            }
+            else if (animal->getType() == "OMNIVORE") {
+                Omnivore *hasilo = new Omnivore(animal->getId(), animal->getCode(), animal->getObjectName(), animal->getType(), animal->getPrice(), animal->getWeightToHarvest()) ;
+                this->inventory->removeElement(slot) ;
+                cout << "You choose " << hasilo->getObjectName() << "." << endl ;
+                hasil = hasilo ;
+                break;
+            }
+            else {
+                throw ItemNotFound() ;
+            }
+        }
+        catch(MatrixFull &e) {
+            cout << "There is no space in your field!" << endl ;
+        }
+        catch(MatrixException &e) {
+            cout << "Input invalid, try again!" << endl ;
+        }
+        catch(ItemNotFound &e) {
+            cout << e.what() << endl ;
+        }
+    }
+
+    // Put the animal into the field
+    cout << "Choose space to put the animal!" << endl ;
+    this->pen->printHarvest() ;
+    while(true) {
+        cout << "Slot : " ;
+        cin >> slot ;
+        try {
+            this->pen->addElement(hasil) ;
+            cout << hasil->getObjectName() << " successfully placed!" << endl ;
+            break;
+        }
+
+        catch(MatrixException &e) {
+            cout << "Input invalid, try again!" << endl ;
+        }
+    }   
+}
 
 void Peternak::feed() {} // matrix boi
 
@@ -63,6 +130,8 @@ string Peternak::getType()
 int Peternak::payTax()
 {
     double gulden = -11;
+    gulden += this->getGulden() ;
+    
     // hitung total kekayaan dari Inventory
     map<string, GameObject *>::iterator it = this->inventory->getContent().begin();
     while (it != this->inventory->getContent().end())
