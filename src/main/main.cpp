@@ -107,12 +107,6 @@ void Main::main()
         }
     }
 
-<<<<<<< Updated upstream
-=======
-    /* TESTING TOKO CINA - (-1000) artinya unlimited*/
-    // cout << toko_cina;
-
->>>>>>> Stashed changes
     int current_player_idx = 0;
     while (true)
     {
