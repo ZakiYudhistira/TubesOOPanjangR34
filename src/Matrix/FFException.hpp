@@ -3,27 +3,32 @@
 
 #include <exception>
 
-class FieldException : public std :: exception {
+class FFException : public std :: exception {
     public:
     virtual char const * what() const noexcept;
 };
 
-class NoHarvestObject : public FieldException {
+class NoHarvestObject : public FFException {
     public:
     virtual char const * what() const noexcept;
 };
 
-class HarvestOutOfBounds : public FieldException {
+class HarvestOutOfBounds : public FFException {
     public:
     virtual char const * what() const noexcept;
 };
 
-class HarvestCountInvalid : public FieldException {
+class HarvestCountInvalid : public FFException {
     public:
     virtual char const * what() const noexcept;
 };
 
-class InvalidObject : public FieldException {
+class InvalidObject : public FFException {
+    public:
+    virtual char const * what() const noexcept;
+};
+
+class InsufficientSpace : public FFException {
     public:
     virtual char const * what() const noexcept;
 };
