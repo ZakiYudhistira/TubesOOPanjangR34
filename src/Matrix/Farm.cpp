@@ -1,12 +1,12 @@
+#include <vector>
+#include <iostream>
+#include <map>
+#include <string>
 #include "Farm.hpp"
 #include "GameObject/Animal/Animal.hpp"
 #include "pcolor/pcolor.hpp"
 #include "FFException.hpp"
 #include "Matrix.hpp"
-#include <vector>
-#include <iostream>
-#include <map>
-#include <string>
 using namespace std;
 
 Farm::Farm(int col, int row) : Matrix<Animal*>(col, row, "Farm"){};
@@ -63,7 +63,7 @@ void Farm :: printHarvest(){
             printMatrixLine();
         }
     }
-}
+};
 
 vector<Animal*> Farm :: harvest(__attribute__((unused)) int slot_available){
     printHarvest();
@@ -75,11 +75,11 @@ vector<Animal*> Farm :: harvest(__attribute__((unused)) int slot_available){
     for(auto i = content.begin() ; i != content.end() ; i++){
         int j;
         for(j = 0; j < (int)type_count.size() ; j++){
-            if(i->second->isHarvest()){
-                if(i->second->getCode() == type_count[j].first->getCode()){
+            if(i->second->getCode() == type_count[j].first->getCode()){
+                if(i->second->isHarvest()){
                     type_count[j].second++;
-                    break;
                 }
+                break;
             }
         }
         if(j == (int)type_count.size()){
@@ -104,7 +104,7 @@ vector<Animal*> Farm :: harvest(__attribute__((unused)) int slot_available){
     }
     cout << endl;
 
-    cout << "Pilih tanaman siap panen yang kamu miliki" << endl;
+    cout << "Pilih hewan siap panen yang kamu miliki" << endl;
     int index = 1;
     for(int i = 0 ; i < (int)type_count.size() ; i++){
         if(type_count[i].second > 0){
@@ -118,7 +118,7 @@ vector<Animal*> Farm :: harvest(__attribute__((unused)) int slot_available){
     cout << endl;
 
     int index_harvest;
-    cout << "Nomor tanaman yang ingin di panen: ";
+    cout << "Nomor hewan yang ingin di panen: ";
     cin >> index_harvest;
     cout << endl;
 
@@ -150,11 +150,17 @@ vector<Animal*> Farm :: harvest(__attribute__((unused)) int slot_available){
                 if(temp->getCode() != type_count[index_harvest - 1].first->getCode()){
                     throw InvalidObject();
                 }
+
+                if(!temp->isHarvest()){
+                    throw NotHarvestAble();
+                }
                 ret.push_back(temp);
                 removeElement(coordinate);
                 break;
             } catch (InvalidObject &e){
                 cout << "Invalid plant to harvest, please try again" << endl;
+            } catch (NotHarvestAble &e){
+                cout << e.what() << ", please try again" << endl;
             } catch (MatrixException &e) {
                 cout << "Invalid index, please try again" << endl;
             }
