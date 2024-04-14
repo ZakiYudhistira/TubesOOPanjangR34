@@ -17,139 +17,167 @@ Peternak::~Peternak()
     delete this->pen;
 }
 
-void Peternak::ternak() {
-    cout << "Choose an animal from inventory!" << endl ;
-    this->inventory->printMatrix() ;
-    string slot ;
+void Peternak::ternak()
+{
+    cout << "Choose an animal from inventory!" << endl;
+    this->inventory->printMatrix();
+    string slot;
 
     // Input and validate animal from inventory
-    Animal *hasil ;
-    while(true) {
-        cout << "Slot : " ;
-        cin >> slot ;
-        try {
-            GameObject* animal = this->inventory->getElement(slot) ;
-            if (this->pen->getSlotAvailableCount() == 0) {
-                throw MatrixFull() ;
+    Animal *hasil;
+    while (true)
+    {
+        cout << "Slot : ";
+        cin >> slot;
+        try
+        {
+            GameObject *animal = this->inventory->getElement(slot);
+            if (this->pen->getSlotAvailableCount() == 0)
+            {
+                throw MatrixFull();
             }
-            if (animal->getType() == "CARNIVORE") {
-                Carnivore *hasilc = new Carnivore(animal->getId(), animal->getCode(), animal->getObjectName(), animal->getType(), animal->getPrice(), animal->getWeightToHarvest()) ;
-                this->inventory->removeElement(slot) ;
-                cout << "You choose " << hasilc->getObjectName() << "." << endl ;
-                hasil = hasilc ;
+            if (animal->getType() == "CARNIVORE")
+            {
+                Carnivore *hasilc = new Carnivore(animal->getId(), animal->getCode(), animal->getObjectName(), animal->getType(), animal->getPrice(), animal->getWeightToHarvest());
+                this->inventory->removeElement(slot);
+                cout << "You choose " << hasilc->getObjectName() << "." << endl;
+                hasil = hasilc;
                 break;
             }
-            else if (animal->getType() == "HERBIVORE") {
-                Herbivore *hasilh = new Herbivore(animal->getId(), animal->getCode(), animal->getObjectName(), animal->getType(), animal->getPrice(), animal->getWeightToHarvest()) ;
-                this->inventory->removeElement(slot) ;
-                cout << "You choose " << hasilh->getObjectName() << "." << endl ;
-                hasil = hasilh ;
+            else if (animal->getType() == "HERBIVORE")
+            {
+                Herbivore *hasilh = new Herbivore(animal->getId(), animal->getCode(), animal->getObjectName(), animal->getType(), animal->getPrice(), animal->getWeightToHarvest());
+                this->inventory->removeElement(slot);
+                cout << "You choose " << hasilh->getObjectName() << "." << endl;
+                hasil = hasilh;
                 break;
             }
-            else if (animal->getType() == "OMNIVORE") {
-                Omnivore *hasilo = new Omnivore(animal->getId(), animal->getCode(), animal->getObjectName(), animal->getType(), animal->getPrice(), animal->getWeightToHarvest()) ;
-                this->inventory->removeElement(slot) ;
-                cout << "You choose " << hasilo->getObjectName() << "." << endl ;
-                hasil = hasilo ;
+            else if (animal->getType() == "OMNIVORE")
+            {
+                Omnivore *hasilo = new Omnivore(animal->getId(), animal->getCode(), animal->getObjectName(), animal->getType(), animal->getPrice(), animal->getWeightToHarvest());
+                this->inventory->removeElement(slot);
+                cout << "You choose " << hasilo->getObjectName() << "." << endl;
+                hasil = hasilo;
                 break;
             }
-            else {
-                throw ItemNotFound() ;
+            else
+            {
+                throw ItemNotFound();
             }
         }
-        catch(MatrixFull &e) {
-            cout << "There is no space in your field!" << endl ;
+        catch (MatrixFull &e)
+        {
+            cout << "There is no space in your field!" << endl;
         }
-        catch(MatrixException &e) {
-            cout << "Input invalid, try again!" << endl ;
+        catch (MatrixException &e)
+        {
+            cout << "Input invalid, try again!" << endl;
         }
-        catch(ItemNotFound &e) {
-            cout << e.what() << endl ;
+        catch (ItemNotFound &e)
+        {
+            cout << e.what() << endl;
         }
     }
 
     // Put the animal into the field
-    cout << "Choose space to put the animal!" << endl ;
-    this->pen->printHarvest() ;
-    while(true) {
-        cout << "Slot : " ;
-        cin >> slot ;
-        try {
-            this->pen->addElement(hasil) ;
-            cout << hasil->getObjectName() << " successfully placed!" << endl ;
+    cout << "Choose space to put the animal!" << endl;
+    this->pen->printHarvest();
+    while (true)
+    {
+        cout << "Slot : ";
+        cin >> slot;
+        try
+        {
+            this->pen->addElement(hasil);
+            cout << hasil->getObjectName() << " successfully placed!" << endl;
             break;
         }
 
-        catch(MatrixException &e) {
-            cout << "Input invalid, try again!" << endl ;
+        catch (MatrixException &e)
+        {
+            cout << "Input invalid, try again!" << endl;
         }
-    }   
+    }
 }
 
-void Peternak::feed() {
+void Peternak::feed()
+{
     // choose animal to feed
-    if (this->pen->getSlotAvailableCount() == this->pen->getCapacity()) {
-        throw AnimalNotFound() ;
+    if (this->pen->getSlotAvailableCount() == this->pen->getCapacity())
+    {
+        throw AnimalNotFound();
     }
-    string slot_animal ;
-    Animal* animal ;
-    cout << "Choose an animal to feed!" << endl ;
-    this->pen->printHarvest() ;
-    while(true) {
-        cout << "Slot : " ;
-        cin >> slot_animal ;
-        try {
-            animal = this->pen->getElement(slot_animal) ;
-            cout << "You choose " << animal->getObjectName() << " to feed." << endl ;
+    string slot_animal;
+    Animal *animal;
+    cout << "Choose an animal to feed!" << endl;
+    this->pen->printHarvest();
+    while (true)
+    {
+        cout << "Slot : ";
+        cin >> slot_animal;
+        try
+        {
+            animal = this->pen->getElement(slot_animal);
+            cout << "You choose " << animal->getObjectName() << " to feed." << endl;
             break;
         }
-        catch(MatrixException &e) {
-            cout << e.what() << endl ;
+        catch (MatrixException &e)
+        {
+            cout << e.what() << endl;
         }
     }
 
     // check food available
-    if ((animal->getType() == "CARNIVORE") && (this->inventory->getAnimalProductCount() == 0)) {
-        throw NoFoodFound() ;
+    if ((animal->getType() == "CARNIVORE") && (this->inventory->getAnimalProductCount() == 0))
+    {
+        throw NoFoodFound();
     }
-    if ((animal->getType() == "HERBIVORE") && (this->inventory->getFruitProductCount() == 0)) {
-        throw NoFoodFound() ;
+    if ((animal->getType() == "HERBIVORE") && (this->inventory->getFruitProductCount() == 0))
+    {
+        throw NoFoodFound();
     }
-    if ((this->inventory->getAnimalProductCount() == 0) && (this->inventory->getFruitProductCount() == 0)) {
-        throw NoFoodFound() ;
+    if ((this->inventory->getAnimalProductCount() == 0) && (this->inventory->getFruitProductCount() == 0))
+    {
+        throw NoFoodFound();
     }
 
     // choose food
-    string slot_food ;
-    GameObject* food ;
-    cout << "Choose the food for the animal!" << endl ;
-    this->inventory->printMatrix() ;
-    while (true) {
-        cout << "Slot : " ;
-        cin >> slot_food ;
-        try {
-            food = this->inventory->getElement(slot_food) ;
-            if ((animal->getType() == "CARNIVORE") && (food->getType() != "PRODUCT_ANIMAL")) {
-                throw IsNotFood() ;
+    string slot_food;
+    GameObject *food;
+    cout << "Choose the food for the animal!" << endl;
+    this->inventory->printMatrix();
+    while (true)
+    {
+        cout << "Slot : ";
+        cin >> slot_food;
+        try
+        {
+            food = this->inventory->getElement(slot_food);
+            if ((animal->getType() == "CARNIVORE") && (food->getType() != "PRODUCT_ANIMAL"))
+            {
+                throw IsNotFood();
             }
-            if ((animal->getType() == "HERBIVORE") && (food->getType() != "PRODUCT_FRUIT_PLANT")) {
-                throw IsNotFood() ;
+            if ((animal->getType() == "HERBIVORE") && (food->getType() != "PRODUCT_FRUIT_PLANT"))
+            {
+                throw IsNotFood();
             }
-            if ((animal->getType() == "OMNIVORE") && ((food->getType() != "PRODUCT_ANIMAL") || (food->getType() != "PRODUCT_FRUIT_PLANT"))) {
-                throw IsNotFood() ;
-            }            
+            if ((animal->getType() == "OMNIVORE") && ((food->getType() != "PRODUCT_ANIMAL") || (food->getType() != "PRODUCT_FRUIT_PLANT")))
+            {
+                throw IsNotFood();
+            }
 
-            break ;
+            break;
         }
-        catch(IsNotFood &e) {
-            cout << "The food is not suitable! Pick another!" << endl ;
+        catch (IsNotFood &e)
+        {
+            cout << "The food is not suitable! Pick another!" << endl;
         }
     }
 
     // feed the animal
-    animal->setCurrentWeight(animal->getCurrentWeight() + food->getAddedWeight()) ;
-    this->inventory->removeElement(slot_food) ;
-    cout << "You successfully feed " << animal->getObjectName() << "with " << food->getObjectName() << ", it's weight becomes " << animal->getCurrentWeight() << endl ;
+    animal->setCurrentWeight(animal->getCurrentWeight() + food->getAddedWeight());
+    this->inventory->removeElement(slot_food);
+    cout << "You successfully feed " << animal->getObjectName() << "with " << food->getObjectName() << ", it's weight becomes " << animal->getCurrentWeight() << endl;
 }
 
 void Peternak::harvest(ProductConfig &product_list)
@@ -187,7 +215,7 @@ void Peternak::harvest(ProductConfig &product_list)
         }
     }
 }
- 
+
 void Peternak::printPen()
 {
     this->pen->printHarvest();
@@ -201,8 +229,8 @@ string Peternak::getType()
 int Peternak::payTax()
 {
     double gulden = -11;
-    gulden += this->getGulden() ;
-    
+    gulden += this->getGulden();
+
     // hitung total kekayaan dari Inventory
     map<string, GameObject *>::iterator it = this->inventory->getContent().begin();
     while (it != this->inventory->getContent().end())
@@ -268,7 +296,7 @@ void Peternak::setPen(Farm *m)
     this->pen = m;
 }
 
-void Peternak::currentTurn(string command, __attribute__((unused)) vector<Player *> player_list)
+void Peternak::currentTurn(string command, vector<Player *> player_list, int current_player_idx, __attribute__((unused)) GameConfig game_config, ProductConfig product_config, __attribute__((unused)) recipe_config, Toko toko_cina)
 {
     this->pen->printHarvest();
     if (command == "CETAK_PETERNAKAN")
@@ -281,15 +309,21 @@ void Peternak::currentTurn(string command, __attribute__((unused)) vector<Player
     }
     else if (command == "MAKAN")
     {
-        cout << command << "succeed";
+        // Makan
+        this->eat();
+        cout << command << " succeed\n";
     }
     else if (command == "BELI")
     {
-        cout << command << "succeed";
+        // Beli
+        toko_cina.beli(player_list[current_player_idx]);
+        cout << command << " succeed\n";
     }
     else if (command == "JUAL")
     {
-        cout << command << "succeed";
+        // Jual
+        toko_cina.jual(player_list[current_player_idx]);
+        cout << command << " succeed\n";
     }
     else if (command == "KASIH_MAKAN")
     {
@@ -299,10 +333,7 @@ void Peternak::currentTurn(string command, __attribute__((unused)) vector<Player
     {
         cout << command << "succeed";
     }
-    else if (command == "NEXT")
-    {
-    }
-    else
+    else if (command != "NEXT")
     {
         invalidCommand e;
         throw e;

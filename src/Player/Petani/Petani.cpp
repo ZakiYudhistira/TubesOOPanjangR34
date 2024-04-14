@@ -18,75 +18,87 @@ Petani::~Petani()
     delete this->field;
 }
 
-void Petani::plant() {
-    cout << "Choose plant from inventory!" << endl ;
-    this->inventory->printMatrix() ;
-    string slot ;
+void Petani::plant()
+{
+    cout << "Choose plant from inventory!" << endl;
+    this->inventory->printMatrix();
+    string slot;
 
     // Input and validate plant from inventory
-    Plant *hasil ;
-    while(true) {
-        cout << "Slot : " ;
-        cin >> slot ;
-        try {
-            GameObject* plant = this->inventory->getElement(slot) ;
-            if (this->field->getSlotAvailableCount() == 0) {
-                throw MatrixFull() ;
+    Plant *hasil;
+    while (true)
+    {
+        cout << "Slot : ";
+        cin >> slot;
+        try
+        {
+            GameObject *plant = this->inventory->getElement(slot);
+            if (this->field->getSlotAvailableCount() == 0)
+            {
+                throw MatrixFull();
             }
-            if (plant->getType() == "FRUIT_PLANT") {
-                FruitPlant *hasilf = new FruitPlant(plant->getId(), plant->getCode(), plant->getObjectName(), plant->getType(), plant->getPrice(), plant->getDurationToHarvest()) ;
-                this->inventory->removeElement(slot) ;
-                cout << "You choose " << hasilf->getObjectName() << "." << endl ;
-                hasil = hasilf ;
+            if (plant->getType() == "FRUIT_PLANT")
+            {
+                FruitPlant *hasilf = new FruitPlant(plant->getId(), plant->getCode(), plant->getObjectName(), plant->getType(), plant->getPrice(), plant->getDurationToHarvest());
+                this->inventory->removeElement(slot);
+                cout << "You choose " << hasilf->getObjectName() << "." << endl;
+                hasil = hasilf;
                 break;
             }
-            else if (plant->getType() == "MATERIAL_PLANT") {
-                MaterialPlant *hasilm = new MaterialPlant(plant->getId(), plant->getCode(), plant->getObjectName(), plant->getType(), plant->getPrice(), plant->getDurationToHarvest()) ;
-                this->inventory->removeElement(slot) ;
-                cout << "You choose " << hasilm->getObjectName() << "." << endl ;
-                hasil = hasilm ;
+            else if (plant->getType() == "MATERIAL_PLANT")
+            {
+                MaterialPlant *hasilm = new MaterialPlant(plant->getId(), plant->getCode(), plant->getObjectName(), plant->getType(), plant->getPrice(), plant->getDurationToHarvest());
+                this->inventory->removeElement(slot);
+                cout << "You choose " << hasilm->getObjectName() << "." << endl;
+                hasil = hasilm;
                 break;
             }
-            else {
-                throw ItemNotFound() ;
+            else
+            {
+                throw ItemNotFound();
             }
         }
-        catch(MatrixFull &e) {
-            cout << "There is no space in your field!" << endl ;
+        catch (MatrixFull &e)
+        {
+            cout << "There is no space in your field!" << endl;
         }
-        catch(MatrixException &e) {
-            cout << "Input invalid, try again!" << endl ;
+        catch (MatrixException &e)
+        {
+            cout << "Input invalid, try again!" << endl;
         }
-        catch(ItemNotFound &e) {
-            cout << e.what() << endl ;
+        catch (ItemNotFound &e)
+        {
+            cout << e.what() << endl;
         }
     }
 
     // Put the plant into the field
-    cout << "Choose space to plant!" << endl ;
-    this->field->printHarvest() ;
-    while(true) {
-        cout << "Slot : " ;
-        cin >> slot ;
-        try {
-            this->field->addElement(hasil) ;
-            cout << hasil->getObjectName() << " successfully planted!" << endl ;
-            break;            
+    cout << "Choose space to plant!" << endl;
+    this->field->printHarvest();
+    while (true)
+    {
+        cout << "Slot : ";
+        cin >> slot;
+        try
+        {
+            this->field->addElement(hasil);
+            cout << hasil->getObjectName() << " successfully planted!" << endl;
+            break;
         }
 
-        catch(MatrixException &e) {
-            cout << "Input invalid, try again!" << endl ;
+        catch (MatrixException &e)
+        {
+            cout << "Input invalid, try again!" << endl;
         }
-    }   
+    }
 }
- 
 
-
-void Petani::harvest(ProductConfig &product_list){
-    int slot_available = this->inventory->getSlotAvailableCount() ;
-    vector<Plant*> harvest_list = this->field->harvest(slot_available) ;
-    vector<Product*> config_list = product_list.getProductList() ;
-    int len_harvest = (int)harvest_list.size() ;
+void Petani::harvest(ProductConfig &product_list)
+{
+    int slot_available = this->inventory->getSlotAvailableCount();
+    vector<Plant *> harvest_list = this->field->harvest(slot_available);
+    vector<Product *> config_list = product_list.getProductList();
+    int len_harvest = (int)harvest_list.size();
 
     for (int i = 0; i < len_harvest; i++)
     {
@@ -130,8 +142,8 @@ string Petani::getType()
 int Petani::payTax()
 {
     double gulden = -13;
-    gulden += this->getGulden() ;
-    
+    gulden += this->getGulden();
+
     // hitung total kekayaan dari Inventory
     map<string, GameObject *>::iterator it = this->inventory->getContent().begin();
     while (it != this->inventory->getContent().end())
@@ -203,7 +215,7 @@ void Petani::setField(Field *m)
 }
 void Petani::setPen(__attribute__((unused)) Farm *m) {}
 
-void Petani::currentTurn(string command, __attribute__((unused)) vector<Player *> player_list)
+void Petani::currentTurn(string command, vector<Player *> player_list, int current_player_idx, __attribute__((unused)) GameConfig game_config, ProductConfig product_config, __attribute__((unused)) recipe_config, Toko toko_cina)
 {
     if (command == "CETAK_LADANG")
     {
@@ -215,24 +227,27 @@ void Petani::currentTurn(string command, __attribute__((unused)) vector<Player *
     }
     else if (command == "MAKAN")
     {
-        cout << command << "succeed";
+        // Makan
+        this->eat();
+        cout << command << " succeed\n";
     }
     else if (command == "BELI")
     {
-        cout << command << "succeed";
+        // Beli
+        toko_cina.beli(player_list[current_player_idx]);
+        cout << command << " succeed\n";
     }
     else if (command == "JUAL")
     {
-        cout << command << "succeed";
+        // Jual
+        toko_cina.jual(player_list[current_player_idx]);
+        cout << command << " succeed\n";
     }
     else if (command == "PANEN")
     {
         cout << command << "succeed";
     }
-    else if (command == "NEXT")
-    {
-    }
-    else
+    else if (command != "NEXT")
     {
         invalidCommand e;
         throw e;

@@ -27,8 +27,9 @@ void Walikota::tax(vector<Player *> player_list)
         else
         {
             tax_player += player_list[i]->payTax();
-            if (tax_player > player_list[i]->getGulden()) {
-                tax_player = player_list[i]->getGulden() ;
+            if (tax_player > player_list[i]->getGulden())
+            {
+                tax_player = player_list[i]->getGulden();
             }
             player_list[i]->addGulden(tax_player * -1);
             this->addGulden(tax_player);
@@ -209,46 +210,50 @@ void Walikota::setPen(__attribute__((unused)) Farm *m)
 {
 }
 
-void Walikota::currentTurn(string command, vector<Player *> player_list)
+void Walikota::currentTurn(string command, vector<Player *> player_list, int current_player_idx, GameConfig game_config, __attribute__((unused)) ProductConfig product_config, recipe_config, Toko toko_cina)
 {
     if (command == "PUNGUT_PAJAK")
     {
         // Pajak
-        for (int i = 0; i < (int)player_list.size(); i++)
-        {
-            cout << player_list[i]->getGulden() << endl;
-        }
         this->tax(player_list);
         cout << command << " succeed\n"; // debug purposes
     }
     else if (command == "BANGUN")
     {
         // Build
+        this->build(recipe_config);
         cout << command << " succeed\n";
     }
     else if (command == "MAKAN")
     {
         // Makan
+        this->eat();
         cout << command << " succeed\n";
     }
     else if (command == "BELI")
     {
         // Beli
+        toko_cina.beli(player_list[current_player_idx]);
         cout << command << " succeed\n";
     }
     else if (command == "JUAL")
     {
         // Jual
+        toko_cina.jual(player_list[current_player_idx]);
         cout << command << " succeed\n";
     }
     else if (command == "TAMBAH_PEMAIN")
     {
+        player_list.push_back(this->addPlayer(game_config, player_list));
+        sort(player_list.begin(), player_list.end(), [](Player *lhs, Player *rhs)
+             { return lhs->getName() < rhs->getName(); });
+        for (int i = 0; i < (int)player_list.size(); i++)
+        {
+            cout << player_list[i]->getName() << endl;
+        }
         cout << command << " succeed\n";
     }
-    else if (command == "NEXT")
-    {
-    }
-    else
+    else if (command != "NEXT")
     {
         invalidCommand e;
         throw e;

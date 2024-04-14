@@ -107,6 +107,12 @@ void Main::main()
         }
     }
 
+<<<<<<< Updated upstream
+=======
+    /* TESTING TOKO CINA - (-1000) artinya unlimited*/
+    // cout << toko_cina;
+
+>>>>>>> Stashed changes
     int current_player_idx = 0;
     while (true)
     {
@@ -126,15 +132,19 @@ void Main::main()
                 {
                     /* SIMPAN */
                     bool isRepeat = true;
-                    while(isRepeat){
+                    while (isRepeat)
+                    {
                         cout << "Masukkan filepath:\n> ";
                         cin >> ws;
                         getline(cin, this->f_path);
-                        try {
+                        try
+                        {
                             this->isFileFound(this->f_path);
                             writeFile(this->f_path, player_list, toko_cina);
                             isRepeat = false;
-                        } catch (Exception& e){
+                        }
+                        catch (Exception &e)
+                        {
                             cout << e.what() << endl;
                             cout << "Creating new file . . .\n";
                             writeFile(this->f_path, player_list, toko_cina);
@@ -145,7 +155,7 @@ void Main::main()
                 }
                 else
                 {
-                    player_list[current_player_idx]->currentTurn(command, player_list);
+                    player_list[current_player_idx]->currentTurn(command, player_list, current_player_idx, game_config, animal_config, plant_config, product_config, recipe_config, toko_cina);
                 }
             }
             catch (const Exception &e)
@@ -161,7 +171,6 @@ void Main::main()
         {
             current_player_idx = 0;
         }
-        cout << current_player_idx << endl;
     }
 }
 
@@ -185,7 +194,8 @@ void Main::gameMode(string &input_c)
     }
 }
 
-void Main::isFileFound(string s){
+void Main::isFileFound(string s)
+{
     std::ifstream my_file(s);
 
     if (!my_file)
@@ -746,7 +756,6 @@ void Main::writeFile(std::string file_name, vector<Player *> &vp, Toko &t)
     {
         out_file << isi_toko[i].first->getObjectName() << " " << isi_toko[i].second << "\n";
     }
-
 
     // close file stream
     out_file.close();

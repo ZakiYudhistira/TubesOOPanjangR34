@@ -13,6 +13,10 @@
 #include "GameObject/GameObject.hpp"
 #include "Exception/Exception.hpp"
 
+#include "Config/GameConfig.hpp"
+#include "Config/ProductConfig.hpp"
+#include "Config/RecipeConfig.hpp"
+
 using namespace std;
 
 /*
@@ -73,11 +77,11 @@ public:
      */
     void printInventory();
 
-    void addInventory(GameObject* item, string slot);
+    void addInventory(GameObject *item, string slot);
 
-    void addInventory(GameObject* item, vector<string> slot);
+    void addInventory(GameObject *item, vector<string> slot);
 
-    GameObject* getInventory(string location);
+    GameObject *getInventory(string location);
 
     int getInventoryAvailableCount();
     /*
@@ -147,7 +151,7 @@ public:
      * Virtual Function.
      * fungsi untuk melakukan action / perintah pada setiap turn.
      */
-    virtual void currentTurn(string, vector<Player *>) = 0;
+    virtual void currentTurn(string, vector<Player *>, int, GameConfig, ProductConfig, RecipeConfig) = 0;
 };
 
 #endif

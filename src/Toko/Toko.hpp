@@ -15,46 +15,48 @@
 using namespace std;
 
 /* Class. Toko */
-class Toko {
-    private:
-        /* daftar item yang dijual besert kuantitasnya */
-        vector<pair<GameObject*, int>> item_list;
-        /* banyak jenis item pada toko */
-        int neff;
-        /* Harga terendah barang pada toko */
-        int cheapest_price;
-    public:
-        // Default Constructor
-        Toko();
+class Toko
+{
+private:
+    /* daftar item yang dijual besert kuantitasnya */
+    vector<pair<GameObject *, int>> item_list;
+    /* banyak jenis item pada toko */
+    int neff;
+    /* Harga terendah barang pada toko */
+    int cheapest_price;
 
-        // Constructor dengan item-item yang telah ditentukan dari config
-        Toko(AnimalConfig& ac, PlantConfig& pc, ProductConfig& prod, RecipeConfig& rc);
+public:
+    // Default Constructor
+    Toko();
 
-        Toko(Toko& t);
+    // Constructor dengan item-item yang telah ditentukan dari config
+    Toko(AnimalConfig &ac, PlantConfig &pc, ProductConfig &prod, RecipeConfig &rc);
 
-        Toko& operator=(Toko&);
+    Toko(Toko &t);
 
-        void addItem(pair<GameObject*, int>);
+    Toko &operator=(Toko &);
 
-        void setItemQuantity(std::string, int qty);
+    void addItem(pair<GameObject *, int>);
 
-        // Getter banyak jenis Item yang tersedia di toko
-        int getNumJenisItem();
+    void setItemQuantity(std::string, int qty);
 
-        // getter untuk item ke i
-        pair<GameObject*, int> getItemI(int i);
+    // Getter banyak jenis Item yang tersedia di toko
+    int getNumJenisItem();
 
-        // Operator overload untuk output item pada toko
-        void printToko();
+    // getter untuk item ke i
+    pair<GameObject *, int> getItemI(int i);
 
-        // Melakukan pembelian dari seorang player pada toko
-        void beli(Player* current_player);
+    // Operator overload untuk output item pada toko
+    void printToko();
 
-        // Melakukan penjualan untuk seorang player dari toko
-        void jual(Player* current_player);
+    // Melakukan pembelian dari seorang player pada toko
+    void beli(Player *current_player);
 
-        // Menerima input petak saat pembelian hingga masukan valid
-        vector<string> inputPetakBeli(int quantity);
+    // Melakukan penjualan untuk seorang player dari toko
+    void jual(Player *current_player);
+
+    // Menerima input petak saat pembelian hingga masukan valid
+    vector<string> inputPetakBeli(int quantity);
 };
 
 #endif
