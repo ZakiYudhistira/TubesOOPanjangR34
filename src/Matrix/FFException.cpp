@@ -1,9 +1,9 @@
 #include <iostream>
-#include "FieldException.hpp"
+#include "FFException.hpp"
 using namespace std;
 
-char const * FieldException :: what() const noexcept{
-    return "Field Exception";
+char const * FFException :: what() const noexcept{
+    return "Farm / Field Exception";
 }
 
 char const * NoHarvestObject :: what() const noexcept{
@@ -20,4 +20,8 @@ char const * HarvestCountInvalid :: what() const noexcept{
 
 char const * InvalidObject :: what() const noexcept{
     return "Wrong object";
+}
+
+char const * InsufficientSpace :: what() const noexcept{
+    return "Insufficient inventory space";
 }

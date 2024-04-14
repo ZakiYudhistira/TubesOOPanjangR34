@@ -48,8 +48,6 @@ namespace fs = std::filesystem;
 
 using namespace std;
 
-
-
 class Main
 {
 private:
@@ -64,6 +62,7 @@ private:
     vector<Player*> player_list;
     int current = 0;
 
+    string f_path;
     bool isMuat;
 
 public:
@@ -73,7 +72,9 @@ public:
 
     void main();
 
-    void gameMode();
+    void gameMode(string& input_c);
+
+    void isFileFound(string f_name);
 
     /* FILE HANDLING FUNCTIONS */
 
@@ -94,7 +95,7 @@ public:
 
     void readFile(std::string fn, vector<Player*>& vp, AnimalConfig& ac, PlantConfig& pc, ProductConfig& prod, RecipeConfig& rc, GameConfig& gc, Toko& t);
 
-    void writeFile(std::string fn, vector<Player*>& vp, AnimalConfig& ac, PlantConfig& pc, ProductConfig& prod, RecipeConfig& rc, GameConfig& gc, Toko& t);
+    void writeFile(std::string fn, vector<Player*>& vp, Toko& t);
 };
 
 

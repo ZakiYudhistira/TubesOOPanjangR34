@@ -1,7 +1,7 @@
 #include "Field.hpp"
 #include "GameObject/Plant/Plant.hpp"
 #include "pcolor/pcolor.hpp"
-#include "FieldException.hpp"
+#include "FFException.hpp"
 #include "Matrix.hpp"
 #include <vector>
 #include <iostream>
@@ -137,6 +137,10 @@ vector<Plant*> Field :: harvest(__attribute__((unused)) int slot_available){
 
     if(count < 1 || count > type_count[index_harvest - 1].second){
         throw HarvestCountInvalid();
+    }
+
+    if(count > slot_available){
+        throw InsufficientSpace();
     }
 
     cout << endl;

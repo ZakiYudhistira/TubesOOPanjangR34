@@ -88,31 +88,38 @@ void Petani::harvest(ProductConfig &product_list){
     vector<Product*> config_list = product_list.getProductList() ;
     int len_harvest = (int)harvest_list.size() ;
 
-    for (int i = 0 ; i < len_harvest ; i++) {
-        Product* product_to_make ;
-        int j = 0 ;
-        while(true) {
-            if (config_list[j]->getOrigin() == harvest_list[i]->getObjectName()) {
-                product_to_make = config_list[j] ;
-                break ;
+    for (int i = 0; i < len_harvest; i++)
+    {
+        Product *product_to_make;
+        int j = 0;
+        while (true)
+        {
+            if (config_list[j]->getOrigin() == harvest_list[i]->getObjectName())
+            {
+                product_to_make = config_list[j];
+                break;
             }
-            else {
-                j++ ;
+            else
+            {
+                j++;
             }
         }
-        if (product_to_make->getType() == "MATERIAL_PRODUCT") {
-            MaterialProduct *hasil = new MaterialProduct(product_to_make->getId(), product_to_make->getCode(), product_to_make->getObjectName(), product_to_make->getPrice(), product_to_make->getAddedWeight(), product_to_make->getOrigin(), product_to_make->getType()) ;
-            this->inventory->addElement(hasil) ;
+        if (product_to_make->getType() == "MATERIAL_PRODUCT")
+        {
+            MaterialProduct *hasil = new MaterialProduct(product_to_make->getId(), product_to_make->getCode(), product_to_make->getObjectName(), product_to_make->getPrice(), product_to_make->getAddedWeight(), product_to_make->getOrigin(), product_to_make->getType());
+            this->inventory->addElement(hasil);
         }
-        else {
-            FoodProduct *hasil = new FoodProduct(product_to_make->getId(), product_to_make->getCode(), product_to_make->getObjectName(), product_to_make->getPrice(), product_to_make->getAddedWeight(), product_to_make->getOrigin(), product_to_make->getType()) ;
-            this->inventory->addElement(hasil) ;
+        else
+        {
+            FoodProduct *hasil = new FoodProduct(product_to_make->getId(), product_to_make->getCode(), product_to_make->getObjectName(), product_to_make->getPrice(), product_to_make->getAddedWeight(), product_to_make->getOrigin(), product_to_make->getType());
+            this->inventory->addElement(hasil);
         }
     }
 }
 
-void Petani::printField() {
-    this->field->printHarvest() ;
+void Petani::printField()
+{
+    this->field->printHarvest();
 }
 
 string Petani::getType()
@@ -196,7 +203,7 @@ void Petani::setField(Field *m)
 }
 void Petani::setPen(__attribute__((unused)) Farm *m) {}
 
-void Petani::currentTurn(string command)
+void Petani::currentTurn(string command, __attribute__((unused)) vector<Player *> player_list)
 {
     if (command == "CETAK_LADANG")
     {
@@ -221,6 +228,9 @@ void Petani::currentTurn(string command)
     else if (command == "PANEN")
     {
         cout << command << "succeed";
+    }
+    else if (command == "NEXT")
+    {
     }
     else
     {

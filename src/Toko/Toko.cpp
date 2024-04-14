@@ -83,9 +83,9 @@ ostream& operator<<(ostream& os, __attribute__((unused)) Toko t) {
             || t.item_list[i].first->getType() == "HERBIVORE"
             || t.item_list[i].first->getType() == "CARNIVORE"
             || t.item_list[i].first->getType() == "OMNIVORE") {
-            os << (i+1) << ". " << std::setw(10) << t.item_list[i].first->getObjectName() << std::setw(15) << t.item_list[i].first->getPrice() << endl;
+            os << std::setw(2) << (i+1) << ". " << std::setw(20) << t.item_list[i].first->getObjectName() << std::setw(15) << t.item_list[i].first->getPrice() << endl;
         } else {
-            os << (i+1) << ". " << std::setw(10) << t.item_list[i].first->getObjectName() << std::setw(15) << t.item_list[i].first->getPrice() << std::setw(15) << t.item_list[i].second << endl;
+            os << std::setw(2) << (i+1) << ". " << std::setw(20) << t.item_list[i].first->getObjectName() << std::setw(15) << t.item_list[i].first->getPrice() << std::setw(15) << t.item_list[i].second << endl;
         }
     }
     return os;

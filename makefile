@@ -28,7 +28,7 @@ main:
 
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Exception/Exception.cpp -o $(OUTPUT_FOLDER)/Exception.o 
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Matrix/MatrixException.cpp -o $(OUTPUT_FOLDER)/MatrixException.o 
-	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Matrix/FieldException.cpp -o $(OUTPUT_FOLDER)/FieldException.o 
+	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Matrix/FFException.cpp -o $(OUTPUT_FOLDER)/FFException.o 
 	
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Matrix/Matrix.cpp -o $(OUTPUT_FOLDER)/Matrix.o 
 	@$(CC) $(CFLAGS) $(SOURCE_FOLDER)/Matrix/Farm.cpp -o $(OUTPUT_FOLDER)/Farm.o 

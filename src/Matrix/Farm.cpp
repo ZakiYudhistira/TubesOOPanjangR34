@@ -1,7 +1,7 @@
 #include "Farm.hpp"
 #include "GameObject/Animal/Animal.hpp"
 #include "pcolor/pcolor.hpp"
-#include "FieldException.hpp"
+#include "FFException.hpp"
 #include "Matrix.hpp"
 #include <vector>
 #include <iostream>
@@ -131,6 +131,10 @@ vector<Animal*> Farm :: harvest(__attribute__((unused)) int slot_available){
 
     if(count < 1 || count > type_count[index_harvest - 1].second){
         throw HarvestCountInvalid();
+    }
+
+    if(count > slot_available){
+        throw InsufficientSpace();
     }
 
     cout << endl;
