@@ -74,6 +74,8 @@ public:
 
     void gameMode(string& input_c);
 
+    void isFileFound(string f_name);
+
     /* FILE HANDLING FUNCTIONS */
 
     /*

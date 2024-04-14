@@ -127,11 +127,24 @@ void Main::main()
                 cin >> command;
                 if (command == "SIMPAN")
                 {
-                    /* TESTING SIMPAN */
-                    string filepath;
-                    cout << "Masukkan filepath : ";
-                    cin >> filepath;
-                    writeFile(filepath, player_list, toko_cina);
+                    /* SIMPAN */
+                    bool isRepeat = true;
+                    while(isRepeat){
+                        cout << "Masukkan filepath:\n> ";
+                        cin >> ws;
+                        getline(cin, this->f_path);
+                        try {
+                            this->isFileFound(this->f_path);
+                            writeFile(this->f_path, player_list, toko_cina);
+                            isRepeat = false;
+                        } catch (Exception& e){
+                            cout << e.what() << endl;
+                            cout << "Creating new file . . .";
+                            writeFile(this->f_path, player_list, toko_cina);
+
+                            isRepeat = false;
+                        }
+                    }
                 }
                 else
                 {
@@ -175,20 +188,23 @@ void Main::gameMode(string &input_c)
     }
 }
 
+void Main::isFileFound(string s){
+    std::ifstream my_file(s);
+
+    if (!my_file)
+    {
+        // if file does not exist
+        ExceptionFileNotFound e;
+        throw e;
+    }
+}
+
 /* BAGIAN FILE HANDLING */
 
 /*
  * debugging function - ga perlu tahu
  *
  */
-void check_active_dir()
-{
-    namespace fs = std::filesystem;
-    std::string path = "./";
-    for (const auto &entry : fs::directory_iterator(path))
-        std::cout << entry.path() << std::endl;
-}
-
 void Main::readFile(std::string file_name, GameConfig &gc)
 {
     std::ifstream my_file(file_name);
@@ -410,7 +426,7 @@ void Main::readFile(std::string file_name, RecipeConfig &rc)
     std::string file_content = "";
     while (std::getline(my_file, my_string))
     {
-        // string cleeaning
+        // string cleaning
         my_string.erase(my_string.find('\r'));
 
         file_content.append(my_string);
@@ -734,9 +750,9 @@ void Main::writeFile(std::string file_name, vector<Player *> &vp, Toko &t)
         out_file << isi_toko[i].first->getObjectName() << " " << isi_toko[i].second << "\n";
     }
 
-    out_file.close();
 
     // close file stream
+    out_file.close();
     my_file.close();
 }
 
