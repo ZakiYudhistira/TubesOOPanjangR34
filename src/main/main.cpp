@@ -41,23 +41,28 @@ void Main::main()
     /*INITIALIZATION (jika new game)*/
 
     string input_c;
-    while(input_c != "Y" && input_c != "N"){
-        try {
+    while (input_c != "Y" && input_c != "N")
+    {
+        try
+        {
             this->gameMode(input_c);
-
-        } catch (Exception& e){
+        }
+        catch (Exception &e)
+        {
             cout << e.what() << endl;
         }
     }
 
     if (this->isMuat)
     {
-        bool isRepeat = true; 
-        while(isRepeat){
+        bool isRepeat = true;
+        while (isRepeat)
+        {
             cout << "Masukkan file path\n> ";
             getline(cin, this->f_path);
 
-            try{
+            try
+            {
                 readFile(this->f_path, player_list, animal_config, plant_config, product_config, recipe_config, game_config, toko_cina);
 
                 for (int i = 0; i < (int)player_list.size(); i++)
@@ -66,7 +71,8 @@ void Main::main()
                 }
                 isRepeat = false;
             }
-            catch (const Exception &e){
+            catch (const Exception &e)
+            {
                 cout << e.what() << '\n';
             }
         }
@@ -129,7 +135,7 @@ void Main::main()
                 }
                 else
                 {
-                    player_list[current_player_idx]->currentTurn(command);
+                    player_list[current_player_idx]->currentTurn(command, player_list);
                 }
             }
             catch (const Exception &e)
@@ -140,11 +146,16 @@ void Main::main()
 
         cout << "Giliran dilanjutkan ke pemain berikutnya.\n";
 
-        current_player_idx += 1 % ((int)player_list.size() - 1);
+        current_player_idx += 1;
+        if (current_player_idx == 3)
+        {
+            current_player_idx = 0;
+        }
+        cout << current_player_idx << endl;
     }
 }
 
-void Main::gameMode(string& input_c)
+void Main::gameMode(string &input_c)
 {
     cout << "Apakah anda ingin memuat atau tidak? (Y / N)\n> ";
     getline(cin, input_c);
@@ -438,7 +449,7 @@ void Main::readFile(std::string file_name, RecipeConfig &rc)
     my_file.close();
 }
 
-void Main::readFile(std::string file_name, vector<Player *> &vp, AnimalConfig &ac, PlantConfig &pc, ProductConfig &prod,  RecipeConfig &rc, GameConfig &gc, Toko &t)
+void Main::readFile(std::string file_name, vector<Player *> &vp, AnimalConfig &ac, PlantConfig &pc, ProductConfig &prod, RecipeConfig &rc, GameConfig &gc, Toko &t)
 {
     std::ifstream my_file(file_name);
     std::string my_string;
@@ -751,12 +762,9 @@ int main()
 
     // jos.printHarvest();
 
-
-
-
     /* MAIN PROGRAM */
-    
-    Main* m = new Main();
+
+    Main *m = new Main();
     m->main();
 
     return 0;
