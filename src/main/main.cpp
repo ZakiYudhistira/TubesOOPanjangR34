@@ -39,23 +39,36 @@ void Main::main()
     cout << recipe_config;
 
     /*INITIALIZATION (jika new game)*/
-    this->gameMode();
+
+    string input_c;
+    while(input_c != "Y" && input_c != "N"){
+        try {
+            this->gameMode(input_c);
+
+        } catch (Exception& e){
+            cout << e.what() << endl;
+        }
+    }
 
     if (this->isMuat)
     {
-        // testing kalau MUAT
-        try
-        {
-            readFile("test/data/state.txt", player_list, animal_config, plant_config, product_config, recipe_config, game_config, toko_cina);
+        bool isRepeat = true; 
+        while(isRepeat){
+            cout << "Masukkan file path\n> ";
+            getline(cin, this->f_path);
 
-            for (int i = 0; i < (int)player_list.size(); i++)
-            {
-                cout << *player_list[i] << endl;
+            try{
+                readFile(this->f_path, player_list, animal_config, plant_config, product_config, recipe_config, game_config, toko_cina);
+
+                for (int i = 0; i < (int)player_list.size(); i++)
+                {
+                    cout << *player_list[i] << endl;
+                }
+                isRepeat = false;
             }
-        }
-        catch (const Exception &e)
-        {
-            cout << e.what() << '\n';
+            catch (const Exception &e){
+                cout << e.what() << '\n';
+            }
         }
     }
     else
@@ -112,7 +125,7 @@ void Main::main()
                     string filepath;
                     cout << "Masukkan filepath : ";
                     cin >> filepath;
-                    writeFile(filepath, player_list, animal_config, plant_config, product_config, recipe_config, game_config, toko_cina);
+                    writeFile(filepath, player_list, toko_cina);
                 }
                 else
                 {
@@ -131,26 +144,23 @@ void Main::main()
     }
 }
 
-void Main::gameMode()
+void Main::gameMode(string& input_c)
 {
-    string input_c;
-    while (input_c != "Y" && input_c != "N")
-    {
-        cout << "Apakah anda ingin memuat atau tidak? (Y / N)\n> ";
-        getline(cin, input_c);
+    cout << "Apakah anda ingin memuat atau tidak? (Y / N)\n> ";
+    getline(cin, input_c);
 
-        if (input_c == "Y")
-        {
-            this->isMuat = true;
-        }
-        else if (input_c == "N")
-        {
-            this->isMuat = false;
-        }
-        else
-        {
-            cout << "Invalid Input Type\n";
-        }
+    if (input_c == "Y")
+    {
+        this->isMuat = true;
+    }
+    else if (input_c == "N")
+    {
+        this->isMuat = false;
+    }
+    else
+    {
+        InvalidType e;
+        throw e;
     }
 }
 
@@ -428,7 +438,7 @@ void Main::readFile(std::string file_name, RecipeConfig &rc)
     my_file.close();
 }
 
-void Main::readFile(std::string file_name, __attribute__((unused)) vector<Player *> &vp, __attribute__((unused)) AnimalConfig &ac, __attribute__((unused)) PlantConfig &pc, ProductConfig &prod, __attribute__((unused)) RecipeConfig &rc, GameConfig &gc, Toko &t)
+void Main::readFile(std::string file_name, vector<Player *> &vp, AnimalConfig &ac, PlantConfig &pc, ProductConfig &prod,  RecipeConfig &rc, GameConfig &gc, Toko &t)
 {
     std::ifstream my_file(file_name);
     std::string my_string;
@@ -606,7 +616,7 @@ void Main::readFile(std::string file_name, __attribute__((unused)) vector<Player
     my_file.close();
 }
 
-void Main::writeFile(std::string file_name, vector<Player *> &vp, __attribute__((unused)) AnimalConfig &ac, __attribute__((unused)) PlantConfig &pc, __attribute__((unused)) ProductConfig &prod, __attribute__((unused)) RecipeConfig &rc, __attribute__((unused)) GameConfig &gc, __attribute__((unused)) Toko &t)
+void Main::writeFile(std::string file_name, vector<Player *> &vp, Toko &t)
 {
     std::ifstream my_file(file_name);
     std::string my_string;
@@ -723,23 +733,31 @@ void Main::writeFile(std::string file_name, vector<Player *> &vp, __attribute__(
 
 int main()
 {
-    Field jos(5,5);
-    jos.addElement(new FruitPlant(12, "JAR", "JAVA", "Fruit Plant",56, 2));
-    jos.addElement(new MaterialPlant(12, "COC", "Clashson", "Fruit Plant",56, 3));
-    jos.addElement(new FruitPlant(12, "VOC", "Clash", "Fruit Plant",56, 2));
-    jos.addElement(new FruitPlant(12, "VOC", "Clash", "Fruit Plant",56, 2));
-    cout << jos.getElementCount("VOC") << endl;
-    int n = 2;
-    for(int i = 0 ; i < n ; i++){
-        jos.updatePlant();
-    }
-    int slot_available = 100 ; //ini supaya ga error
-    vector<Plant*> tes = jos.harvest(slot_available);
-    for(int i = 0 ; i < (int)tes.size() ; i++){
-        cout << tes[i]->getCode() << endl;
-    }
+    // Field jos(5,5);
+    // jos.addElement(new FruitPlant(12, "JAR", "JAVA", "Fruit Plant",56, 2));
+    // jos.addElement(new MaterialPlant(12, "COC", "Clashson", "Fruit Plant",56, 3));
+    // jos.addElement(new FruitPlant(12, "VOC", "Clash", "Fruit Plant",56, 2));
+    // jos.addElement(new FruitPlant(12, "VOC", "Clash", "Fruit Plant",56, 2));
+    // cout << jos.getElementCount("VOC") << endl;
+    // int n = 2;
+    // for(int i = 0 ; i < n ; i++){
+    //     jos.updatePlant();
+    // }
+    // int slot_available = 100 ; //ini supaya ga error
+    // vector<Plant*> tes = jos.harvest(slot_available);
+    // for(int i = 0 ; i < (int)tes.size() ; i++){
+    //     cout << tes[i]->getCode() << endl;
+    // }
 
-    jos.printHarvest();
+    // jos.printHarvest();
+
+
+
+
+    /* MAIN PROGRAM */
+    
+    Main* m = new Main();
+    m->main();
 
     return 0;
 }
