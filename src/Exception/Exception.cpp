@@ -67,5 +67,5 @@ char const *AnimalNotFound::what() const noexcept {
 }
 
 char const *NoFoodFound::what() const noexcept {
-    return "You have no food for this animal!" ;
+    return "You have no food for this!" ;
 }

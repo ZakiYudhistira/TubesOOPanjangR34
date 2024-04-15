@@ -19,6 +19,26 @@ Peternak::~Peternak()
 
 void Peternak::ternak()
 {
+    // validate pen's slot and if there is any animal in inventory
+    try {
+        if (this->pen->getSlotAvailableCount() == 0)
+        {
+            throw MatrixFull();
+        }
+        if (this->pen->getElementCountbyType("OMNIVORE") + this->pen->getElementCountbyType("CARNIVORE") + this->pen->getElementCountbyType("HERBIVORE")== 0) {
+            throw NoFoodFound() ;
+        }
+    }
+    catch (MatrixFull &e)
+    {
+        cout << "There is no space in your pen!" << endl;
+        return;
+    }
+    catch (NoFoodFound &e) {
+        cout << e.what() << endl ;
+        return;
+    }
+
     cout << "Choose an animal from inventory!" << endl;
     this->inventory->printMatrix();
     string slot;
@@ -32,10 +52,6 @@ void Peternak::ternak()
         try
         {
             GameObject *animal = this->inventory->getElement(slot);
-            if (this->pen->getSlotAvailableCount() == 0)
-            {
-                throw MatrixFull();
-            }
             if (animal->getType() == "CARNIVORE")
             {
                 Carnivore *hasilc = new Carnivore(animal->getId(), animal->getCode(), animal->getObjectName(), animal->getType(), animal->getPrice(), animal->getWeightToHarvest());
@@ -65,10 +81,6 @@ void Peternak::ternak()
                 throw ItemNotFound();
             }
         }
-        catch (MatrixFull &e)
-        {
-            cout << "There is no space in your field!" << endl;
-        }
         catch (MatrixException &e)
         {
             cout << "Input invalid, try again!" << endl;
@@ -92,7 +104,6 @@ void Peternak::ternak()
             cout << hasil->getObjectName() << " successfully placed!" << endl;
             break;
         }
-
         catch (MatrixException &e)
         {
             cout << "Input invalid, try again!" << endl;

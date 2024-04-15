@@ -254,7 +254,17 @@ class Matrix{
             }
         }
 
-        int getElementCount(string el){
+        int getElementCount(string el){ // count by object name
+            int count = 0;
+            for(auto it = content.begin() ; it != content.end() ; it++){
+                if(el == it->second->getObjectName()){
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        int getElementCountbyType(string el) { // count by object type
             int count = 0;
             for(auto it = content.begin() ; it != content.end() ; it++){
                 if(el == it->second->getObjectName()){

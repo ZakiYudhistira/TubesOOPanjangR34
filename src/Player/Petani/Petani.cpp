@@ -20,6 +20,25 @@ Petani::~Petani()
 
 void Petani::plant()
 {
+    // validate field's slot and if there is any plant in inventory
+    try {
+        if (this->field->getSlotAvailableCount() == 0)
+        {
+            throw MatrixFull();
+        }
+        if (this->field->getElementCountbyType("FRUIT_PLANT") + this->field->getElementCountbyType("MATERIAL_PLANT") == 0) {
+            throw NoFoodFound() ;
+        }
+    }
+    catch (MatrixFull &e)
+    {
+        cout << "There is no space in your field!" << endl;
+        return;
+    }
+    catch (NoFoodFound &e) {
+        cout << e.what() << endl ;
+        return;
+    }
     cout << "Choose plant from inventory!" << endl;
     this->inventory->printMatrix();
     string slot;
@@ -33,10 +52,6 @@ void Petani::plant()
         try
         {
             GameObject *plant = this->inventory->getElement(slot);
-            if (this->field->getSlotAvailableCount() == 0)
-            {
-                throw MatrixFull();
-            }
             if (plant->getType() == "FRUIT_PLANT")
             {
                 FruitPlant *hasilf = new FruitPlant(plant->getId(), plant->getCode(), plant->getObjectName(), plant->getType(), plant->getPrice(), plant->getDurationToHarvest());
@@ -57,10 +72,6 @@ void Petani::plant()
             {
                 throw ItemNotFound();
             }
-        }
-        catch (MatrixFull &e)
-        {
-            cout << "There is no space in your field!" << endl;
         }
         catch (MatrixException &e)
         {
