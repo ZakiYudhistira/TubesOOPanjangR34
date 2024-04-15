@@ -25,7 +25,7 @@ void Peternak::ternak()
         {
             throw MatrixFull();
         }
-        if (this->pen->getElementCountbyType("OMNIVORE") + this->pen->getElementCountbyType("CARNIVORE") + this->pen->getElementCountbyType("HERBIVORE")== 0) {
+        if (this->inventory->getElementCountbyType("OMNIVORE") + this->inventory->getElementCountbyType("CARNIVORE") + this->inventory->getElementCountbyType("HERBIVORE")== 0) {
             throw AnimalNotFound() ;
         }
     }

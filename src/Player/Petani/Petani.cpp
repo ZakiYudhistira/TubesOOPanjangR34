@@ -26,7 +26,7 @@ void Petani::plant()
         {
             throw MatrixFull();
         }
-        if (this->field->getElementCountbyType("FRUIT_PLANT") + this->field->getElementCountbyType("MATERIAL_PLANT") == 0) {
+        if (this->inventory->getElementCountbyType("FRUIT_PLANT") + this->inventory->getElementCountbyType("MATERIAL_PLANT") == 0) {
             throw PlantNotFound() ;
         }
     }
