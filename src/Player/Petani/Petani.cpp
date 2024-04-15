@@ -147,6 +147,10 @@ void Petani::printField()
     this->field->printHarvest();
 }
 
+void Petani::nextDay() {
+    this->field->updatePlant() ;
+}
+
 string Petani::getType()
 {
     return this->type;

@@ -67,6 +67,9 @@ public:
      * untuk child class mengembalikan tipe (PETANI, PETERNAK, WALIKOTA)
      * @return type `string` tipe dari player.
      */
+
+    void nextDay();
+    
     string getType();
     /*
      * Override Function.
