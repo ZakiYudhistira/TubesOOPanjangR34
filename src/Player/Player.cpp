@@ -63,6 +63,14 @@ void Player::printInventory() {
     this->inventory->printMatrix();
 } 
 
+void Player::printStatus() {
+    cout << "name:" << setw(10) << this->name << "\n"
+        << "gulden:" << setw(10) << this->gulden << "\n"
+        << "weight:" << setw(10) << this->body_weight << "\n"
+        << "type:" << setw(10) << this->getType() << "\n"
+        << "\n";
+}
+
 int Player::getInventoryAvailableCount() {
     return this->inventory->getSlotAvailableCount();
 }

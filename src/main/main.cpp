@@ -161,7 +161,7 @@ void Main::main()
         cout << "Giliran dilanjutkan ke pemain berikutnya.\n";
 
         current_player_idx += 1;
-        if (current_player_idx == 3)
+        if (current_player_idx == (int)player_list.size())
         {
             current_player_idx = 0;
         }
@@ -479,13 +479,13 @@ void Main::readFile(std::string file_name, vector<Player *> &vp, AnimalConfig &a
     }
 
     std::string file_content = "";
-    while (std::getline(my_file, my_string))
+    while (getline(my_file, my_string))
     {
         // string cleeaning
         size_t a = my_string.find('\r');
 
         if (a != string::npos)
-            my_string.erase();
+            my_string.erase(a);
 
         file_content.append(my_string);
         file_content.append(" ");

@@ -298,7 +298,6 @@ void Peternak::setPen(Farm *m)
 
 void Peternak::currentTurn(string command, __attribute__((unused)) vector<Player *>& player_list, __attribute__((unused)) int current_player_idx, __attribute__((unused)) GameConfig& game_config, __attribute__((unused)) AnimalConfig& animal_config, __attribute__((unused)) PlantConfig& plant_config, __attribute__((unused)) ProductConfig& product_config, __attribute__((unused)) RecipeConfig& recipe_config, Toko& toko_cina)
 {
-    this->pen->printHarvest();
     if (command == "CETAK_PETERNAKAN")
     {
         cout << command << "succeed"; // debug purposes

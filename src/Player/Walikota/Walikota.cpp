@@ -48,10 +48,10 @@ void Walikota::build(RecipeConfig &recipe)
 
     // Show all available recipes
     cout << "Building recipes available : " << endl;
-    for (int i = 1; i <= (int)building_list.size(); i++)
+    for (int i = 0; i < (int)building_list.size(); i++)
     {
         vector<pair<string, int>> material_list = building_list[i]->getMaterialList();
-        cout << "\t" << i << ". " << building_list[i - 1]->getCode() << " (";
+        cout << "\t" << i+1 << ". " << building_list[i]->getCode() << " (";
         cout << building_list[i]->getPrice() << " gulden, ";
         for (int j = 0; j < (int)material_list.size(); j++)
         {
@@ -61,13 +61,18 @@ void Walikota::build(RecipeConfig &recipe)
             }
             else
             {
-                cout << material_list[j].first << " " << material_list[j].second << ", ";
+                cout << material_list[j].first << " " << material_list[j].second;
+                if(j < (int)material_list.size()-1){
+                    cout << ", ";
+                }
             }
         }
+        cout << ")\n";
     }
 
     // input which recipe from user
     string make = "null";
+    bool isFound = false;
     Building *building;
     cout << "Which building do you want to make : ";
     cin >> make;
@@ -76,10 +81,11 @@ void Walikota::build(RecipeConfig &recipe)
         if (make == building_list[i]->getCode())
         {
             make = building_list[i]->getCode();
+            isFound = true;
             building = building_list[i];
         }
     }
-    if (make == "null")
+    if (!isFound)
     {
         throw RecipeNotFound();
     }
@@ -253,6 +259,14 @@ void Walikota::currentTurn(string command, vector<Player *> &player_list, __attr
             cout << player_list[i]->getName() << endl;
         }
         cout << command << " succeed\n";
+    }
+    else if (command == "INVENTORY")
+    {
+        this->printInventory();
+    }
+    else if (command == "STATUS")
+    {
+        this->printStatus();
     }
     else if (command != "NEXT")
     {

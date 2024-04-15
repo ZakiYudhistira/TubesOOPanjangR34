@@ -78,6 +78,8 @@ public:
      */
     void printInventory();
 
+    void printStatus();
+
     void addInventory(GameObject *item, string slot);
 
     void addInventory(GameObject *item, vector<string> slot);
