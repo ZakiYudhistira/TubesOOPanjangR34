@@ -20,13 +20,15 @@ Peternak::~Peternak()
 void Peternak::ternak()
 {
     // validate pen's slot and if there is any animal in inventory
-    try {
+    try
+    {
         if (this->pen->getSlotAvailableCount() == 0)
         {
             throw MatrixFull();
         }
-        if (this->inventory->getElementCountbyType("OMNIVORE") + this->inventory->getElementCountbyType("CARNIVORE") + this->inventory->getElementCountbyType("HERBIVORE")== 0) {
-            throw AnimalNotFound() ;
+        if (this->inventory->getElementCountbyType("OMNIVORE") + this->inventory->getElementCountbyType("CARNIVORE") + this->inventory->getElementCountbyType("HERBIVORE") == 0)
+        {
+            throw AnimalNotFound();
         }
     }
     catch (MatrixFull &e)
@@ -34,8 +36,9 @@ void Peternak::ternak()
         cout << "There is no space in your pen!" << endl;
         return;
     }
-    catch (AnimalNotFound &e) {
-        cout << e.what() << endl ;
+    catch (AnimalNotFound &e)
+    {
+        cout << e.what() << endl;
         return;
     }
 
@@ -318,6 +321,7 @@ void Peternak::currentTurn(string command, __attribute__((unused)) vector<Player
     }
     else if (command == "TERNAK")
     {
+        this->ternak();
         cout << command << "succeed";
     }
     else if (command == "MAKAN")

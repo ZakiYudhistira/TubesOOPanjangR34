@@ -158,6 +158,12 @@ void Main::main()
             }
         }
 
+        if (player_list[current_player_idx]->getType() == "Petani")
+        {
+            cout << "next day\n";
+            player_list[current_player_idx]->nextDay();
+        }
+
         cout << "Giliran dilanjutkan ke pemain berikutnya.\n";
 
         current_player_idx += 1;

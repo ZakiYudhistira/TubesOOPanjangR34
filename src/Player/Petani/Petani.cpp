@@ -21,13 +21,15 @@ Petani::~Petani()
 void Petani::plant()
 {
     // validate field's slot and if there is any plant in inventory
-    try {
+    try
+    {
         if (this->field->getSlotAvailableCount() == 0)
         {
             throw MatrixFull();
         }
-        if (this->inventory->getElementCountbyType("FRUIT_PLANT") + this->inventory->getElementCountbyType("MATERIAL_PLANT") == 0) {
-            throw PlantNotFound() ;
+        if (this->inventory->getElementCountbyType("FRUIT_PLANT") + this->inventory->getElementCountbyType("MATERIAL_PLANT") == 0)
+        {
+            throw PlantNotFound();
         }
     }
     catch (MatrixFull &e)
@@ -35,8 +37,9 @@ void Petani::plant()
         cout << "There is no space in your field!" << endl;
         return;
     }
-    catch (PlantNotFound &e) {
-        cout << e.what() << endl ;
+    catch (PlantNotFound &e)
+    {
+        cout << e.what() << endl;
         return;
     }
     cout << "Choose plant from inventory!" << endl;
@@ -147,8 +150,9 @@ void Petani::printField()
     this->field->printHarvest();
 }
 
-void Petani::nextDay() {
-    this->field->updatePlant() ;
+void Petani::nextDay()
+{
+    this->field->updatePlant();
 }
 
 string Petani::getType()
@@ -245,6 +249,7 @@ void Petani::currentTurn(string command, __attribute__((unused)) vector<Player *
     }
     else if (command == "TANAM")
     {
+        this->plant();
         cout << command << "succeed\n";
     }
     else if (command == "MAKAN")
