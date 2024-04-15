@@ -96,12 +96,12 @@ void Farm :: printHarvest(){
     }
 }
 
-vector<Animal*> Farm :: harvest(__attribute__((unused)) int slot_available){
+vector<pair<Animal*, string>> Farm :: harvest(__attribute__((unused)) int slot_available){
     printHarvest();
     
     vector<pair<Animal*, int>> type_count;
 
-    vector<Animal*> ret;
+    vector<pair<Animal*, string>> ret;
 
     for(auto i = content.begin() ; i != content.end() ; i++){
         int j;
@@ -127,7 +127,6 @@ vector<Animal*> Farm :: harvest(__attribute__((unused)) int slot_available){
     cout << endl << endl;
     for(int i = 0 ; i < (int)type_count.size() ; i++){
         count += type_count[i].second;
-        cout << " - "  << type_count[i].first->getCode() << ": " << type_count[i].first->getObjectName() << endl;
     }
 
     if(!count){
@@ -181,8 +180,7 @@ vector<Animal*> Farm :: harvest(__attribute__((unused)) int slot_available){
                 if(temp->getCode() != type_count[index_harvest - 1].first->getCode()){
                     throw InvalidObject();
                 }
-                ret.push_back(temp);
-                removeElement(coordinate);
+                ret.push_back(make_pair(temp, coordinate));
                 break;
             } catch (InvalidObject &e){
                 cout << "Invalid plant to harvest, please try again" << endl;

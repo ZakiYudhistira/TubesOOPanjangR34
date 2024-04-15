@@ -197,6 +197,7 @@ class Matrix{
                 if(!content.count(map)){
                     throw EmptySpace();
                 }
+                delete content[map];
                 content.erase(map);
                 resetPoint();
             }

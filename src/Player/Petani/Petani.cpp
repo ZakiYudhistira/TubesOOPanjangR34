@@ -96,7 +96,7 @@ void Petani::plant()
 void Petani::harvest(ProductConfig &product_list)
 {
     int slot_available = this->inventory->getSlotAvailableCount();
-    vector<Plant *> harvest_list = this->field->harvest(slot_available);
+    vector<pair<Plant *, string>> harvest_list = this->field->harvest(slot_available);
     vector<Product *> config_list = product_list.getProductList();
     int len_harvest = (int)harvest_list.size();
 
@@ -106,7 +106,7 @@ void Petani::harvest(ProductConfig &product_list)
         int j = 0;
         while (true)
         {
-            if (config_list[j]->getOrigin() == harvest_list[i]->getObjectName())
+            if (config_list[j]->getOrigin() == harvest_list[i].first->getObjectName())
             {
                 product_to_make = config_list[j];
                 break;
@@ -126,6 +126,8 @@ void Petani::harvest(ProductConfig &product_list)
             FoodProduct *hasil = new FoodProduct(product_to_make->getId(), product_to_make->getCode(), product_to_make->getObjectName(), product_to_make->getPrice(), product_to_make->getAddedWeight(), product_to_make->getOrigin(), product_to_make->getType());
             this->inventory->addElement(hasil);
         }
+
+        this->field->removeElement(harvest_list[i].second);
     }
 }
 
@@ -250,6 +252,7 @@ void Petani::currentTurn(string command, __attribute__((unused)) vector<Player *
     }
     else if (command == "PANEN")
     {
+        this->harvest(product_config);
         cout << command << "succeed";
     }
     else if (command == "STATUS")
