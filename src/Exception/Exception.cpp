@@ -66,6 +66,10 @@ char const *AnimalNotFound::what() const noexcept {
     return "There is no animal!" ;
 }
 
+char const *PlantNotFound::what() const noexcept {
+    return "There is no plant!" ;
+}
+
 char const *NoFoodFound::what() const noexcept {
     return "You have no food for this!" ;
 }
