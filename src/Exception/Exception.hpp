@@ -76,6 +76,11 @@ class AnimalNotFound: public exception {
     char const * what() const noexcept override;
 };
 
+class PlantNotFound: public exception {
+    public :
+    char const * what() const noexcept override;
+};
+
 class NoFoodFound: public exception {
     public :
     char const * what() const noexcept override;

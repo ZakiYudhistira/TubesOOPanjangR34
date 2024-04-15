@@ -26,7 +26,7 @@ void Peternak::ternak()
             throw MatrixFull();
         }
         if (this->pen->getElementCountbyType("OMNIVORE") + this->pen->getElementCountbyType("CARNIVORE") + this->pen->getElementCountbyType("HERBIVORE")== 0) {
-            throw NoFoodFound() ;
+            throw AnimalNotFound() ;
         }
     }
     catch (MatrixFull &e)
@@ -34,7 +34,7 @@ void Peternak::ternak()
         cout << "There is no space in your pen!" << endl;
         return;
     }
-    catch (NoFoodFound &e) {
+    catch (AnimalNotFound &e) {
         cout << e.what() << endl ;
         return;
     }

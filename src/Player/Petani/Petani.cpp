@@ -27,7 +27,7 @@ void Petani::plant()
             throw MatrixFull();
         }
         if (this->field->getElementCountbyType("FRUIT_PLANT") + this->field->getElementCountbyType("MATERIAL_PLANT") == 0) {
-            throw NoFoodFound() ;
+            throw PlantNotFound() ;
         }
     }
     catch (MatrixFull &e)
@@ -35,7 +35,7 @@ void Petani::plant()
         cout << "There is no space in your field!" << endl;
         return;
     }
-    catch (NoFoodFound &e) {
+    catch (PlantNotFound &e) {
         cout << e.what() << endl ;
         return;
     }
