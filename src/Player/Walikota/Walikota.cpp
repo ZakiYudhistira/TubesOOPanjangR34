@@ -51,8 +51,8 @@ void Walikota::build(RecipeConfig &recipe)
     for (int i = 0; i < (int)building_list.size(); i++)
     {
         vector<pair<string, int>> material_list = building_list[i]->getMaterialList();
-        cout << "\t" << i + 1 << ". " << building_list[i]->getCode() << " (";
-        cout << building_list[i]->getPrice() << " gulden, ";
+        cout << "\t" << i + 1 << ". " << building_list[i]->getObjectName() << " (";
+        // cout << building_list[i]->getPrice() << " gulden, ";
         for (int j = 0; j < (int)material_list.size(); j++)
         {
             if (j == (int)material_list.size())
@@ -79,9 +79,9 @@ void Walikota::build(RecipeConfig &recipe)
     cin >> make;
     for (int i = 0; i < (int)building_list.size(); i++)
     {
-        if (make == building_list[i]->getCode())
+        if (make == building_list[i]->getObjectName())
         {
-            make = building_list[i]->getCode();
+            make = building_list[i]->getObjectName();
             isFound = true;
             building = building_list[i];
         }
@@ -95,13 +95,13 @@ void Walikota::build(RecipeConfig &recipe)
     vector<pair<string, int>> material = building->getMaterialList();
     vector<pair<GameObject *, string>> all_possession = this->inventory->getAllElement();
     vector<pair<string, int>> slot = {};
-    if (this->getGulden() < building->getPrice())
-    {
-        pair<string, int> in;
-        in.first = "Gulden";
-        in.second = building->getPrice() - this->getGulden();
-        slot.push_back(in);
-    }
+    // if (this->getGulden() < building->getPrice())
+    // {
+    //     pair<string, int> in;
+    //     in.first = "Gulden";
+    //     in.second = building->getPrice() - this->getGulden();
+    //     slot.push_back(in);
+    // }
     for (int i = 0; i < (int)material.size(); i++)
     {
         int count_material = this->inventory->getElementCount(material[i].first);
@@ -142,7 +142,9 @@ void Walikota::build(RecipeConfig &recipe)
             {
                 cout << slot[i].second << " " << slot[i].first << "." << endl;
             }
-            cout << slot[i].second << " " << slot[i].first << ", ";
+            else {
+                cout << slot[i].second << " " << slot[i].first << ", ";
+            }
         }
     }
 }
@@ -164,7 +166,9 @@ Player *Walikota::addPlayer(GameConfig &gc, vector<Player *> player_list)
     string name, type;
     cout << "Enter player's type : ";
     cin >> type;
-    transform(name.begin(), name.end(), name.begin(), ::tolower);
+    for (auto& x : type) { // turning string type into lowercase
+        x = tolower(x); 
+    }
     if (type != "petani" && type != "peternak")
     {
         throw TypeNotFound();
