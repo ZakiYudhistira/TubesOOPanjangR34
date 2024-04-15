@@ -161,7 +161,7 @@ void Peternak::feed()
             {
                 throw IsNotFood();
             }
-            if ((animal->getType() == "OMNIVORE") && ((food->getType() != "PRODUCT_ANIMAL") || (food->getType() != "PRODUCT_FRUIT_PLANT")))
+            if (!((animal->getType() == "OMNIVORE") && ((food->getType() == "PRODUCT_ANIMAL") || (food->getType() == "PRODUCT_FRUIT_PLANT"))))
             {
                 throw IsNotFood();
             }
@@ -330,6 +330,7 @@ void Peternak::currentTurn(string command, __attribute__((unused)) vector<Player
     }
     else if (command == "KASIH_MAKAN")
     {
+        this->feed();
         cout << command << "succeed\n";
     }
     else if (command == "PANEN")
