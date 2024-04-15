@@ -217,14 +217,15 @@ void Petani::setField(Field *m)
 }
 void Petani::setPen(__attribute__((unused)) Farm *m) {}
 
-void Petani::currentTurn(string command, __attribute__((unused)) vector<Player *>& player_list, __attribute__((unused)) int current_player_idx, __attribute__((unused)) GameConfig& game_config, __attribute__((unused)) AnimalConfig& animal_config, __attribute__((unused)) PlantConfig& plant_config, __attribute__((unused)) ProductConfig& product_config, __attribute__((unused)) RecipeConfig& recipe_config, Toko& toko_cina)
+void Petani::currentTurn(string command, __attribute__((unused)) vector<Player *> &player_list, __attribute__((unused)) int &current_player_idx, __attribute__((unused)) GameConfig &game_config, __attribute__((unused)) AnimalConfig &animal_config, __attribute__((unused)) PlantConfig &plant_config, __attribute__((unused)) ProductConfig &product_config, __attribute__((unused)) RecipeConfig &recipe_config, Toko &toko_cina)
 {
     if (command == "CETAK_LADANG")
     {
         this->field->printHarvest();
         cout << command << "succeed\n"; // debug purposes
     }
-    else if (command == "CETAK_PENYIMPANAN"){
+    else if (command == "CETAK_PENYIMPANAN")
+    {
         this->printInventory();
     }
     else if (command == "TANAM")

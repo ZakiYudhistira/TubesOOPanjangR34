@@ -86,7 +86,7 @@ public:
      * Override Function.
      * fungsi untuk melakukan action / perintah pada setiap turn.
      */
-    void currentTurn(string, vector<Player *>&, int, GameConfig&, AnimalConfig&, PlantConfig&, ProductConfig&, RecipeConfig&, Toko&);
+    void currentTurn(string, vector<Player *> &, int &, GameConfig &, AnimalConfig &, PlantConfig &, ProductConfig &, RecipeConfig &, Toko &);
 };
 
 #endif

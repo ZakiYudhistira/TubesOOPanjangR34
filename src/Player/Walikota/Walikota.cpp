@@ -51,7 +51,7 @@ void Walikota::build(RecipeConfig &recipe)
     for (int i = 0; i < (int)building_list.size(); i++)
     {
         vector<pair<string, int>> material_list = building_list[i]->getMaterialList();
-        cout << "\t" << i+1 << ". " << building_list[i]->getCode() << " (";
+        cout << "\t" << i + 1 << ". " << building_list[i]->getCode() << " (";
         cout << building_list[i]->getPrice() << " gulden, ";
         for (int j = 0; j < (int)material_list.size(); j++)
         {
@@ -62,7 +62,8 @@ void Walikota::build(RecipeConfig &recipe)
             else
             {
                 cout << material_list[j].first << " " << material_list[j].second;
-                if(j < (int)material_list.size()-1){
+                if (j < (int)material_list.size() - 1)
+                {
                     cout << ", ";
                 }
             }
@@ -216,7 +217,7 @@ void Walikota::setPen(__attribute__((unused)) Farm *m)
 {
 }
 
-void Walikota::currentTurn(string command, vector<Player *> &player_list, __attribute__((unused)) int current_player_idx, GameConfig &game_config, __attribute__((unused)) AnimalConfig &animal_config, __attribute__((unused)) PlantConfig &plant_config, __attribute__((unused)) ProductConfig &product_config, RecipeConfig &recipe_config, Toko &toko_cina)
+void Walikota::currentTurn(string command, vector<Player *> &player_list, int &current_player_idx, GameConfig &game_config, __attribute__((unused)) AnimalConfig &animal_config, __attribute__((unused)) PlantConfig &plant_config, __attribute__((unused)) ProductConfig &product_config, RecipeConfig &recipe_config, Toko &toko_cina)
 {
     if (command == "PUNGUT_PAJAK")
     {
@@ -251,7 +252,12 @@ void Walikota::currentTurn(string command, vector<Player *> &player_list, __attr
     }
     else if (command == "TAMBAH_PEMAIN")
     {
-        player_list.push_back(this->addPlayer(game_config, player_list));
+        Player *np = this->addPlayer(game_config, player_list);
+        if (np->getName() < player_list[current_player_idx]->getName())
+        {
+            current_player_idx++;
+        }
+        player_list.push_back(np);
         sort(player_list.begin(), player_list.end(), [](Player *lhs, Player *rhs)
              { return lhs->getName() < rhs->getName(); });
         for (int i = 0; i < (int)player_list.size(); i++)
@@ -264,7 +270,8 @@ void Walikota::currentTurn(string command, vector<Player *> &player_list, __attr
     {
         this->printStatus();
     }
-    else if (command == "CETAK_PENYIMPANAN"){
+    else if (command == "CETAK_PENYIMPANAN")
+    {
         this->printInventory();
     }
     else if (command != "NEXT")
