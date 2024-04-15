@@ -180,10 +180,15 @@ vector<pair<Animal*, string>> Farm :: harvest(__attribute__((unused)) int slot_a
                 if(temp->getCode() != type_count[index_harvest - 1].first->getCode()){
                     throw InvalidObject();
                 }
+                if(!temp->isHarvest()){
+                    throw NotHarvestAble();
+                }
                 ret.push_back(make_pair(temp, coordinate));
                 break;
             } catch (InvalidObject &e){
-                cout << "Invalid plant to harvest, please try again" << endl;
+                cout << "Invalid Aniaml to harvest, please try again" << endl;
+            } catch (NotHarvestAble &e){
+                cout << "Animal " << e.what() << ", please try again" << endl;
             } catch (MatrixException &e) {
                 cout << "Invalid index, please try again" << endl;
             }

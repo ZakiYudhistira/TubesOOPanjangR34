@@ -25,3 +25,7 @@ char const * InvalidObject :: what() const noexcept{
 char const * InsufficientSpace :: what() const noexcept{
     return "Insufficient inventory space";
 }
+
+char const * NotHarvestAble :: what() const noexcept{
+    retutn "Not harvestable";
+}
