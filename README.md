@@ -36,30 +36,30 @@ Kelola kerjaan merupakan permainan sederhana yang melibatkan 3 peran yang berbed
 ## Mekanik Permainan
 Mekanik berikut dapat dijalankan oleh pemain dengan masukkan command pada terminal, tergantung pada giliran dan peran yang diperankan oleh pemain
 1. NEXT
-Untuk mengkahiri giliran, pemain dapat menjalankan perintah di bawah ini selama gilirannya berlangsung
+ | Untuk mengkahiri giliran, pemain dapat menjalankan perintah di bawah ini selama gilirannya berlangsung
 2. CETAK_PENYIMPANAN
-Untuk mencetak daftar barang atau produk yang dimiliki oleh pemain
+ | Untuk mencetak daftar barang atau produk yang dimiliki oleh pemain
 3. PUNGUT_PAJAK (Walikota)
-Walikota dapat memungut pajak dari pemain lainnya sebagai penghasilan utama walikota
+ | Walikota dapat memungut pajak dari pemain lainnya sebagai penghasilan utama walikota
 4. CETAK_LADANG / CETAK_PETERNAKAN (Peternak / Petani)
-Petani dan Peternak dapat mengetahui kondisi ladang / peternakan mereka melalui pencetakan ladang / peternakan
+ | Petani dan Peternak dapat mengetahui kondisi ladang / peternakan mereka melalui pencetakan ladang / peternakan
 5. TANAM
-Petani dapat menanam tanaman yang dibeli dari toko ke ladang
+ | Petani dapat menanam tanaman yang dibeli dari toko ke ladang
 6. TERNAK
-Petani dapat menaruh seekor binatang atau lebih pada peternakannya
+ | Petani dapat menaruh seekor binatang atau lebih pada peternakannya
 7. BANGUN
-Semua pemain dapat membangun bangunan, tetapi untuk walikota digratiskan
+ | Semua pemain dapat membangun bangunan, tetapi untuk walikota digratiskan
 8. MAKAN
-Semua pemain dapat mengonsumsi produk makanan yang ada di penyimpanannya
+ | Semua pemain dapat mengonsumsi produk makanan yang ada di penyimpanannya
 9. KASIH_MAKAN
-Seorang peternak dapat memberi makan hewan ternaknya
+ | Seorang peternak dapat memberi makan hewan ternaknya
 10.BELI
-Semua pemain dapat membeli sebuah barang dari toko
+ | Semua pemain dapat membeli sebuah barang dari toko
 11.JUAL
-Semua pemain dapat menjual komoditasnya apda toko dan memeroleh uang
+ | Semua pemain dapat menjual komoditasnya apda toko dan memeroleh uang
 12.PANEN
-Petani dan Peternak dapat memanen hasil ternak / tani nyaaaaa
+ | Petani dan Peternak dapat memanen hasil ternak / tani nyaaaaa
 13.MUAT
-Program dapat membuat state sebuah game yang telah berlangsung
+ | Program dapat membuat state sebuah game yang telah berlangsung
 14.SIMPAN
-Program dapat menyimpan state game yang sedang berlangsung
+ | Program dapat menyimpan state game yang sedang berlangsung
