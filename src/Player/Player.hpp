@@ -147,6 +147,8 @@ public:
      * @return jumlah_gulden `int` jumlah gulden yang harus disetor.
      */
     virtual int payTax() = 0;
+
+    virtual void nextDay() = 0 ;
     /*
      * Virtual Function.
      * Petani:

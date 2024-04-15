@@ -64,6 +64,8 @@ public:
      * @return type `string` tipe dari player.
      */
     string getType();
+
+    void nextDay() {}
     /*
      * Override Function.
      * untuk child class membayar pajak.

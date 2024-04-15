@@ -64,6 +64,8 @@ public:
      * Fungsi untuk menampilkan pen dari peternak
      */
     void printPen();
+
+    void nextDay() {}
     /*
      * Override Function.
      * untuk child class mengembalikan tipe (PETANI, PETERNAK, WALIKOTA)
