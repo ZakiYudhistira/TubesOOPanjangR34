@@ -63,7 +63,7 @@ void Main::main()
 
             try
             {
-                readFile(this->f_path, player_list, animal_config, plant_config, product_config, recipe_config, game_config, toko_cina);
+                readFile(this->f_path, animal_config, plant_config, product_config, recipe_config, game_config, toko_cina);
 
                 for (int i = 0; i < (int)player_list.size(); i++)
                 {
@@ -466,7 +466,7 @@ void Main::readFile(std::string file_name, RecipeConfig &rc)
     my_file.close();
 }
 
-void Main::readFile(std::string file_name, vector<Player *> &vp, AnimalConfig &ac, PlantConfig &pc, ProductConfig &prod, RecipeConfig &rc, GameConfig &gc, Toko &t)
+void Main::readFile(std::string file_name, AnimalConfig &ac, PlantConfig &pc, ProductConfig &prod, RecipeConfig &rc, GameConfig &gc, Toko &t)
 {
     std::ifstream my_file(file_name);
     std::string my_string;
@@ -625,7 +625,7 @@ void Main::readFile(std::string file_name, vector<Player *> &vp, AnimalConfig &a
             p->setPen(farm);
         }
 
-        vp.push_back(p);
+        this->insertPlayer(p);
     }
 
     int n_item_toko = 0;
