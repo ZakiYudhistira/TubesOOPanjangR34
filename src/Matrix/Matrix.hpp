@@ -74,6 +74,10 @@ class Matrix{
 
             return *this;
         }
+
+        void operator+(T element){
+            addElement(element);
+        }
         
         int getRow(){
             return row;
