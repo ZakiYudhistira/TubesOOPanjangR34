@@ -219,11 +219,15 @@ void Petani::currentTurn(string command, __attribute__((unused)) vector<Player *
 {
     if (command == "CETAK_LADANG")
     {
-        cout << command << "succeed"; // debug purposes
+        this->field->printHarvest();
+        cout << command << "succeed\n"; // debug purposes
+    }
+    else if (command == "CETAK_PENYIMPANAN"){
+        this->printInventory();
     }
     else if (command == "TANAM")
     {
-        cout << command << "succeed";
+        cout << command << "succeed\n";
     }
     else if (command == "MAKAN")
     {
@@ -247,6 +251,10 @@ void Petani::currentTurn(string command, __attribute__((unused)) vector<Player *
     else if (command == "PANEN")
     {
         cout << command << "succeed";
+    }
+    else if (command == "STATUS")
+    {
+        this->printStatus();
     }
     else if (command != "NEXT")
     {

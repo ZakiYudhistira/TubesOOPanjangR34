@@ -63,6 +63,36 @@ void Field :: printHarvest(){
             printMatrixLine();
         }
     };
+
+    /* PRINT LEGENDA DARI LADANG */
+    vector<pair<Plant*, int>> type_count;
+
+    for(auto i = content.begin() ; i != content.end() ; i++){
+        int j;
+        for(j = 0; j < (int)type_count.size() ; j++){
+            if(i->second->isHarvest()){
+                if(i->second->getCode() == type_count[j].first->getCode()){
+                    type_count[j].second++;
+                    break;
+                }
+            }
+        }
+        if(j == (int)type_count.size()){
+            if(i->second->isHarvest()){
+                type_count.push_back({i->second, 1});
+            } else {
+                type_count.push_back({i->second, 0});
+            }
+        }
+    }
+
+    int count = 0;
+
+    cout << endl << endl;
+    for(int i = 0 ; i < (int)type_count.size() ; i++){
+        count += type_count[i].second;
+        cout << " - "  << type_count[i].first->getCode() << ": " << type_count[i].first->getObjectName() << endl;
+    }
 }
 
 void Field :: updatePlant(){

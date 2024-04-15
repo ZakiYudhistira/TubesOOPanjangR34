@@ -300,7 +300,8 @@ void Peternak::currentTurn(string command, __attribute__((unused)) vector<Player
 {
     if (command == "CETAK_PETERNAKAN")
     {
-        cout << command << "succeed"; // debug purposes
+        this->pen->printHarvest();
+        cout << command << "succeed\n"; // debug purposes
     }
     else if (command == "TERNAK")
     {
@@ -332,6 +333,13 @@ void Peternak::currentTurn(string command, __attribute__((unused)) vector<Player
     else if (command == "PANEN")
     {
         cout << command << "succeed";
+    }
+    else if (command == "STATUS")
+    {
+        this->printStatus();
+    }
+    else if (command == "CETAK_PENYIMPANAN"){
+        this->printInventory();
     }
     else if (command != "NEXT")
     {

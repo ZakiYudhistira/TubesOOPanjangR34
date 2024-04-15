@@ -27,7 +27,7 @@ void Player::eat() {
     cin >> slot ;
     GameObject* item = this->inventory->getElement(slot) ;
     string type = item->getType() ;
-    if (type == "") {
+    if (type == "PRODUCT_FRUIT_PLANT" || type == "PRODUCT_ANIMAL") {
         this->addBodyWeight(item->getAddedWeight()) ;
         this->inventory->removeElement(slot) ;
     }
@@ -64,10 +64,10 @@ void Player::printInventory() {
 } 
 
 void Player::printStatus() {
-    cout << "name:" << setw(10) << this->name << "\n"
-        << "gulden:" << setw(10) << this->gulden << "\n"
-        << "weight:" << setw(10) << this->body_weight << "\n"
-        << "type:" << setw(10) << this->getType() << "\n"
+    cout << "name:" << setw(30) << this->name << "\n"
+        << "gulden:" << setw(30) << this->gulden << "\n"
+        << "weight:" << setw(30) << this->body_weight << "\n"
+        << "type:" << setw(30) << this->getType() << "\n"
         << "\n";
 }
 
@@ -117,6 +117,7 @@ void Player::sell(Toko& toko_cina){
     string input_petak;
     
     cout << "Petak : ";
+    cin >> ws;
     getline(cin, input_petak);
     
     string s;
@@ -134,7 +135,13 @@ void Player::sell(Toko& toko_cina){
         sold.push_back(this->getInventory(petak_jual[i]));
     }
 
+
     gulden_given = toko_cina.jual(sold);
+
+    /* DELETE ITEM SOLD IN INVENTORY */
+    for(int i=0; i<(int)petak_jual.size(); i++){
+        this->inventory->removeElement(petak_jual[i]);
+    }
     
     this->addGulden(gulden_given);
     cout << "Barang Anda berhasil dijual! Uang Anda bertambah " << gulden_given << "gulden!\n";
@@ -154,6 +161,7 @@ vector<string> Player::inputPetakBeli(int quantity){
         cout << petak_beli.size() << endl;
         petak_beli.clear();
         cout << "Petak : ";
+        cin >> ws;
         getline(cin, input_petak);
         stringstream ssinput(input_petak);
         while (getline(ssinput, s, ','))

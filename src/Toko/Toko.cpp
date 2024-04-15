@@ -92,7 +92,7 @@ void Toko::printToko()
 
     for (int i = 0; i < this->neff; i++)
     {
-        cout << (i + 1) << ". " << setw(10) << this->item_list[i].first->getObjectName() << setw(15) << this->item_list[i].first->getPrice();
+        cout << setw(2) << (i + 1) << ". " << setw(20) << this->item_list[i].first->getObjectName() << setw(15) << this->item_list[i].first->getPrice();
         if (this->item_list[i].second != -1000)
         {
             cout << setw(15) << this->item_list[i].second;

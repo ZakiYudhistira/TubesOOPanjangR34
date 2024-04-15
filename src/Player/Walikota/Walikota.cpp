@@ -260,13 +260,12 @@ void Walikota::currentTurn(string command, vector<Player *> &player_list, __attr
         }
         cout << command << " succeed\n";
     }
-    else if (command == "INVENTORY")
-    {
-        this->printInventory();
-    }
     else if (command == "STATUS")
     {
         this->printStatus();
+    }
+    else if (command == "CETAK_PENYIMPANAN"){
+        this->printInventory();
     }
     else if (command != "NEXT")
     {
