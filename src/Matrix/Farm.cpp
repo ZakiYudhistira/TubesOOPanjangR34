@@ -71,11 +71,11 @@ void Farm :: printHarvest(){
     for(auto i = content.begin() ; i != content.end() ; i++){
         int j;
         for(j = 0; j < (int)type_count.size() ; j++){
-            if(i->second->isHarvest()){
-                if(i->second->getCode() == type_count[j].first->getCode()){
+            if(i->second->getCode() == type_count[j].first->getCode()){
+                if(i->second->isHarvest()){
                     type_count[j].second++;
-                    break;
                 }
+                break;
             }
         }
         if(j == (int)type_count.size()){
@@ -106,11 +106,11 @@ vector<pair<Animal*, string>> Farm :: harvest(__attribute__((unused)) int slot_a
     for(auto i = content.begin() ; i != content.end() ; i++){
         int j;
         for(j = 0; j < (int)type_count.size() ; j++){
-            if(i->second->isHarvest()){
-                if(i->second->getCode() == type_count[j].first->getCode()){
+            if(i->second->getCode() == type_count[j].first->getCode()){
+                if(i->second->isHarvest()){
                     type_count[j].second++;
-                    break;
                 }
+                break;
             }
         }
         if(j == (int)type_count.size()){
@@ -123,7 +123,6 @@ vector<pair<Animal*, string>> Farm :: harvest(__attribute__((unused)) int slot_a
     }
 
     int count = 0;
-
     cout << endl << endl;
     for(int i = 0 ; i < (int)type_count.size() ; i++){
         count += type_count[i].second;
@@ -134,7 +133,7 @@ vector<pair<Animal*, string>> Farm :: harvest(__attribute__((unused)) int slot_a
     }
     cout << endl;
 
-    cout << "Pilih tanaman siap panen yang kamu miliki" << endl;
+    cout << "Pilih binatang siap panen yang kamu miliki" << endl;
     int index = 1;
     for(int i = 0 ; i < (int)type_count.size() ; i++){
         if(type_count[i].second > 0){
@@ -148,7 +147,7 @@ vector<pair<Animal*, string>> Farm :: harvest(__attribute__((unused)) int slot_a
     cout << endl;
 
     int index_harvest;
-    cout << "Nomor tanaman yang ingin di panen: ";
+    cout << "Nomor binatang yang ingin di panen: ";
     cin >> index_harvest;
     cout << endl;
 
@@ -186,7 +185,7 @@ vector<pair<Animal*, string>> Farm :: harvest(__attribute__((unused)) int slot_a
                 ret.push_back(make_pair(temp, coordinate));
                 break;
             } catch (InvalidObject &e){
-                cout << "Invalid Aniaml to harvest, please try again" << endl;
+                cout << "Invalid animal to harvest, please try again" << endl;
             } catch (NotHarvestAble &e){
                 cout << "Animal " << e.what() << ", please try again" << endl;
             } catch (MatrixException &e) {
@@ -194,6 +193,18 @@ vector<pair<Animal*, string>> Farm :: harvest(__attribute__((unused)) int slot_a
             }
         }
     }
+ 
+    cout << endl << count << " petak binatang " << type_count[index_harvest - 1].first->getCode() << " ";
+    bool first = true;
+    for(int k = 0 ; k < (int)ret.size() ; k++){
+        if(first){
+            cout << ret[k].second;
+            first = false;
+        } else {
+            cout << ", " << ret[k].second;
+        }
+    }
+    cout << " telah dipanen!" << endl; 
 
     return ret;
 }

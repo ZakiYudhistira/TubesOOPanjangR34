@@ -70,11 +70,11 @@ void Field :: printHarvest(){
     for(auto i = content.begin() ; i != content.end() ; i++){
         int j;
         for(j = 0; j < (int)type_count.size() ; j++){
-            if(i->second->isHarvest()){
-                if(i->second->getCode() == type_count[j].first->getCode()){
+            if(i->second->getCode() == type_count[j].first->getCode()){
+                if(i->second->isHarvest()){
                     type_count[j].second++;
-                    break;
                 }
+                break;
             }
         }
         if(j == (int)type_count.size()){
@@ -111,11 +111,11 @@ vector<pair<Plant*, string>> Field :: harvest(__attribute__((unused)) int slot_a
     for(auto i = content.begin() ; i != content.end() ; i++){
         int j;
         for(j = 0; j < (int)type_count.size() ; j++){
-            if(i->second->isHarvest()){
-                if(i->second->getCode() == type_count[j].first->getCode()){
+            if(i->second->getCode() == type_count[j].first->getCode()){
+                if(i->second->isHarvest()){
                     type_count[j].second++;
-                    break;
                 }
+                break;
             }
         }
         if(j == (int)type_count.size()){
@@ -199,5 +199,17 @@ vector<pair<Plant*, string>> Field :: harvest(__attribute__((unused)) int slot_a
         }
     }
  
+    cout << endl << count << " petak tanaman " << type_count[index_harvest - 1].first->getCode() << " ";
+    bool first = true;
+    for(int k = 0 ; k < (int)ret.size() ; k++){
+        if(first){
+            cout << ret[k].second;
+            first = false;
+        } else {
+            cout << ", " << ret[k].second;
+        }
+    }
+    cout << " telah dipanen!" << endl; 
+
     return ret;
 }
