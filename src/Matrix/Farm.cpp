@@ -63,23 +63,22 @@ void Farm :: printHarvest(){
             printMatrixLine();
         }
     }
-};
+}
 
-vector<Animal*> Farm :: harvest(__attribute__((unused)) int slot_available){
-    printHarvest();
-    
+    /* PRINT LEGENDA DARI MAP */
+
     vector<pair<Animal*, int>> type_count;
 
-    vector<Animal*> ret;
+    vector<pair<Animal*, string>> ret;
 
     for(auto i = content.begin() ; i != content.end() ; i++){
         int j;
         for(j = 0; j < (int)type_count.size() ; j++){
-            if(i->second->getCode() == type_count[j].first->getCode()){
-                if(i->second->isHarvest()){
+            if(i->second->isHarvest()){
+                if(i->second->getCode() == type_count[j].first->getCode()){
                     type_count[j].second++;
+                    break;
                 }
-                break;
             }
         }
         if(j == (int)type_count.size()){
@@ -96,7 +95,40 @@ vector<Animal*> Farm :: harvest(__attribute__((unused)) int slot_available){
     cout << endl << endl;
     for(int i = 0 ; i < (int)type_count.size() ; i++){
         count += type_count[i].second;
-        cout << " - "  << type_count[i].first->getCode() << ": " << type_count[i].first->getObjectName() << endl;
+    }
+}
+
+vector<pair<Animal*, string>> Farm :: harvest(__attribute__((unused)) int slot_available){
+    printHarvest();
+    
+    vector<pair<Animal*, int>> type_count;
+
+    vector<pair<Animal*, string>> ret;
+
+    for(auto i = content.begin() ; i != content.end() ; i++){
+        int j;
+        for(j = 0; j < (int)type_count.size() ; j++){
+            if(i->second->isHarvest()){
+                if(i->second->getCode() == type_count[j].first->getCode()){
+                    type_count[j].second++;
+                    break;
+                }
+            }
+        }
+        if(j == (int)type_count.size()){
+            if(i->second->isHarvest()){
+                type_count.push_back({i->second, 1});
+            } else {
+                type_count.push_back({i->second, 0});
+            }
+        }
+    }
+
+    int count = 0;
+
+    cout << endl << endl;
+    for(int i = 0 ; i < (int)type_count.size() ; i++){
+        count += type_count[i].second;
     }
 
     if(!count){
@@ -154,7 +186,7 @@ vector<Animal*> Farm :: harvest(__attribute__((unused)) int slot_available){
                 if(!temp->isHarvest()){
                     throw NotHarvestAble();
                 }
-                ret.push_back(temp);
+                ret.push_back(make_pair(temp, coordinate));
                 removeElement(coordinate);
                 break;
             } catch (InvalidObject &e){

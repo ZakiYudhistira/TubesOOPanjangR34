@@ -34,6 +34,10 @@ class Animal : public GameObject {
         
         int getCurrentDays(){return 0;}
 
+        int getDurationToHarvest() {return 0 ;}
+
+        string getOrigin(){return "";}
+
         friend std::ostream& operator<<(std::ostream& os, const Animal& a);
 
 };

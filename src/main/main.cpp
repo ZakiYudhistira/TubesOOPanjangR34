@@ -16,7 +16,7 @@ Main::Main()
         // initiate TOKO
         toko_cina = *(new Toko(animal_config, plant_config, product_config, recipe_config));
     }
-    catch (const Exception &e)
+    catch (const exception &e)
     {
         cout << e.what() << '\n';
     }
@@ -39,23 +39,42 @@ void Main::main()
     cout << recipe_config;
 
     /*INITIALIZATION (jika new game)*/
-    this->gameMode();
+
+    string input_c;
+    while (input_c != "Y" && input_c != "N")
+    {
+        try
+        {
+            this->gameMode(input_c);
+        }
+        catch (exception &e)
+        {
+            cout << e.what() << endl;
+        }
+    }
 
     if (this->isMuat)
     {
-        // testing kalau MUAT
-        try
+        bool isRepeat = true;
+        while (isRepeat)
         {
-            readFile("test/data/state.txt", player_list, animal_config, plant_config, product_config, recipe_config, game_config, toko_cina);
+            cout << "Masukkan file path\n> ";
+            getline(cin, this->f_path);
 
-            for (int i = 0; i < (int)player_list.size(); i++)
+            try
             {
-                cout << *player_list[i] << endl;
+                readFile(this->f_path, animal_config, plant_config, product_config, recipe_config, game_config, toko_cina);
+
+                for (int i = 0; i < (int)player_list.size(); i++)
+                {
+                    cout << *player_list[i] << endl;
+                }
+                isRepeat = false;
             }
-        }
-        catch (const Exception &e)
-        {
-            cout << e.what() << '\n';
+            catch (const exception &e)
+            {
+                cout << e.what() << '\n';
+            }
         }
     }
     else
@@ -88,9 +107,6 @@ void Main::main()
         }
     }
 
-    /* TESTING TOKO CINA - (-1000) artinya unlimited*/
-    cout << toko_cina;
-
     int current_player_idx = 0;
     while (true)
     {
@@ -108,18 +124,35 @@ void Main::main()
                 cin >> command;
                 if (command == "SIMPAN")
                 {
-                    /* TESTING SIMPAN */
-                    string filepath;
-                    cout << "Masukkan filepath : ";
-                    cin >> filepath;
-                    writeFile(filepath, player_list, animal_config, plant_config, product_config, recipe_config, game_config, toko_cina);
+                    /* SIMPAN */
+                    bool isRepeat = true;
+                    while (isRepeat)
+                    {
+                        cout << "Masukkan filepath:\n> ";
+                        cin >> ws;
+                        getline(cin, this->f_path);
+                        try
+                        {
+                            this->isFileFound(this->f_path);
+                            writeFile(this->f_path, player_list, toko_cina);
+                            isRepeat = false;
+                        }
+                        catch (exception &e)
+                        {
+                            cout << e.what() << endl;
+                            cout << "Creating new file . . .\n";
+                            writeFile(this->f_path, player_list, toko_cina);
+
+                            isRepeat = false;
+                        }
+                    }
                 }
                 else
                 {
-                    player_list[current_player_idx]->currentTurn(command);
+                    player_list[current_player_idx]->currentTurn(command, player_list, current_player_idx, game_config, animal_config, plant_config, product_config, recipe_config, toko_cina);
                 }
             }
-            catch (const Exception &e)
+            catch (const exception &e)
             {
                 cout << e.what() << endl;
             }
@@ -127,34 +160,43 @@ void Main::main()
 
         cout << "Giliran dilanjutkan ke pemain berikutnya.\n";
 
-        current_player_idx += 1 % ((int)player_list.size() - 1);
-        // if (current_player_idx == (int)player_list.size())
-        // {
-        //     current_player_idx = 0;
-        // }
+        current_player_idx += 1;
+        if (current_player_idx == (int)player_list.size())
+        {
+            current_player_idx = 0;
+        }
     }
 }
 
-void Main::gameMode()
+void Main::gameMode(string &input_c)
 {
-    string input_c;
-    while (input_c != "Y" && input_c != "N")
-    {
-        cout << "Apakah anda ingin memuat atau tidak? (Y / N)\n> ";
-        getline(cin, input_c);
+    cout << "Apakah anda ingin memuat atau tidak? (Y / N)\n> ";
+    getline(cin, input_c);
 
-        if (input_c == "Y")
-        {
-            this->isMuat = true;
-        }
-        else if (input_c == "N")
-        {
-            this->isMuat = false;
-        }
-        else
-        {
-            cout << "Invalid Input Type\n";
-        }
+    if (input_c == "Y")
+    {
+        this->isMuat = true;
+    }
+    else if (input_c == "N")
+    {
+        this->isMuat = false;
+    }
+    else
+    {
+        InvalidType e;
+        throw e;
+    }
+}
+
+void Main::isFileFound(string s)
+{
+    std::ifstream my_file(s);
+
+    if (!my_file)
+    {
+        // if file does not exist
+        ExceptionFileNotFound e;
+        throw e;
     }
 }
 
@@ -164,14 +206,6 @@ void Main::gameMode()
  * debugging function - ga perlu tahu
  *
  */
-void check_active_dir()
-{
-    namespace fs = std::filesystem;
-    std::string path = "./";
-    for (const auto &entry : fs::directory_iterator(path))
-        std::cout << entry.path() << std::endl;
-}
-
 void Main::readFile(std::string file_name, GameConfig &gc)
 {
     std::ifstream my_file(file_name);
@@ -367,7 +401,7 @@ void Main::readFile(std::string file_name, ProductConfig &pc)
         }
         else
         {
-            FoodProduct *food_product = new FoodProduct(id, code, name, price, added_weight, origin, "FOOD_PRODUCT");
+            FoodProduct *food_product = new FoodProduct(id, code, name, price, added_weight, origin, type);
             temp_product = food_product;
         }
 
@@ -393,7 +427,7 @@ void Main::readFile(std::string file_name, RecipeConfig &rc)
     std::string file_content = "";
     while (std::getline(my_file, my_string))
     {
-        // string cleeaning
+        // string cleaning
         my_string.erase(my_string.find('\r'));
 
         file_content.append(my_string);
@@ -432,7 +466,7 @@ void Main::readFile(std::string file_name, RecipeConfig &rc)
     my_file.close();
 }
 
-void Main::readFile(std::string file_name, __attribute__((unused)) vector<Player *> &vp, __attribute__((unused)) AnimalConfig &ac, __attribute__((unused)) PlantConfig &pc, ProductConfig &prod, __attribute__((unused)) RecipeConfig &rc, GameConfig &gc, Toko &t)
+void Main::readFile(std::string file_name, AnimalConfig &ac, PlantConfig &pc, ProductConfig &prod, RecipeConfig &rc, GameConfig &gc, Toko &t)
 {
     std::ifstream my_file(file_name);
     std::string my_string;
@@ -445,13 +479,13 @@ void Main::readFile(std::string file_name, __attribute__((unused)) vector<Player
     }
 
     std::string file_content = "";
-    while (std::getline(my_file, my_string))
+    while (getline(my_file, my_string))
     {
         // string cleeaning
         size_t a = my_string.find('\r');
 
         if (a != string::npos)
-            my_string.erase();
+            my_string.erase(a);
 
         file_content.append(my_string);
         file_content.append(" ");
@@ -591,7 +625,7 @@ void Main::readFile(std::string file_name, __attribute__((unused)) vector<Player
             p->setPen(farm);
         }
 
-        vp.push_back(p);
+        this->insertPlayer(p);
     }
 
     int n_item_toko = 0;
@@ -610,7 +644,7 @@ void Main::readFile(std::string file_name, __attribute__((unused)) vector<Player
     my_file.close();
 }
 
-void Main::writeFile(std::string file_name, vector<Player *> &vp, __attribute__((unused)) AnimalConfig &ac, __attribute__((unused)) PlantConfig &pc, __attribute__((unused)) ProductConfig &prod, __attribute__((unused)) RecipeConfig &rc, __attribute__((unused)) GameConfig &gc, __attribute__((unused)) Toko &t)
+void Main::writeFile(std::string file_name, vector<Player *> &vp, Toko &t)
 {
     std::ifstream my_file(file_name);
     std::string my_string;
@@ -717,9 +751,8 @@ void Main::writeFile(std::string file_name, vector<Player *> &vp, __attribute__(
         out_file << isi_toko[i].first->getObjectName() << " " << isi_toko[i].second << "\n";
     }
 
-    out_file.close();
-
     // close file stream
+    out_file.close();
     my_file.close();
 }
 
@@ -727,23 +760,28 @@ void Main::writeFile(std::string file_name, vector<Player *> &vp, __attribute__(
 
 int main()
 {
-    Field jos(5,5);
-    jos.addElement(new FruitPlant(12, "JAR", "JAVA", "Fruit Plant",56, 2));
-    jos.addElement(new MaterialPlant(12, "COC", "Clashson", "Fruit Plant",56, 3));
-    jos.addElement(new FruitPlant(12, "VOC", "Clash", "Fruit Plant",56, 2));
-    cout << jos.getElementCount("VOC") << endl;
-    int n = 2;
-    for(int i = 0 ; i < n ; i++){
-        jos.updatePlant();
-    }
-    jos.addElement(new FruitPlant(12, "VOC", "Clash", "Fruit Plant",56, 2));
-    int slot_available = 100 ; //ini supaya ga error
-    vector<Plant*> tes = jos.harvest(slot_available);
-    for(int i = 0 ; i < (int)tes.size() ; i++){
-        cout << tes[i]->getCode() << endl;
-    }
+    // Field jos(5,5);
+    // jos.addElement(new FruitPlant(12, "JAR", "JAVA", "Fruit Plant",56, 2));
+    // jos.addElement(new MaterialPlant(12, "COC", "Clashson", "Fruit Plant",56, 3));
+    // jos.addElement(new FruitPlant(12, "VOC", "Clash", "Fruit Plant",56, 2));
+    // jos.addElement(new FruitPlant(12, "VOC", "Clash", "Fruit Plant",56, 2));
+    // cout << jos.getElementCount("VOC") << endl;
+    // int n = 2;
+    // for(int i = 0 ; i < n ; i++){
+    //     jos.updatePlant();
+    // }
+    // int slot_available = 100 ; //ini supaya ga error
+    // vector<Plant*> tes = jos.harvest(slot_available);
+    // for(int i = 0 ; i < (int)tes.size() ; i++){
+    //     cout << tes[i]->getCode() << endl;
+    // }
 
-    jos.printHarvest();
+    // jos.printHarvest();
+
+    /* MAIN PROGRAM */
+
+    Main *m = new Main();
+    m->main();
 
     return 0;
 }

@@ -35,6 +35,12 @@ class Building: public GameObject {
 
         int getCurrentDays(){return 0;}
 
+        int getDurationToHarvest(){return 0;}
+        
+        int getWeightToHarvest() {return 0 ;}
+
+        string getOrigin() {return "";}
+
         friend std::ostream& operator<<(std::ostream& os, Building& b);
 };
 

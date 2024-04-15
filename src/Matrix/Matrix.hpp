@@ -197,6 +197,7 @@ class Matrix{
                 if(!content.count(map)){
                     throw EmptySpace();
                 }
+                delete content[map];
                 content.erase(map);
                 resetPoint();
             }
@@ -263,8 +264,32 @@ class Matrix{
             return count;
         }
 
+        int getAnimalProductCount() {
+            int count = 0 ;
+            for(auto it = content.begin() ; it != content.end() ; it++) {
+                if (it->second->getType() == "PRODUCT_ANIMAL") {
+                    count++ ;
+                }
+            }
+            return count ;
+        }
+
+        int getFruitProductCount() {
+            int count = 0 ;
+            for(auto it = content.begin() ; it != content.end() ; it++) {
+                if (it->second->getType() == "PRODUCT_FRUIT_PLANT") {
+                    count++ ;
+                }
+            }
+            return count ;
+        }
+
         int getSlotAvailableCount() {
             return capacity - (int)content.size() ;
+        }
+
+        int getCapacity() {
+            return capacity ;
         }
 };
 #endif

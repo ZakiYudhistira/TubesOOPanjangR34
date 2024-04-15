@@ -63,20 +63,9 @@ void Field :: printHarvest(){
             printMatrixLine();
         }
     };
-}
 
-void Field :: updatePlant(){
-    for(auto i = content.begin() ; i != content.end() ; i++){
-        i->second->incrementCurrentDays();
-    }
-};
-
-vector<Plant*> Field :: harvest(__attribute__((unused)) int slot_available){
-    printHarvest();
-    
+    /* PRINT LEGENDA DARI LADANG */
     vector<pair<Plant*, int>> type_count;
-
-    vector<Plant*> ret;
 
     for(auto i = content.begin() ; i != content.end() ; i++){
         int j;
@@ -103,6 +92,45 @@ vector<Plant*> Field :: harvest(__attribute__((unused)) int slot_available){
     for(int i = 0 ; i < (int)type_count.size() ; i++){
         count += type_count[i].second;
         cout << " - "  << type_count[i].first->getCode() << ": " << type_count[i].first->getObjectName() << endl;
+    }
+}
+
+void Field :: updatePlant(){
+    for(auto i = content.begin() ; i != content.end() ; i++){
+        i->second->incrementCurrentDays();
+    }
+};
+
+vector<pair<Plant*, string>> Field :: harvest(__attribute__((unused)) int slot_available){
+    printHarvest();
+    
+    vector<pair<Plant*, int>> type_count;
+
+    vector<pair<Plant*, string>> ret;
+
+    for(auto i = content.begin() ; i != content.end() ; i++){
+        int j;
+        for(j = 0; j < (int)type_count.size() ; j++){
+            if(i->second->isHarvest()){
+                if(i->second->getCode() == type_count[j].first->getCode()){
+                    type_count[j].second++;
+                    break;
+                }
+            }
+        }
+        if(j == (int)type_count.size()){
+            if(i->second->isHarvest()){
+                type_count.push_back({i->second, 1});
+            } else {
+                type_count.push_back({i->second, 0});
+            }
+        }
+    }
+
+    int count = 0;
+    cout << endl << endl;
+    for(int i = 0 ; i < (int)type_count.size() ; i++){
+        count += type_count[i].second;
     }
 
     if(!count){
@@ -156,12 +184,7 @@ vector<Plant*> Field :: harvest(__attribute__((unused)) int slot_available){
                 if(temp->getCode() != type_count[index_harvest - 1].first->getCode()){
                     throw InvalidObject();
                 }
-
-                if(!temp->isHarvest()){
-                    throw NotHarvestAble();
-                }
-                ret.push_back(temp);
-                removeElement(coordinate);
+                ret.push_back(make_pair(temp, coordinate));
                 break;
             } catch (InvalidObject &e){
                 cout << "Invalid plant to harvest, please try again" << endl;
@@ -172,6 +195,6 @@ vector<Plant*> Field :: harvest(__attribute__((unused)) int slot_available){
             }
         }
     }
-
+ 
     return ret;
 }

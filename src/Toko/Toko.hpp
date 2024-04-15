@@ -4,52 +4,62 @@
 #include <vector>
 #include <string>
 
+#include "Exception/Exception.hpp"
+
 #include "Config/AnimalConfig.hpp"
 #include "Config/PlantConfig.hpp"
 #include "Config/ProductConfig.hpp"
 #include "Config/RecipeConfig.hpp"
 
 #include "GameObject/GameObject.hpp"
-#include "Player/Player.hpp"
+#include "Matrix/MatrixException.hpp"
 
 using namespace std;
 
 /* Class. Toko */
-class Toko {
-    private:
-        /* daftar item yang dijual besert kuantitasnya */
-        vector<pair<GameObject*, int>> item_list;
-        /* banyak jenis item pada toko */
-        int neff;
-    public:
-        // Default Constructor
-        Toko();
+class Toko
+{
+private:
+    /* daftar item yang dijual besert kuantitasnya */
+    vector<pair<GameObject *, int>> item_list;
+    /* banyak jenis item pada toko */
+    int neff;
+    /* Harga terendah barang pada toko */
+    int cheapest_price;
 
-        // Constructor dengan item-item yang telah ditentukan dari config
-        Toko(AnimalConfig& ac, PlantConfig& pc, ProductConfig& prod, RecipeConfig& rc);
+public:
+    // Default Constructor
+    Toko();
 
-        Toko(Toko& t);
+    // Constructor dengan item-item yang telah ditentukan dari config
+    Toko(AnimalConfig &ac, PlantConfig &pc, ProductConfig &prod, RecipeConfig &rc);
 
-        Toko& operator=(Toko&);
+    Toko(Toko &t);
 
-        void addItem(pair<GameObject*, int>);
+    Toko &operator=(Toko &);
 
-        void setItemQuantity(std::string, int qty);
+    void addItem(pair<GameObject *, int>);
 
-        // Getter banyak jenis Item yang tersedia di toko
-        int getNumJenisItem();
+    void setItemQuantity(std::string, int qty);
 
-        // getter untuk item ke i
-        pair<GameObject*, int> getItemI(int i);
+    // Getter banyak jenis Item yang tersedia di toko
+    int getNumJenisItem();
 
-        // Operator overload untuk output item pada toko
-        friend ostream& operator<<(ostream& os, Toko t);
+    int getCheapestPrice();
 
-        // Melakukan pembelian dari seorang player pada toko
-        void beli(vector<GameObject*> sold);
+    // getter untuk item ke i
+    pair<GameObject *, int> getItemI(int i);
 
-        // Melakukan penjualan untuk seorang player dari toko
-        pair<GameObject*, int> jual(Player* current_player);
+    // Operator overload untuk output item pada toko
+    void printToko();
+
+    // Melakukan pembelian dari seorang player pada toko
+    GameObject* beli(int idx, int quantity, int gulden, int inventory_available);
+
+    // Melakukan penjualan untuk seorang player dari toko
+    int jual(vector<GameObject*> sold);
+
+    
 };
 
 #endif

@@ -4,6 +4,7 @@
 #include "Player/Player.hpp"
 #include "Player/Petani/Petani.hpp"
 #include "Player/Peternak/Peternak.hpp"
+#include "Toko/Toko.hpp"
 
 #include "Config/GameConfig.hpp"
 #include "Config/RecipeConfig.hpp"
@@ -77,6 +78,6 @@ public:
      * Override Function.
      * fungsi untuk melakukan action / perintah pada setiap turn.
      */
-    void currentTurn(string);
+    void currentTurn(string, vector<Player *> &, int &, GameConfig &, AnimalConfig &, PlantConfig &, ProductConfig &, RecipeConfig &, Toko &);
 };
 #endif

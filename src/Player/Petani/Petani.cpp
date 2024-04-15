@@ -19,40 +19,121 @@ Petani::~Petani()
 }
 
 void Petani::plant()
-{ // this too nunggu zaki
-}
- 
-void Petani::harvest(ProductConfig &product_list){
-    int slot_available = this->inventory->getSlotAvailableCount() ;
-    vector<Plant*> harvest_list = this->field->harvest(slot_available) ;
-    vector<Product*> config_list = product_list.getProductList() ;
-    int len_harvest = (int)harvest_list.size() ;
+{
+    cout << "Choose plant from inventory!" << endl;
+    this->inventory->printMatrix();
+    string slot;
 
-    for (int i = 0 ; i < len_harvest ; i++) {
-        Product* product_to_make ;
-        int j = 0 ;
-        while(true) {
-            if (config_list[j]->getOrigin() == harvest_list[i]->getObjectName()) {
-                product_to_make = config_list[j] ;
-                break ;
+    // Input and validate plant from inventory
+    Plant *hasil;
+    while (true)
+    {
+        cout << "Slot : ";
+        cin >> slot;
+        try
+        {
+            GameObject *plant = this->inventory->getElement(slot);
+            if (this->field->getSlotAvailableCount() == 0)
+            {
+                throw MatrixFull();
             }
-            else {
-                j++ ;
+            if (plant->getType() == "FRUIT_PLANT")
+            {
+                FruitPlant *hasilf = new FruitPlant(plant->getId(), plant->getCode(), plant->getObjectName(), plant->getType(), plant->getPrice(), plant->getDurationToHarvest());
+                this->inventory->removeElement(slot);
+                cout << "You choose " << hasilf->getObjectName() << "." << endl;
+                hasil = hasilf;
+                break;
+            }
+            else if (plant->getType() == "MATERIAL_PLANT")
+            {
+                MaterialPlant *hasilm = new MaterialPlant(plant->getId(), plant->getCode(), plant->getObjectName(), plant->getType(), plant->getPrice(), plant->getDurationToHarvest());
+                this->inventory->removeElement(slot);
+                cout << "You choose " << hasilm->getObjectName() << "." << endl;
+                hasil = hasilm;
+                break;
+            }
+            else
+            {
+                throw ItemNotFound();
             }
         }
-        if (product_to_make->getType() == "MATERIAL_PRODUCT") {
-            MaterialProduct *hasil = new MaterialProduct(product_to_make->getId(), product_to_make->getCode(), product_to_make->getObjectName(), product_to_make->getPrice(), product_to_make->getAddedWeight(), product_to_make->getOrigin(), product_to_make->getType()) ;
-            this->inventory->addElement(hasil) ;
+        catch (MatrixFull &e)
+        {
+            cout << "There is no space in your field!" << endl;
         }
-        else {
-            FoodProduct *hasil = new FoodProduct(product_to_make->getId(), product_to_make->getCode(), product_to_make->getObjectName(), product_to_make->getPrice(), product_to_make->getAddedWeight(), product_to_make->getOrigin(), product_to_make->getType()) ;
-            this->inventory->addElement(hasil) ;
+        catch (MatrixException &e)
+        {
+            cout << "Input invalid, try again!" << endl;
+        }
+        catch (ItemNotFound &e)
+        {
+            cout << e.what() << endl;
+        }
+    }
+
+    // Put the plant into the field
+    cout << "Choose space to plant!" << endl;
+    this->field->printHarvest();
+    while (true)
+    {
+        cout << "Slot : ";
+        cin >> slot;
+        try
+        {
+            this->field->addElement(hasil);
+            cout << hasil->getObjectName() << " successfully planted!" << endl;
+            break;
+        }
+
+        catch (MatrixException &e)
+        {
+            cout << "Input invalid, try again!" << endl;
         }
     }
 }
 
-void Petani::printField() {
-    this->field->printHarvest() ;
+void Petani::harvest(ProductConfig &product_list)
+{
+    int slot_available = this->inventory->getSlotAvailableCount();
+    vector<pair<Plant *, string>> harvest_list = this->field->harvest(slot_available);
+    vector<Product *> config_list = product_list.getProductList();
+    int len_harvest = (int)harvest_list.size();
+
+    for (int i = 0; i < len_harvest; i++)
+    {
+        Product *product_to_make;
+        int j = 0;
+        while (true)
+        {
+            if (config_list[j]->getOrigin() == harvest_list[i].first->getObjectName())
+            {
+                product_to_make = config_list[j];
+                break;
+            }
+            else
+            {
+                j++;
+            }
+        }
+        if (product_to_make->getType() == "PRODUCT_MATERIAL_PLANT")
+        {
+            MaterialProduct *hasil = new MaterialProduct(product_to_make->getId(), product_to_make->getCode(), product_to_make->getObjectName(), product_to_make->getPrice(), product_to_make->getAddedWeight(), product_to_make->getOrigin(), product_to_make->getType());
+            this->inventory->addElement(hasil);
+        }
+        else
+        {
+            FoodProduct *hasil = new FoodProduct(product_to_make->getId(), product_to_make->getCode(), product_to_make->getObjectName(), product_to_make->getPrice(), product_to_make->getAddedWeight(), product_to_make->getOrigin(), product_to_make->getType());
+            this->inventory->addElement(hasil);
+        }
+
+        this->field->removeElement(harvest_list[i].second);
+    }
+}
+
+void Petani::printField()
+{
+    this->field->printHarvest();
 }
 
 string Petani::getType()
@@ -63,6 +144,8 @@ string Petani::getType()
 int Petani::payTax()
 {
     double gulden = -13;
+    gulden += this->getGulden();
+
     // hitung total kekayaan dari Inventory
     map<string, GameObject *>::iterator it = this->inventory->getContent().begin();
     while (it != this->inventory->getContent().end())
@@ -134,33 +217,50 @@ void Petani::setField(Field *m)
 }
 void Petani::setPen(__attribute__((unused)) Farm *m) {}
 
-void Petani::currentTurn(string command)
+void Petani::currentTurn(string command, __attribute__((unused)) vector<Player *> &player_list, __attribute__((unused)) int &current_player_idx, __attribute__((unused)) GameConfig &game_config, __attribute__((unused)) AnimalConfig &animal_config, __attribute__((unused)) PlantConfig &plant_config, __attribute__((unused)) ProductConfig &product_config, __attribute__((unused)) RecipeConfig &recipe_config, Toko &toko_cina)
 {
     if (command == "CETAK_LADANG")
     {
-        cout << command << "succeed"; // debug purposes
+        this->field->printHarvest();
+        cout << command << "succeed\n"; // debug purposes
+    }
+    else if (command == "CETAK_PENYIMPANAN")
+    {
+        this->printInventory();
     }
     else if (command == "TANAM")
     {
-        cout << command << "succeed";
+        cout << command << "succeed\n";
     }
     else if (command == "MAKAN")
     {
-        cout << command << "succeed";
+        // Makan
+        this->eat();
+        cout << command << " succeed\n";
     }
     else if (command == "BELI")
     {
-        cout << command << "succeed";
+        // Beli
+        toko_cina.printToko();
+        this->buy(toko_cina);
+        cout << command << " succeed\n";
     }
     else if (command == "JUAL")
     {
-        cout << command << "succeed";
+        // Jual
+        this->sell(toko_cina);
+        cout << command << " succeed\n";
     }
     else if (command == "PANEN")
     {
+        this->harvest(product_config);
         cout << command << "succeed";
     }
-    else
+    else if (command == "STATUS")
+    {
+        this->printStatus();
+    }
+    else if (command != "NEXT")
     {
         invalidCommand e;
         throw e;
