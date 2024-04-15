@@ -158,7 +158,7 @@ Player *Walikota::addPlayer(GameConfig &gc, vector<Player *> player_list)
     cout << "Enter player's type : ";
     cin >> type;
     transform(name.begin(), name.end(), name.begin(), ::tolower);
-    if (type != "petani" || type != "peternak")
+    if (type != "petani" && type != "peternak")
     {
         throw TypeNotFound();
     }
@@ -210,7 +210,7 @@ void Walikota::setPen(__attribute__((unused)) Farm *m)
 {
 }
 
-void Walikota::currentTurn(string command, vector<Player *>& player_list, __attribute__((unused)) int current_player_idx, GameConfig& game_config, __attribute__((unused)) AnimalConfig& animal_config, __attribute__((unused)) PlantConfig& plant_config, __attribute__((unused)) ProductConfig& product_config, RecipeConfig& recipe_config, Toko& toko_cina)
+void Walikota::currentTurn(string command, vector<Player *> &player_list, __attribute__((unused)) int current_player_idx, GameConfig &game_config, __attribute__((unused)) AnimalConfig &animal_config, __attribute__((unused)) PlantConfig &plant_config, __attribute__((unused)) ProductConfig &product_config, RecipeConfig &recipe_config, Toko &toko_cina)
 {
     if (command == "PUNGUT_PAJAK")
     {
