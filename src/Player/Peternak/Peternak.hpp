@@ -18,6 +18,8 @@ private:
     string type;
     /* pointer ke pen (peternakan) dari pemain*/
     Farm *pen;
+    /* list perintah yang boleh dijalankan */
+    vector<string> command_list = {"STATUS", "HELP", "CETAK_PENYIMPANAN", "CETAK_PETERNAKAN", "TERNAK", "KASIH_MAKAN", "MAKAN", "BELI", "JUAL", "PANEN", "NEXT", "SIMPAN"};
 
 public:
     /*

@@ -19,7 +19,7 @@ private:
     /* pointer ke pen (peternakan) dari pemain*/
     Field *field;
     /* list perintah yang boleh dijalankan */
-    vector<string> command_list = {"CETAK_PENYIMPANAN", "CETAK_LADANG", "TANAM", "MAKAN", "BELI", ""};
+    vector<string> command_list = {"STATUS", "HELP", "CETAK_PENYIMPANAN", "CETAK_LADANG", "TANAM", "MAKAN", "BELI", "JUAL", "PANEN", "NEXT", "SIMPAN"};
 
 public:
     /*

@@ -361,6 +361,13 @@ void Peternak::currentTurn(string command, __attribute__((unused)) vector<Player
     {
         this->printInventory();
     }
+    else if (command == "HELP")
+    {
+        cout << "Daftar Perintah:\n";
+        for(int i=0; i<(int)this->command_list; i++){
+            cout << command_list[i] << "\n";
+        }
+    }
     else if (command != "NEXT")
     {
         invalidCommand e;

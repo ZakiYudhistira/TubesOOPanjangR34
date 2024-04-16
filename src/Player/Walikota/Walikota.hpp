@@ -18,6 +18,8 @@ class Walikota : public Player
 private:
     /* type dari suatu pemain */
     string type;
+    /* list perintah yang boleh dijalankan */
+    vector<string> command_list = {"STATUS", "HELP", "CETAK_PENYIMPANAN", "PUNGUT_PAJAK", "BANGUN", "MAKAN", "BELI", "JUAL", "TAMBAH_PEMAIN", "NEXT", "SIMPAN"};
 
 public:
     /*
