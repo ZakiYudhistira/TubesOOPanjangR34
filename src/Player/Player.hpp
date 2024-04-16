@@ -120,7 +120,7 @@ public:
 
     void sell(Toko &toko_cina);
     // Menerima input petak saat pembelian hingga masukan valid
-    vector<string> inputPetakBeli(int quantity);
+    vector<string> inputPetakBeli();
     /*
      * Operator Overloading. Untuk debug
      */
@@ -166,3 +166,18 @@ public:
 };
 
 #endif
+
+
+Tubes OS -> bikin operating system pake C ada 4 milestone. lgsg di blast 4 4nya.
+Tubes Basis Data -> baru dikasih turun hari ini
+Tubes RPL -> perancangan dokumen sampai ngoding (realisasi). per minggu di bagi kecil2.
+Tubes OOP
+Tubes STIMA -> Strategi Algoritma. BFS DFS more complex
+
+UPCOMING
+- STIMA TUBES 3
+- STIMA Tugas Kecil 3
+- Tubes OOP 2 ???? mungkin
+- Probstat ??? probabil 
+
+DONE
