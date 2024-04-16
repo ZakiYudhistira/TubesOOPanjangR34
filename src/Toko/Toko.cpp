@@ -161,7 +161,9 @@ GameObject* Toko::beli(int idx_to_buy, int quantity, int gulden, int inventory_a
     {
         GameObject* item_bought;
         item_bought = this->item_list[idx_to_buy - 1].first;
-        this->item_list[idx_to_buy - 1].second -= quantity;
+        if (this->item_list[idx_to_buy - 1].second != -1000) {
+            this->item_list[idx_to_buy - 1].second -= quantity;
+        }
 
         int id = item_bought->getId();
         string code = item_bought->getCode();

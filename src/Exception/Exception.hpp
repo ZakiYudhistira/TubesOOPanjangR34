@@ -86,4 +86,14 @@ class NoFoodFound: public exception {
     char const * what() const noexcept override;
 };
 
+class ProhibitedSellingException : public exception {
+    public :
+    char const * what() const noexcept override;
+};
+
+class ProhibitedBuyingException : public exception {
+    public :
+    char const * what() const noexcept override;
+};
+
 #endif
