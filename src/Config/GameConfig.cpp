@@ -75,6 +75,14 @@ int GameConfig::getFieldCol(){
     return this->field_col;
 }
 
+int GameConfig::getGuldenToWin(){
+    return this->gulden_to_win;
+}
+
+int GameConfig::getWeightToWin(){
+    return this->weight_to_win;
+}
+
 std::ostream& operator<<(std::ostream& os, GameConfig& gc){
     os << std::setw(15) << "weight_to_win:"  << std::setw(20) << gc.weight_to_win << "\n"
         << std::setw(15) << "gulden_to_win:" << std::setw(20) << gc.gulden_to_win << "\n"
