@@ -158,13 +158,26 @@ void Main::main()
             }
         }
 
-        if (player_list[current_player_idx]->getType() == "Petani")
-        {
-            cout << "next day\n";
-            player_list[current_player_idx]->nextDay();
+        // looping update tanaman setiap hari
+        for(int i=0; i < (int)this->player_list.size(); i++){
+            if (player_list[i]->getType() == "Petani")
+            {
+                cout << "next day\n";
+                player_list[i]->nextDay();
+            }
         }
 
         cout << "Giliran dilanjutkan ke pemain berikutnya.\n";
+
+        /* WINNING CONDITION CHECK */
+        if(this->player_list[current_player_idx]->getBodyWeight() >= game_config.getWeightToWin() &&
+            this->player_list[current_player_idx]->getGulden() >= game_config.getGuldenToWin()){
+                cout << "+--------------------------+\n";
+                cout << "| HORE ADA PEMENANGNYA!!!! |\n";
+                cout << "+--------------------------+\n";
+                this->player_list[current_player_idx]->printStatus();
+                break;
+            }
 
         current_player_idx += 1;
         if (current_player_idx == (int)player_list.size())
@@ -228,7 +241,9 @@ void Main::readFile(std::string file_name, GameConfig &gc)
     while (std::getline(my_file, my_string))
     {
         // string cleeaning
-        my_string.erase(my_string.find('\r'));
+        size_t itr = my_string.find('\r');
+        if(itr != string::npos)
+            my_string.erase(itr);
 
         file_content.append(my_string);
         file_content.append(" ");
@@ -245,7 +260,7 @@ void Main::readFile(std::string file_name, GameConfig &gc)
 
     stringstream s(file_content);
 
-    s >> weight_to_win >> gulden_to_win >> inventory_row >> inventory_col >> pen_row >> pen_col >> field_row >> field_col;
+    s >> gulden_to_win >> weight_to_win >> inventory_row >> inventory_col >> pen_row >> pen_col >> field_row >> field_col;
 
     GameConfig new_gc(weight_to_win, gulden_to_win, inventory_row, inventory_col,
                       pen_row, pen_col, field_row, field_col);
@@ -272,7 +287,9 @@ void Main::readFile(std::string file_name, AnimalConfig &ac)
     while (std::getline(my_file, my_string))
     {
         // string cleeaning
-        my_string.erase(my_string.find('\r'));
+        size_t itr = my_string.find('\r');
+        if(itr != string::npos)
+            my_string.erase(itr);
 
         file_content.append(my_string);
         file_content.append(" ");
@@ -329,7 +346,9 @@ void Main::readFile(std::string file_name, PlantConfig &pc)
     while (std::getline(my_file, my_string))
     {
         // string cleeaning
-        my_string.erase(my_string.find('\r'));
+        size_t itr = my_string.find('\r');
+        if(itr != string::npos)
+            my_string.erase(itr);
 
         file_content.append(my_string);
         file_content.append(" ");
@@ -381,7 +400,9 @@ void Main::readFile(std::string file_name, ProductConfig &pc)
     while (std::getline(my_file, my_string))
     {
         // string cleeaning
-        my_string.erase(my_string.find('\r'));
+        size_t itr = my_string.find('\r');
+        if(itr != string::npos)
+            my_string.erase(itr);
 
         file_content.append(my_string);
         file_content.append(" ");
@@ -433,8 +454,10 @@ void Main::readFile(std::string file_name, RecipeConfig &rc)
     std::string file_content = "";
     while (std::getline(my_file, my_string))
     {
-        // string cleaning
-        my_string.erase(my_string.find('\r'));
+        // string cleeaning
+        size_t itr = my_string.find('\r');
+        if(itr != string::npos)
+            my_string.erase(itr);
 
         file_content.append(my_string);
         file_content.append(" | -123456 ");
