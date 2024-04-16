@@ -73,3 +73,11 @@ char const *PlantNotFound::what() const noexcept {
 char const *NoFoodFound::what() const noexcept {
     return "You have no food for this!" ;
 }
+
+char const *ProhibitedSellingException::what() const noexcept {
+    return "Anda tidak dapat menjual bangunan!";
+}
+
+char const *ProhibitedBuyingException::what() const noexcept {
+    return "Anda tidak dapat membeli bangunan!";
+}
