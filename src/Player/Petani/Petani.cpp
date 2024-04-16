@@ -95,7 +95,7 @@ void Petani::plant()
         cin >> slot;
         try
         {
-            this->field->addElement(hasil);
+            this->field->addElement(hasil, slot);
             cout << hasil->getObjectName() << " successfully planted!" << endl;
             break;
         }

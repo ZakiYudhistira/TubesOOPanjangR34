@@ -271,8 +271,10 @@ class Matrix{
         int getElementCountbyType(string el) { // count by object type
             int count = 0;
             for(auto it = content.begin() ; it != content.end() ; it++){
-                if(el == it->second->getType()){
-                    count++;
+                if(it->second != NULL){
+                    if(el == it->second->getType()){
+                        count++;
+                    }
                 }
             }
             return count;

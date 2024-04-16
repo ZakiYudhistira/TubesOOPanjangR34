@@ -108,7 +108,7 @@ void Player::buy(Toko &toko_cina)
 
         int idx_to_buy;
         int quantity;
-        GameObject *item_bought;
+        vector<GameObject*> item_bought;
 
         cout << "Barang yang ingin dibeli : ";
         cin >> idx_to_buy;
@@ -118,16 +118,20 @@ void Player::buy(Toko &toko_cina)
         if (toko_cina.getItemI(idx_to_buy).first->getType() == "Building" && this->getType() == "Walikota") {
             throw ProhibitedBuyingException();
         } else {
-            item_bought = toko_cina.beli(idx_to_buy, quantity, this->gulden, this->getInventoryAvailableCount());
-            this->addGulden(quantity * item_bought->getPrice() * (-1));
+            for(int count_item = 0; count_item < quantity; count_item++){
+                item_bought.push_back(toko_cina.beli(idx_to_buy, quantity, this->gulden, this->getInventoryAvailableCount()));
+            }
+            this->addGulden(quantity * item_bought[0]->getPrice() * (-1));
 
-            cout << "Selamat, Anda berhasil membeli " << quantity << " " << item_bought->getObjectName()
+            cout << "Selamat, Anda berhasil membeli " << quantity << " " << item_bought[0]->getObjectName()
                 << ". Uang Anda tersisa " << this->gulden << " gulden." << endl;
             cout << "Pilih slot untuk menyimpan barang yang Anda beli!" << endl;
             this->printInventory();
             vector<string> petak_beli = this->inputPetakBeli(quantity);
-            this->addInventory(item_bought, petak_beli);
-            cout << item_bought->getObjectName() << " berhasil disimpan dalam penyimpanan!" << endl;
+            for(int i=0; i<(int)petak_beli.size(); i++){
+                this->addInventory(item_bought[i], petak_beli[i]);
+            }
+            cout << item_bought[0]->getObjectName() << " berhasil disimpan dalam penyimpanan!" << endl;
         }
     }
 }
