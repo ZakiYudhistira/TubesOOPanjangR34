@@ -108,27 +108,38 @@ void Player::buy(Toko &toko_cina)
 
         int idx_to_buy;
         int quantity;
-        vector<GameObject*> item_bought;
+        vector<GameObject *> item_bought;
 
         cout << "Barang yang ingin dibeli : ";
         cin >> idx_to_buy;
         cout << "Kuantitas : ";
         cin >> quantity;
 
-        if (toko_cina.getItemI(idx_to_buy).first->getType() == "Building" && this->getType() == "Walikota") {
+        // Validasi Input
+        if (idx_to_buy <= 0 || quantity <= 0 || idx_to_buy > (int)toko_cina.getNumJenisItem())
+        {
+            throw IndexOutOfRange();
+        }
+
+        if (toko_cina.getItemI(idx_to_buy).first->getType() == "Building" && this->getType() == "Walikota")
+        {
             throw ProhibitedBuyingException();
-        } else {
-            for(int count_item = 0; count_item < quantity; count_item++){
+        }
+        else
+        {
+            for (int count_item = 0; count_item < quantity; count_item++)
+            {
                 item_bought.push_back(toko_cina.beli(idx_to_buy, 1, this->gulden, this->getInventoryAvailableCount()));
                 this->addGulden(item_bought[0]->getPrice() * (-1));
             }
 
             cout << "Selamat, Anda berhasil membeli " << quantity << " " << item_bought[0]->getObjectName()
-                << ". Uang Anda tersisa " << this->gulden << " gulden." << endl;
+                 << ". Uang Anda tersisa " << this->gulden << " gulden." << endl;
             cout << "Pilih slot untuk menyimpan barang yang Anda beli!" << endl;
             this->printInventory();
             vector<string> petak_beli = this->inputPetakBeli(quantity);
-            for(int i=0; i<(int)petak_beli.size(); i++){
+            for (int i = 0; i < (int)petak_beli.size(); i++)
+            {
                 this->addInventory(item_bought[i], petak_beli[i]);
             }
             cout << item_bought[0]->getObjectName() << " berhasil disimpan dalam penyimpanan!" << endl;
@@ -158,17 +169,19 @@ void Player::sell(Toko &toko_cina)
 
     int gulden_given = 0;
     vector<GameObject *> sold;
-    
+
     bool valid = true;
     for (int i = 0; i < (int)petak_jual.size(); i++)
     {
         sold.push_back(this->getInventory(petak_jual[i]));
-        if (this->getInventory(petak_jual[i])->getType() == "Building" && this->getType() != "Walikota") {
+        if (this->getInventory(petak_jual[i])->getType() == "Building" && this->getType() != "Walikota")
+        {
             valid = false;
         }
     }
 
-    if (valid) {
+    if (valid)
+    {
         gulden_given = toko_cina.jual(sold);
 
         /* DELETE ITEM SOLD IN INVENTORY */
@@ -178,8 +191,10 @@ void Player::sell(Toko &toko_cina)
         }
 
         this->addGulden(gulden_given);
-        cout << "Barang Anda berhasil dijual! Uang Anda bertambah " << gulden_given << "gulden!\n";
-    } else {
+        cout << "Barang Anda berhasil dijual! Uang Anda bertambah " << gulden_given << " gulden!\n";
+    }
+    else
+    {
         throw ProhibitedSellingException();
     }
 }

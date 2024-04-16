@@ -73,7 +73,7 @@ public:
      * untuk child class membayar pajak.
      * @return jumlah_gulden `int` jumlah gulden yang harus disetor.
      */
-    int payTax();
+    int calculateTax();
     /*
      * Override Function. tidak berlaku pada walikota
      */

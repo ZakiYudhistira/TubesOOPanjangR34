@@ -159,10 +159,10 @@ void Main::main()
         }
 
         // looping update tanaman setiap hari
-        for(int i=0; i < (int)this->player_list.size(); i++){
+        for (int i = 0; i < (int)this->player_list.size(); i++)
+        {
             if (player_list[i]->getType() == "Petani")
             {
-                cout << "next day\n";
                 player_list[i]->nextDay();
             }
         }
@@ -170,14 +170,15 @@ void Main::main()
         cout << "Giliran dilanjutkan ke pemain berikutnya.\n";
 
         /* WINNING CONDITION CHECK */
-        if(this->player_list[current_player_idx]->getBodyWeight() >= game_config.getWeightToWin() &&
-            this->player_list[current_player_idx]->getGulden() >= game_config.getGuldenToWin()){
-                cout << "+--------------------------+\n";
-                cout << "| HORE ADA PEMENANGNYA!!!! |\n";
-                cout << "+--------------------------+\n";
-                this->player_list[current_player_idx]->printStatus();
-                break;
-            }
+        if (this->player_list[current_player_idx]->getBodyWeight() >= game_config.getWeightToWin() &&
+            this->player_list[current_player_idx]->getGulden() >= game_config.getGuldenToWin())
+        {
+            cout << "+--------------------------+\n";
+            cout << "| HORE ADA PEMENANGNYA!!!! |\n";
+            cout << "+--------------------------+\n";
+            this->player_list[current_player_idx]->printStatus();
+            break;
+        }
 
         current_player_idx += 1;
         if (current_player_idx == (int)player_list.size())
@@ -242,7 +243,7 @@ void Main::readFile(std::string file_name, GameConfig &gc)
     {
         // string cleeaning
         size_t itr = my_string.find('\r');
-        if(itr != string::npos)
+        if (itr != string::npos)
             my_string.erase(itr);
 
         file_content.append(my_string);
@@ -288,7 +289,7 @@ void Main::readFile(std::string file_name, AnimalConfig &ac)
     {
         // string cleeaning
         size_t itr = my_string.find('\r');
-        if(itr != string::npos)
+        if (itr != string::npos)
             my_string.erase(itr);
 
         file_content.append(my_string);
@@ -347,7 +348,7 @@ void Main::readFile(std::string file_name, PlantConfig &pc)
     {
         // string cleeaning
         size_t itr = my_string.find('\r');
-        if(itr != string::npos)
+        if (itr != string::npos)
             my_string.erase(itr);
 
         file_content.append(my_string);
@@ -401,7 +402,7 @@ void Main::readFile(std::string file_name, ProductConfig &pc)
     {
         // string cleeaning
         size_t itr = my_string.find('\r');
-        if(itr != string::npos)
+        if (itr != string::npos)
             my_string.erase(itr);
 
         file_content.append(my_string);
@@ -456,7 +457,7 @@ void Main::readFile(std::string file_name, RecipeConfig &rc)
     {
         // string cleeaning
         size_t itr = my_string.find('\r');
-        if(itr != string::npos)
+        if (itr != string::npos)
             my_string.erase(itr);
 
         file_content.append(my_string);

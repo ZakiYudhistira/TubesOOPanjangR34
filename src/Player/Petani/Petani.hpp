@@ -69,14 +69,14 @@ public:
      */
 
     void nextDay();
-    
+
     string getType();
     /*
      * Override Function.
      * untuk child class membayar pajak.
      * @return jumlah_gulden `int` jumlah gulden yang harus disetor.
      */
-    int payTax();
+    int calculateTax();
     /*
      * Override Function.
      * mengembalikan vector berisi tanmaan dan koordinat

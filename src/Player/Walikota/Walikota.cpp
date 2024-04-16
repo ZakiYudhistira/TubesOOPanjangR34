@@ -26,7 +26,7 @@ void Walikota::tax(vector<Player *> player_list)
         }
         else
         {
-            tax_player += player_list[i]->payTax();
+            tax_player += player_list[i]->calculateTax();
             if (tax_player > player_list[i]->getGulden())
             {
                 tax_player = player_list[i]->getGulden();
@@ -142,7 +142,8 @@ void Walikota::build(RecipeConfig &recipe)
             {
                 cout << slot[i].second << " " << slot[i].first << "." << endl;
             }
-            else {
+            else
+            {
                 cout << slot[i].second << " " << slot[i].first << ", ";
             }
         }
@@ -166,8 +167,9 @@ Player *Walikota::addPlayer(GameConfig &gc, vector<Player *> player_list)
     string name, type;
     cout << "Enter player's type : ";
     cin >> type;
-    for (auto& x : type) { // turning string type into lowercase
-        x = tolower(x); 
+    for (auto &x : type)
+    { // turning string type into lowercase
+        x = tolower(x);
     }
     if (type != "petani" && type != "peternak")
     {
@@ -203,7 +205,7 @@ string Walikota::getType()
     return this->type;
 }
 
-int Walikota::payTax()
+int Walikota::calculateTax()
 {
     return 0;
 }
@@ -281,7 +283,8 @@ void Walikota::currentTurn(string command, vector<Player *> &player_list, int &c
     else if (command == "HELP")
     {
         cout << "Daftar Perintah:\n";
-        for(int i=0; i < (int)this->command_list.size(); i++){
+        for (int i = 0; i < (int)this->command_list.size(); i++)
+        {
             cout << this->command_list[i] << endl;
         }
     }

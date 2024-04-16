@@ -160,7 +160,7 @@ string Petani::getType()
     return this->type;
 }
 
-int Petani::payTax()
+int Petani::calculateTax()
 {
     double gulden = -13;
     gulden += this->getGulden();
@@ -283,7 +283,8 @@ void Petani::currentTurn(string command, __attribute__((unused)) vector<Player *
     else if (command == "HELP")
     {
         cout << "Daftar Perintah:\n";
-        for(int i=0; i<(int)this->command_list.size(); i++){
+        for (int i = 0; i < (int)this->command_list.size(); i++)
+        {
             cout << command_list[i] << endl;
         }
     }

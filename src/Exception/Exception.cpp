@@ -40,44 +40,57 @@ char const *IsNotFood::what() const noexcept
     return "Food not found!";
 }
 
-char const * InvalidName::what() const noexcept {
-    return "Name must be unique!" ;
+char const *InvalidName::what() const noexcept
+{
+    return "Name must be unique!";
 }
- 
 
 char const *invalidCommand::what() const noexcept
 {
     return "Invalid command!";
 }
 
-char const *RecipeNotFound::what() const noexcept {
-    return "You don't have that recipe!" ;
+char const *RecipeNotFound::what() const noexcept
+{
+    return "You don't have that recipe!";
 }
 
-char const *MaterialNotEnough::what() const noexcept {
-    return "You don't have enough material" ;
+char const *MaterialNotEnough::what() const noexcept
+{
+    return "You don't have enough material";
 }
 
-char const *ItemNotFound::what() const noexcept {
-    return "Invalid item!" ;
+char const *ItemNotFound::what() const noexcept
+{
+    return "Invalid item!";
 }
 
-char const *AnimalNotFound::what() const noexcept {
-    return "There is no animal!" ;
+char const *AnimalNotFound::what() const noexcept
+{
+    return "There is no animal!";
 }
 
-char const *PlantNotFound::what() const noexcept {
-    return "There is no plant!" ;
+char const *PlantNotFound::what() const noexcept
+{
+    return "There is no plant!";
 }
 
-char const *NoFoodFound::what() const noexcept {
-    return "You have no food for this!" ;
+char const *NoFoodFound::what() const noexcept
+{
+    return "You have no food for this!";
 }
 
-char const *ProhibitedSellingException::what() const noexcept {
+char const *ProhibitedSellingException::what() const noexcept
+{
     return "Anda tidak dapat menjual bangunan!";
 }
 
-char const *ProhibitedBuyingException::what() const noexcept {
+char const *ProhibitedBuyingException::what() const noexcept
+{
     return "Anda tidak dapat membeli bangunan!";
+}
+
+char const *InvalidInput::what() const noexcept
+{
+    return "Invalid Input!";
 }

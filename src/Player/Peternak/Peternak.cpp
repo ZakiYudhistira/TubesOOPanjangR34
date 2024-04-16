@@ -103,7 +103,7 @@ void Peternak::ternak()
         cin >> slot;
         try
         {
-            this->pen->addElement(hasil);
+            this->pen->addElement(hasil, slot);
             cout << hasil->getObjectName() << " successfully placed!" << endl;
             break;
         }
@@ -242,7 +242,7 @@ string Peternak::getType()
     return this->type;
 }
 
-int Peternak::payTax()
+int Peternak::calculateTax()
 {
     double gulden = -11;
     gulden += this->getGulden();
@@ -364,7 +364,8 @@ void Peternak::currentTurn(string command, __attribute__((unused)) vector<Player
     else if (command == "HELP")
     {
         cout << "Daftar Perintah:\n";
-        for(int i=0; i<(int)this->command_list.size(); i++){
+        for (int i = 0; i < (int)this->command_list.size(); i++)
+        {
             cout << command_list[i] << "\n";
         }
     }
