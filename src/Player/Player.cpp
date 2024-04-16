@@ -119,9 +119,9 @@ void Player::buy(Toko &toko_cina)
             throw ProhibitedBuyingException();
         } else {
             for(int count_item = 0; count_item < quantity; count_item++){
-                item_bought.push_back(toko_cina.beli(idx_to_buy, quantity, this->gulden, this->getInventoryAvailableCount()));
+                item_bought.push_back(toko_cina.beli(idx_to_buy, 1, this->gulden, this->getInventoryAvailableCount()));
+                this->addGulden(item_bought[0]->getPrice() * (-1));
             }
-            this->addGulden(quantity * item_bought[0]->getPrice() * (-1));
 
             cout << "Selamat, Anda berhasil membeli " << quantity << " " << item_bought[0]->getObjectName()
                 << ". Uang Anda tersisa " << this->gulden << " gulden." << endl;
