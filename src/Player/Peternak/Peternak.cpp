@@ -175,7 +175,7 @@ void Peternak::feed()
             {
                 throw IsNotFood();
             }
-            if (!((animal->getType() == "OMNIVORE") && ((food->getType() == "PRODUCT_ANIMAL") || (food->getType() == "PRODUCT_FRUIT_PLANT"))))
+            if ((animal->getType() == "OMNIVORE") && !((food->getType() == "PRODUCT_ANIMAL") || (food->getType() == "PRODUCT_FRUIT_PLANT")))
             {
                 throw IsNotFood();
             }
