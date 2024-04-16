@@ -68,6 +68,10 @@ class GameConfig {
 
         int getFieldCol();
 
+        int getGuldenToWin();
+
+        int getWeightToWin();
+
         friend std::ostream& operator<<(std::ostream& os, GameConfig& gc);
 };
 

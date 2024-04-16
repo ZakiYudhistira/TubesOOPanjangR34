@@ -278,6 +278,13 @@ void Walikota::currentTurn(string command, vector<Player *> &player_list, int &c
     {
         this->printInventory();
     }
+    else if (command == "HELP")
+    {
+        cout << "Daftar Perintah:\n";
+        for(int i=0; i < (int)this->command_list.size(); i++){
+            cout << this->command_list[i] << endl;
+        }
+    }
     else if (command != "NEXT")
     {
         invalidCommand e;

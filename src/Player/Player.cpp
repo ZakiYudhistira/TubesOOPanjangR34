@@ -74,6 +74,7 @@ GameObject *Player::getInventory(string location)
 void Player::printInventory()
 {
     this->inventory->printMatrix();
+    cout << "Terdapat: " << this->getInventoryAvailableCount() << "\n";
 }
 
 void Player::printStatus()
