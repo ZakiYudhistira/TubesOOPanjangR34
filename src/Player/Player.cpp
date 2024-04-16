@@ -108,41 +108,35 @@ void Player::buy(Toko &toko_cina)
 
         int idx_to_buy;
         int quantity;
-        vector<GameObject *> item_bought;
+        vector<GameObject*> item_bought;
 
         cout << "Barang yang ingin dibeli : ";
         cin >> idx_to_buy;
         cout << "Kuantitas : ";
         cin >> quantity;
 
-        // Validasi Input
-        if (idx_to_buy <= 0 || quantity <= 0 || idx_to_buy > (int)toko_cina.getNumJenisItem())
-        {
-            throw IndexOutOfRange();
-        }
-
-        if (toko_cina.getItemI(idx_to_buy).first->getType() == "Building" && this->getType() == "Walikota")
-        {
+        if (toko_cina.getItemI(idx_to_buy).first->getType() == "Building" && this->getType() == "Walikota") {
             throw ProhibitedBuyingException();
-        }
-        else
-        {
-            for (int count_item = 0; count_item < quantity; count_item++)
-            {
+        } else {
+            for(int count_item = 0; count_item < quantity; count_item++) {
                 item_bought.push_back(toko_cina.beli(idx_to_buy, 1, this->gulden, this->getInventoryAvailableCount()));
                 this->addGulden(item_bought[0]->getPrice() * (-1));
             }
 
             cout << "Selamat, Anda berhasil membeli " << quantity << " " << item_bought[0]->getObjectName()
-                 << ". Uang Anda tersisa " << this->gulden << " gulden." << endl;
+                << ". Uang Anda tersisa " << this->gulden << " gulden." << endl;
             cout << "Pilih slot untuk menyimpan barang yang Anda beli!" << endl;
             this->printInventory();
-            vector<string> petak_beli = this->inputPetakBeli(quantity);
-            for (int i = 0; i < (int)petak_beli.size(); i++)
-            {
-                this->addInventory(item_bought[i], petak_beli[i]);
+            vector<string> petak_beli = this->inputPetakBeli();
+            if ((int)petak_beli.size() != quantity) {
+                toko_cina.batalBeli(idx_to_buy, quantity);
+                throw InvalidInput();
+            } else {
+                for(int i=0; i<(int)petak_beli.size(); i++){
+                    this->addInventory(item_bought[i], petak_beli[i]);
+                }
+                cout << item_bought[0]->getObjectName() << " berhasil disimpan dalam penyimpanan!" << endl;
             }
-            cout << item_bought[0]->getObjectName() << " berhasil disimpan dalam penyimpanan!" << endl;
         }
     }
 }
@@ -199,30 +193,22 @@ void Player::sell(Toko &toko_cina)
     }
 }
 
-vector<string> Player::inputPetakBeli(int quantity)
+vector<string> Player::inputPetakBeli()
 {
     vector<string> petak_beli;
     string input_petak;
-    string s;
-    while ((int)petak_beli.size() != quantity)
+    cout << "Petak : ";
+    cin >> ws;
+    getline(cin, input_petak);
+    int start = 0;
+    int end = 0;
+    while ((end = input_petak.find(", ", start)) != (int) string::npos)
     {
-        cout << quantity << endl;
-        cout << petak_beli.size() << endl;
-        petak_beli.clear();
-        cout << "Petak : ";
-        cin >> ws;
-        getline(cin, input_petak);
-        stringstream ssinput(input_petak);
-        while (getline(ssinput, s, ','))
-        {
-            petak_beli.push_back(s);
-            cout << s << endl;
-        }
-        if ((int)petak_beli.size() != quantity)
-        {
-            cout << "Masukkan sesuai kuantitas yang Anda beli!" << endl;
-        }
+        petak_beli.push_back(input_petak.substr(start, end-start));
+        start = end + 2;
     }
+    petak_beli.push_back(input_petak.substr(start));
+    
     return petak_beli;
 }
 

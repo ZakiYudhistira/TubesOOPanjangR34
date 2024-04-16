@@ -56,6 +56,8 @@ public:
     // Melakukan pembelian dari seorang player pada toko
     GameObject* beli(int idx, int quantity, int gulden, int inventory_available);
 
+    void batalBeli(int idx_bought, int quantity);
+
     // Melakukan penjualan untuk seorang player dari toko
     int jual(vector<GameObject*> sold);
 

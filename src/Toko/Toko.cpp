@@ -138,6 +138,12 @@ int Toko::jual(vector<GameObject*> sold)
     return gulden_given;
 }
 
+void Toko::batalBeli(int idx_bought, int quantity) {
+    if (this->item_list[idx_bought - 1].second != -1000) {
+        this->item_list[idx_bought - 1].second += quantity;
+    }
+}
+
 int Toko::getCheapestPrice(){
     return this->cheapest_price;
 }
