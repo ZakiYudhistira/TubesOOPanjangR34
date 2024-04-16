@@ -88,7 +88,9 @@ pair<GameObject *, int> Toko::getItemI(int i)
 void Toko::printToko()
 {
     cout << "Selamat datang di Toko Cina!" << endl
-         << "Berikut merupakan barang-barang yang dapat Anda beli" << endl;
+         << "Berikut merupakan barang-barang yang dapat Anda beli" << endl << endl;
+
+    cout << setw(2) << "No" << setw(20) << "NAMA ITEM" << setw(15) << "HARGA" << setw(15) << "KUANTITAS" << endl;
 
     for (int i = 0; i < this->neff; i++)
     {
@@ -99,6 +101,7 @@ void Toko::printToko()
         }
         cout << endl;
     }
+    cout << endl;
 }
 
 int Toko::jual(vector<GameObject*> sold)
